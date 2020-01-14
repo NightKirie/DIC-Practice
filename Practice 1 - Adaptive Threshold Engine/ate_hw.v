@@ -14,6 +14,11 @@ reg [6:0] count;
 reg [7:0] min;
 reg [7:0] max;
 reg [4:0] block_count;
+wire threshold_ignore;
+wire bin_ignore;
+assign threshold_ignore = (block_count == 5'd0 || block_count == 5'd5 || block_count == 5'd6 || block_count == 5'd11 || block_count == 5'd12 || block_count == 5'd17 || block_count == 5'd18 || block_count == 5'd23) ? 1 : 0;
+assign bin_ignore = (block_count == 5'd1 || block_count == 5'd6 || block_count == 5'd7 || block_count == 5'd12 || block_count == 5'd13 || block_count == 5'd18 || block_count == 5'd19 || block_count == 5'd24) ? 1 : 0;
+
 integer i;
 
 
@@ -54,48 +59,49 @@ always @(posedge clk or posedge reset) begin
 	end
 end
 
-// Count threshold at last input of each 8x8 matrix
+// Calculate threshold at last input of each 8x8 matrix
 always @(posedge clk or posedge reset) begin
-  if (count == 7'd63 && !(block_count == 0 || block_count == 5 || block_count == 6 || block_count == 11 || block_count == 12 || block_count == 17 || block_count == 18 || block_count == 23)) begin
-    if(pix_data > max) begin
-      threshold_temp <= ((pix_data[0] == 1) ? pix_data >> 1 + 1 : pix_data >> 1) + ((min[0] == 1) ? min >> 1 + 1 : min >> 1);
+    if (count == 7'd63 && !threshold_ignore) begin
+        if(pix_data > max) begin
+            threshold_temp <= ((pix_data[0] + min[0]) == 1) ? (pix_data + min + 1) >> 1 : (pix_data + min) >> 1;
+        end
+        else if(pix_data < min) begin
+            threshold_temp <= ((pix_data[0] + max[0]) == 1) ? (pix_data + max + 1) >> 1 : (pix_data + max) >> 1;
+        end 
+        else begin
+            threshold_temp <= ((max[0] + min[0]) == 1) ? (max + min + 1) >> 1 : (max + min) >> 1;
+        end 
     end
-    else if(pix_data < min) begin
-      threshold_temp <= ((max[0] == 1) ? max >> 1 + 1 : max >> 1) + ((pix_data[0] == 1) ? pix_data >> 1 + 1 : pix_data >> 1);
-    end 
     else begin
-      threshold_temp <= ((max[0] == 1) ? max >> 1 + 1 : max >> 1) + ((min[0] == 1) ? min >> 1 + 1 : min >> 1);
-    end 
-  end
-  else begin
-    threshold_temp <= 0;  
-  end
+        threshold_temp <= 0;  
+    end
 end
 
 // Count output
 always @(posedge clk or posedge reset) begin
-  if(!(block_count == 1 || block_count == 6 || block_count == 7 || block_count == 12 || block_count == 13 || block_count == 18 || block_count == 19 || block_count == 24)) begin
     if (count == 0) begin
-      threshold <= threshold_temp;
-      if(buffer[count] >= threshold_temp) begin
-        bin <= 1;
-      end 
-      else begin
-        bin <= 0;
-      end
+        threshold <= threshold_temp;
+        if(bin_ignore) begin      
+            bin <= 0;
+        end
+        else if(buffer[count] >= threshold_temp) begin
+            bin <= 1;
+        end 
+        else begin
+            bin <= 0;
+        end
     end
     else begin
-      if(buffer[count] >= threshold) begin
-        bin <= 1;
-      end 
-      else begin
-        bin <= 0;
-      end
+        if(bin_ignore) begin      
+            bin <= 0;
+        end
+        else if(buffer[count] >= threshold) begin
+            bin <= 1;
+        end 
+        else begin
+            bin <= 0;
+        end
     end
-  end
-  else begin
-    bin <= 0;
-  end
 end
 
 endmodule
