@@ -26,40 +26,39 @@ R1
 R2
 n@_opt2
 R3
-R4
 vate
+I;7UIE`oD<P7a6R@>o;;b91
 Vg[2Vk`oL`XcMEkGk3QOBd0
-r1
-!s85 0
-31
-IJJMNdGjRmBKdHb:C9XB2n1
 Z5 dC:\Code\git\DIC-Practice\Practice 1 - Adaptive Threshold Engine
-w1578989928
+w1578963619
 8C:/Code/git/DIC-Practice/Practice 1 - Adaptive Threshold Engine/ate_hw.v
 FC:/Code/git/DIC-Practice/Practice 1 - Adaptive Threshold Engine/ate_hw.v
 L0 1
 Z6 OL;L;10.1c;51
-Z7 o-work work -L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF
-!s90 -reportprogress|300|-work|work|-vopt|C:/Code/git/DIC-Practice/Practice 1 - Adaptive Threshold Engine/ate_hw.v|
-!s100 HgIheJ?a1N>]I2h9zn<M63
-!s108 1578989929.272000
-!s107 C:/Code/git/DIC-Practice/Practice 1 - Adaptive Threshold Engine/ate_hw.v|
-!i10b 1
-vtestfixture
-VKBIIT=eCh7cJh[^JXBGX00
 r1
 31
+Z7 o-work work -L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF
+!s100 3DAnN6We7Wbe[5Q`PFO7N2
+!s108 1578984311.156000
+!s107 C:/Code/git/DIC-Practice/Practice 1 - Adaptive Threshold Engine/ate_hw.v|
+!s90 -reportprogress|300|-work|work|-vopt|C:/Code/git/DIC-Practice/Practice 1 - Adaptive Threshold Engine/ate_hw.v|
+!i10b 1
+!s85 0
+vtestfixture
 IjoTln`[]F<5Og1]gmHM6j3
+VKBIIT=eCh7cJh[^JXBGX00
 R5
 w1532585264
 8C:/Code/git/DIC-Practice/Practice 1 - Adaptive Threshold Engine/testfixture.v
 FC:/Code/git/DIC-Practice/Practice 1 - Adaptive Threshold Engine/testfixture.v
 L0 16
 R6
+r1
+31
 R7
-!s85 0
-!s100 V2PiOdkno?6n2ZiPgfO7P0
-!s90 -reportprogress|300|-work|work|-vopt|C:/Code/git/DIC-Practice/Practice 1 - Adaptive Threshold Engine/testfixture.v|
 !i10b 1
-!s108 1578989929.387000
+!s100 V2PiOdkno?6n2ZiPgfO7P0
+!s85 0
+!s108 1578984311.281000
 !s107 C:/Code/git/DIC-Practice/Practice 1 - Adaptive Threshold Engine/testfixture.v|
+!s90 -reportprogress|300|-work|work|-vopt|C:/Code/git/DIC-Practice/Practice 1 - Adaptive Threshold Engine/testfixture.v|
