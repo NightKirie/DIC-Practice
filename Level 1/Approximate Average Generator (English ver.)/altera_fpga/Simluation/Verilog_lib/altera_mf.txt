@@ -1,0 +1,53 @@
+Filename    :  altera_mf.txt
+Description :  This file contains the general description on Quartus
+               release
+
+Copyright (c) Altera Corporation 1997-2004
+All rights reserved
+
+Quartus II 4.1 
+1. Added additional support for Cyclone II for 
+   - altsyncram, altmult_add, altmult_accum & altpll
+2. dcfifo 
+   - Added support for 'showahead speed' mode and 'showahead area' mode.
+3. altmult_add, altmult_accum
+   - Added support for 18 bit inputs when saturation and rounding feature are used.
+4. altlvds_rx, altlvds_tx
+   - Fixed simulation halt issue under x1 mode and x2 mode when inclock period is set to 0.
+   - Added support for -180 degrees phase shift on PLL serial clock.
+5. altpll
+   - Added support to handle the large clk*multiply_by and clk*divide_by numbers.
+
+Notes:
+-	ModelSim 5.8 gives the following warning when altera_mf or 220models 
+    Megafunction models are compiled using -87 switch
+    >> # ** Warning: (vcom-1148) Condition in IF GENERATE must be static. <<
+    -> This warning can be safely ignored because under the 1987 rules, 
+       the constant is not considered to be static because of the initialization from the function call.
+-	RAM Megafunction models only support HEX format for all 3rd party simulators. 
+    Workaround: to manually convert MIF format to HEX first under Quartus II.
+
+
+Quartus II 3.0 
+1. Retrofit the Altera models based on Modelsim and VCS Hazards checks.
+2. Increase regtest coverage for all Altera models.
+3. Important parameters check for the models.
+4. Bug fix for: altcam, altpll, altclklock, altcdr, altdpram, altsyncram, altqpram, dcfifo, altlvds_tx, altlvds_rx. 
+
+Quartus II 2.2 sp1 
+1. Retrofit the following models based on new coding guideline : altmult_add, alt3pram, altaccumulate, altqpram, altsqrt, altfp_mult, altcdr_tx, altclklock, altddio_in, altddio_out, altddio_bidir, altshift_taps, scfifo and dcfifo
+2. Bug fix for altsyncram, altqpram, altdpram, altlvds, altpll and dcfifo.
+
+QuartusII 2.2
+
+QuartusII 2.1 SP1
+ALTLVDS_RX, ALTLVDS_TX, ALTPLL, ALTQPRAM: Enhancement
+
+QuartusII 2.1
+GENERAL: Added support for Stratix_GX and Cyclone families
+ALTFP_MULT: Added new megafunction
+ALTLVDS_RX: Added Stratix_GX DPA feature support
+
+QuartusII 2.0
+GENERAL: Added support for Stratix family
+ALTMULT_ACCUM, ALTMULT_ADD, ALTACCUMULATE, ALTSYNCRAM, ALTSHIFT_TAPS, ALTPLL: Added new megafunction
