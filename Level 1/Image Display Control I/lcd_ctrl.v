@@ -35,7 +35,8 @@ task start_output_task;
 endtask
 
 always@(posedge clk, posedge reset) begin
-    if (reset) begin
+    // Handle reset
+	if (reset) begin
         dataout <= 0;
         output_valid <= 0;
         busy <= 0;
@@ -48,6 +49,7 @@ always@(posedge clk, posedge reset) begin
         origin_y <= 2;
         clk_count <= 1;
     end
+	// Handle command
     else if (cmd_valid && busy == 0 && cmd >= 0 && cmd < 6) begin
         case (cmd) 
             /* Reflash */
@@ -93,6 +95,12 @@ always@(posedge clk, posedge reset) begin
             end
         endcase
     end
+	// Reset output_valid & busy after output finish
+	else if(output_count == 0) begin
+		output_valid <= 0;
+		busy <= 0;
+	end
+	// Handle input & output
     else begin
 		// For input
 		if (input_count < 36) begin
@@ -133,10 +141,6 @@ always@(posedge clk, posedge reset) begin
 			/* output code here */
 			output_valid <= 1;
 			output_count <= output_count - 1;
-			if (output_count == 0) begin  
-				output_valid <= 0;
-				busy <= 0;
-			end
 		end
     end
 end
