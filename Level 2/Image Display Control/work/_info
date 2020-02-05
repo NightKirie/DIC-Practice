@@ -1,0 +1,43 @@
+m255
+K3
+13
+cModel Technology
+Z0 dD:\Code\git\DIC-Practice\Level 1\Image Display Control II
+vIRAM
+!i10b 1
+!s100 4X9KGSDoJiook8o>dmZUT0
+I]<G;P:e5R?UlNW`Q>0ORG1
+V<@Ffj1cn60zcz7;=HAIWo0
+Z1 dD:\Code\git\DIC-Practice\Level 2\Image Display Control
+w0
+8D:/Code/git/DIC-Practice/Level 2/Image Display Control/testfixture.v
+FD:/Code/git/DIC-Practice/Level 2/Image Display Control/testfixture.v
+L0 190
+Z2 OL;L;10.1c;51
+r1
+!s85 0
+31
+!s108 1580898615.617000
+!s107 D:/Code/git/DIC-Practice/Level 2/Image Display Control/testfixture.v|
+!s90 -reportprogress|300|-work|work|-vopt|D:/Code/git/DIC-Practice/Level 2/Image Display Control/testfixture.v|
+Z3 o-work work -L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF
+n@i@r@a@m
+vLCD_CTRL
+Z4 IiomG`cZ==2Z;j5Pg8AP<K2
+Z5 VUW>2j;KeUD7[[Q4G_mWLK3
+R1
+Z6 w1580887210
+Z7 8D:/Code/git/DIC-Practice/Level 2/Image Display Control/LCD_CTRL.v
+Z8 FD:/Code/git/DIC-Practice/Level 2/Image Display Control/LCD_CTRL.v
+L0 1
+R2
+r1
+31
+R3
+Z9 n@l@c@d_@c@t@r@l
+!i10b 1
+Z10 !s100 4C_SM<PVRQ9H7ZCecT4]53
+!s85 0
+Z11 !s108 1580898615.528000
+Z12 !s107 D:/Code/git/DIC-Practice/Level 2/Image Display Control/LCD_CTRL.v|
+Z13 !s90 -reportprogress|300|-work|work|-vopt|D:/Code/git/DIC-Practice/Level 2/Image Display Control/LCD_CTRL.v|
