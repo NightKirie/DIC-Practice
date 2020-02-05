@@ -1,9 +1,9 @@
 `timescale 1ns/10ps
 `define CYCLE    100           	        // Modify your clock period here
 `define SDFFILE  "./LCD_CTRL.sdf"	      // Modify your sdf file name
-`define IMAGE    "./image1.dat"         // Modify your test image file: image1.dat or image2.dat
-`define CMD      "./cmd1.dat"           // Modify your test cmd file: cmd1.dat or cmd2.dat
-`define EXPECT   "./out_golden1.dat"    // Modify your output golden file: out_golden1.dat or out_golden2.dat
+`define IMAGE    "./image2.dat"         // Modify your test image file: image1.dat or image2.dat
+`define CMD      "./cmd2.dat"           // Modify your test cmd file: cmd1.dat or cmd2.dat
+`define EXPECT   "./out_golden2.dat"    // Modify your output golden file: out_golden1.dat or out_golden2.dat
 
 module tb;
 parameter IMAGE_N_PAT = 108;
@@ -31,7 +31,7 @@ reg   [4:0]   verify;
 integer       i, j, out_f, err, pass, pattern_num;
 reg           over;
 
-   LCD_CTRL top(.clk(clk), .reset(reset), .datain(datain), 
+   lcd_ctrl top(.clk(clk), .reset(reset), .datain(datain), 
                 .cmd(cmd), .cmd_valid(cmd_valid), .dataout(dataout), 
                 .output_valid(output_valid), .busy(busy));          
    

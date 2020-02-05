@@ -15,7 +15,6 @@ reg [7:0] buffer[35:0];
 reg [5:0] input_count;
 reg [3:0] output_count; 
 reg [2:0] origin_x, origin_y;
-reg [31:0] clk_count;
 integer i;
 
 task start_input_task;
@@ -41,13 +40,12 @@ always@(posedge clk, posedge reset) begin
         output_valid <= 0;
         busy <= 0;
         
-        input_count <= 36;
+        input_count <= 0;
         output_count <= 9;
         for(i = 0; i < 36; i = i+1)
             buffer[i] <= 0;
         origin_x <= 2;
         origin_y <= 2;
-        clk_count <= 1;
     end
 	// Handle command
     else if (cmd_valid && busy == 0 && cmd >= 0 && cmd < 6) begin
@@ -64,33 +62,33 @@ always@(posedge clk, posedge reset) begin
             /* Shift Right */
             3'd2: begin
                 if (origin_x < 3)
-                    origin_x = origin_x + 1;
+                    origin_x <= origin_x + 1;
                 else
-                    origin_x = origin_x;
+                    origin_x <= origin_x;
                 start_output_task;
             end
             /* Shift Left */
             3'd3: begin
                 if (origin_x > 0)
-                    origin_x = origin_x - 1;
+                    origin_x <= origin_x - 1;
                 else
-                    origin_x = origin_x;
+                    origin_x <= origin_x;
                 start_output_task;
             end
             /* Shift Up */
             3'd4: begin
                 if (origin_y > 0)
-                    origin_y = origin_y - 1;
+                    origin_y <= origin_y - 1;
                 else
-                    origin_y = origin_y;
+                    origin_y <= origin_y;
                 start_output_task;
             end
             /* Shift Down */
             3'd5: begin
                 if (origin_y < 3)
-                    origin_y = origin_y + 1;
+                    origin_y <= origin_y + 1;
                 else
-                    origin_y = origin_y;
+                    origin_y <= origin_y;
                 start_output_task;
             end
         endcase
@@ -108,7 +106,7 @@ always@(posedge clk, posedge reset) begin
 			input_count <= input_count + 1;
 		end
 		// For output
-		else if (output_count >= 0) begin
+		else if (output_count > 0) begin
 			case(output_count)
 				4'd1: begin
 					dataout <= buffer[6 * (origin_y + 2) + origin_x + 2];

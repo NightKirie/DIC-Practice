@@ -1,0 +1,15 @@
+{D:/Code/git/DIC-Practice/Level 1/Image Display Control II/tb.v} {1 {vlog -work work -vopt {D:\Code\git\DIC-Practice\Level 1\Image Display Control II\tb.v}
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module tb
+
+Top level modules:
+	tb
+
+} {} {}} {D:/Code/git/DIC-Practice/Level 1/Image Display Control II/lcd_ctrl.v} {1 {vlog -work work -vopt {D:\Code\git\DIC-Practice\Level 1\Image Display Control II\lcd_ctrl.v}
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module lcd_ctrl
+
+Top level modules:
+	lcd_ctrl
+
+} {} {}}
