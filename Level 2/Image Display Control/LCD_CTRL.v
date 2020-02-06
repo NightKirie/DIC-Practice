@@ -13,98 +13,171 @@ output reg [5:0] IRAM_A;
 output reg busy;
 output reg done;
 
+
+reg [7:0] curr_state;
+reg [7:0] next_state;
 reg [7:0] buffer[63:0];
 // reg [6:0] input_count;
 // reg [2:0] output_count;
 reg [2:0] origin_x, origin_y;
+reg [7:0] max;
+reg [7:0] min;
+reg [7:0] avg;
+reg [7:0] temp1, temp2;
+
+parameter Write = 4'b0000;
+parameter Shift_Up = 4'b0001;
+parameter Shift_Down = 4'b0010;
+parameter Shift_Left = 4'b0011;
+parameter Shift_Right = 4'b0100;
+parameter Max = 4'b0101;
+parameter Min = 4'b0110;
+parameter Average = 4'b0111;
+parameter Counterclockwise = 4'b1000;
+parameter Clockwise = 4'b1001;
+parameter Mirror_X = 4'b1010;
+parameter Mirror_Y = 4'b1011;
+parameter Load = 4'b1100;
+parameter Reset = 4'b1101;
+parameter Idle = 4'b1110;
+
 integer i;
 
-
-always @(posedge clk, posedge reset) begin
-    /* Handle reset */
-    if(reset) begin
-        IROM_rd <= 1;
-        IROM_A <= 0;
-        IRAM_valid <= 0;
-        IRAM_D <= 0;
-        IRAM_A <= 0;
-        busy <= 1;
-        done <= 0;
-
-        for(i = 0; i < 64; i = i+1)
-            buffer[i] <= 0; 
-        origin_x <= 4;
-        origin_y <= 4;
-    end
-    /* Handle command */
-    else if(cmd_valid && !busy) begin
-        case(cmd) 
-            /* Write */
-            4'b0000: begin
-            end
-            /* Shift Up */
-            4'b0001: begin
-                if(origin_y > 1)
-                    origin_y = origin_y - 1;
-                else
-                    origin_y = origin_y;
-            end
-            /* Shift Down */
-            4'b0010: begin
-                if(origin_y < 7)
-                    origin_y = origin_y + 1;
-                else
-                    origin_y = origin_y;
-            end
-            /* Shift Left */
-            4'b0011: begin
-                if(origin_x > 1)
-                    origin_x = origin_x + 1;
-                else
-                    origin_x = origin_x;
-            end
-            /* Shift Right */
-            4'b0100: begin
-                if(origin_x < 7)
-                    origin_x = origin_x - 1;
-                else
-                    origin_x = origin_x;
-            end
-            /* Max */
-            4'b0101: begin
-            end
-            /* Min */
-            4'b0110: begin
-            end
-            /* Average */
-            4'b0111: begin
-            end
-            /* Counterclockwise Rotation */
-            4'b1000: begin
-            end
-            /* Clockwise Rotation */
-            4'b1001: begin
-            end
-            /* Mirror X */
-            4'b1010: begin
-            end
-            /* Mirror Y */
-            4'b1011: begin
-            end
-        endcase
-    end
-
+always@(posedge clk, posedge reset) begin
+    if(reset)
+        curr_state = IDLE;
+    else
+        curr_state = next_state;
 end
 
-always @(negedge clk) begin
-    if(busy && IROM_rd && IROM_A < 63) begin
-        buffer[IROM_A] <= IROM_Q;
-    end
-    else if (busy && IROM_rd && IROM_A == 63) begin
-        buffer[IROM_A] <= IROM_Q;
-        IROM_rd <= 0;
-    end
+always@(*) begin
+    case(cmd)
+        Write: begin
+            if(cmd_valid && !busy) 
+                next_state = Write;
+            else
+                next_state = next_state;
+        end
+        Shift_Up: begin
+            if(cmd_valid && !busy) 
+                next_state = Shift_Up;
+            else
+                next_state = next_state;
+        end
+        Shift_Down: begin
+            if(cmd_valid && !busy) 
+                next_state = Shift_Down;
+            else
+                next_state = next_state;
+        end
+        Shift_Left: begin
+            if(cmd_valid && !busy) 
+                next_state = Shift_Left;
+            else
+                next_state = next_state;
+        end
+        Shift_Right: begin
+            if(cmd_valid && !busy) 
+                next_state = Shift_Right;
+            else
+                next_state = next_state;
+        end
+        Max: begin
+            if(cmd_valid && !busy) 
+                next_state = Max;
+            else
+                next_state = next_state;
+        end
+        Min: begin
+            if(cmd_valid && !busy) 
+                next_state = Min;
+            else
+                next_state = next_state;
+        end
+        Average: begin
+            if(cmd_valid && !busy) 
+                next_state = Average;
+            else
+                next_state = next_state;
+        end
+        Counterclockwise: begin
+            if(cmd_valid && !busy) 
+                next_state = Average;
+            else
+                next_state = next_state;
+        end
+        Clockwise: begin
+            if(cmd_valid && !busy) 
+                next_state = Average;
+            else
+                next_state = next_state;
+        end
+        Mirror_X: begin
+            if(cmd_valid && !busy) 
+                next_state = Average;
+            else
+                next_state = next_state;
+        end
+        Mirror_Y: begin
+            if(cmd_valid && !busy) 
+                next_state = Average;
+            else
+                next_state = next_state;
+        end
+    endcase
 end
+
+always@(*) begin
+    case(curr_state)
+        Write: begin
+
+        end
+        Shift_Up: begin
+
+        end
+        Shift_Down: begin
+
+        end
+        Shift_Left: begin
+            
+        end
+        Shift_Right: begin
+            
+        end
+        Max: begin
+            
+        end
+        Min: begin
+            
+        end
+        Average: begin
+            
+        end
+        Counterclockwise: begin
+            
+        end
+        Clockwise: begin
+            
+        end
+        Mirror_X: begin
+        
+        end
+        Mirror_Y: begin
+            
+        end
+        Load: begin
+            
+        end
+        Reset: begin
+            
+        end
+        Idle: begin
+            
+        end
+    endcase
+end
+
+
 
 endmodule
 

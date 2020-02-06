@@ -1,12 +1,12 @@
-{D:/Code/git/DIC-Practice/Level 2/Image Display Control/testfixture.v} {0 {vlog -work work -vopt {D:/Code/git/DIC-Practice/Level 2/Image Display Control/testfixture.v}
+{D:/Code/git/DIC-Practice/Level 2/Image Display Control/testfixture.v} {0 {vlog -work work -vopt {D:\Code\git\DIC-Practice\Level 2\Image Display Control\testfixture.v}
 Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
 -- Compiling module test
-** Error: D:/Code/git/DIC-Practice/Level 2/Image Display Control/testfixture.v(74): (vlog-2163) Macro `CMD is undefined.
+** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\testfixture.v(74): (vlog-2163) Macro `CMD is undefined.
 
-** Error: D:/Code/git/DIC-Practice/Level 2/Image Display Control/testfixture.v(75): (vlog-2163) Macro `EXPECT is undefined.
+** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\testfixture.v(75): (vlog-2163) Macro `EXPECT is undefined.
 
 -- Compiling module IROM
-** Error: D:/Code/git/DIC-Practice/Level 2/Image Display Control/testfixture.v(177): (vlog-2163) Macro `IMAGE is undefined.
+** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\testfixture.v(177): (vlog-2163) Macro `IMAGE is undefined.
 
 -- Compiling module IRAM
 
