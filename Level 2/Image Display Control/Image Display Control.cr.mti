@@ -1,94 +1,19 @@
-{D:/Code/git/DIC-Practice/Level 2/Image Display Control/LCD_CTRL.v} {0 {vlog -work work -vopt {D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v}
+{C:/Code/git/DIC-Practice/Level 2/Image Display Control/LCD_CTRL.v} {1 {vlog -work work -vopt {C:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v}
 Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
 -- Compiling module LCD_CTRL
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(27): near "<=": syntax error, unexpected <=, expecting ';' or ','
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(28): near "<=": syntax error, unexpected <=, expecting ';' or ','
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(29): near "<=": syntax error, unexpected <=, expecting ';' or ','
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(30): near "<=": syntax error, unexpected <=, expecting ';' or ','
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(31): near "<=": syntax error, unexpected <=, expecting ';' or ','
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(32): near "<=": syntax error, unexpected <=, expecting ';' or ','
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(33): near "<=": syntax error, unexpected <=, expecting ';' or ','
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(34): near "<=": syntax error, unexpected <=, expecting ';' or ','
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(35): near "<=": syntax error, unexpected <=, expecting ';' or ','
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(36): near "<=": syntax error, unexpected <=, expecting ';' or ','
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(37): near "<=": syntax error, unexpected <=, expecting ';' or ','
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(38): near "<=": syntax error, unexpected <=, expecting ';' or ','
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(39): near "<=": syntax error, unexpected <=, expecting ';' or ','
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(40): near "<=": syntax error, unexpected <=, expecting ';' or ','
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(41): near "<=": syntax error, unexpected <=, expecting ';' or ','
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(52): near "=": syntax error, unexpected '='
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(59): near "else": syntax error, unexpected else
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(67): A label for a block can be specified before 'begin' only in SystemVerilog.
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(68): near "<=": syntax error, unexpected <=, expecting IDENTIFIER or TYPE_IDENTIFIER
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(70): near "<=": syntax error, unexpected <=, expecting IDENTIFIER or TYPE_IDENTIFIER
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(73): A label for a block can be specified before 'begin' only in SystemVerilog.
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(74): near "<=": syntax error, unexpected <=, expecting IDENTIFIER or TYPE_IDENTIFIER
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(76): near "<=": syntax error, unexpected <=, expecting IDENTIFIER or TYPE_IDENTIFIER
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(79): A label for a block can be specified before 'begin' only in SystemVerilog.
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(80): near "<=": syntax error, unexpected <=, expecting IDENTIFIER or TYPE_IDENTIFIER
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(82): near "<=": syntax error, unexpected <=, expecting IDENTIFIER or TYPE_IDENTIFIER
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(85): A label for a block can be specified before 'begin' only in SystemVerilog.
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(86): near "<=": syntax error, unexpected <=, expecting IDENTIFIER or TYPE_IDENTIFIER
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(88): near "<=": syntax error, unexpected <=, expecting IDENTIFIER or TYPE_IDENTIFIER
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(92): A label for a block can be specified before 'begin' only in SystemVerilog.
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(92): near "<=": syntax error, unexpected <=, expecting IDENTIFIER or TYPE_IDENTIFIER
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(101): A label for a block can be specified before 'begin' only in SystemVerilog.
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(101): near "<=": syntax error, unexpected <=, expecting IDENTIFIER or TYPE_IDENTIFIER
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(110): A label for a block can be specified before 'begin' only in SystemVerilog.
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(110): near "<=": syntax error, unexpected <=, expecting IDENTIFIER or TYPE_IDENTIFIER
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(118): A label for a block can be specified before 'begin' only in SystemVerilog.
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(118): near "<=": syntax error, unexpected <=, expecting IDENTIFIER or TYPE_IDENTIFIER
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(125): A label for a block can be specified before 'begin' only in SystemVerilog.
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(125): near "<=": syntax error, unexpected <=, expecting IDENTIFIER or TYPE_IDENTIFIER
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(132): A label for a block can be specified before 'begin' only in SystemVerilog.
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(132): near "<=": syntax error, unexpected <=, expecting IDENTIFIER or TYPE_IDENTIFIER
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(140): A label for a block can be specified before 'begin' only in SystemVerilog.
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(140): near "<=": syntax error, unexpected <=, expecting IDENTIFIER or TYPE_IDENTIFIER
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(148): A label for a block can be specified before 'begin' only in SystemVerilog.
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(148): near "<=": syntax error, unexpected <=, expecting IDENTIFIER or TYPE_IDENTIFIER
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(156): near "<=": syntax error, unexpected <=, expecting '='
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(164): A label for a block can be specified before 'begin' only in SystemVerilog.
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(165): near "[": syntax error, unexpected '[', expecting IDENTIFIER or TYPE_IDENTIFIER
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(166): near "=": syntax error, unexpected '='
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(173): near "<=": syntax error, unexpected <=, expecting IDENTIFIER or TYPE_IDENTIFIER
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(177): near "end": syntax error, unexpected end
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(191): near "=": syntax error, unexpected '=', expecting IDENTIFIER or TYPE_IDENTIFIER
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(193): near "=": syntax error, unexpected '=', expecting IDENTIFIER or TYPE_IDENTIFIER
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(197): near "=": syntax error, unexpected '=', expecting IDENTIFIER or TYPE_IDENTIFIER
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(199): near "=": syntax error, unexpected '=', expecting IDENTIFIER or TYPE_IDENTIFIER
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(203): near "=": syntax error, unexpected '=', expecting IDENTIFIER or TYPE_IDENTIFIER
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(205): near "=": syntax error, unexpected '=', expecting IDENTIFIER or TYPE_IDENTIFIER
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(209): near "=": syntax error, unexpected '=', expecting IDENTIFIER or TYPE_IDENTIFIER
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(211): near "=": syntax error, unexpected '=', expecting IDENTIFIER or TYPE_IDENTIFIER
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(215): near "=": syntax error, unexpected '=', expecting IDENTIFIER or TYPE_IDENTIFIER
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(217): near "=": syntax error, unexpected '=', expecting IDENTIFIER or TYPE_IDENTIFIER
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(221): near "=": syntax error, unexpected '=', expecting IDENTIFIER or TYPE_IDENTIFIER
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(223): near "=": syntax error, unexpected '=', expecting IDENTIFIER or TYPE_IDENTIFIER
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(227): near "=": syntax error, unexpected '=', expecting IDENTIFIER or TYPE_IDENTIFIER
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(229): near "=": syntax error, unexpected '=', expecting IDENTIFIER or TYPE_IDENTIFIER
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(233): near "=": syntax error, unexpected '=', expecting IDENTIFIER or TYPE_IDENTIFIER
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(235): near "=": syntax error, unexpected '=', expecting IDENTIFIER or TYPE_IDENTIFIER
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(239): near "=": syntax error, unexpected '=', expecting IDENTIFIER or TYPE_IDENTIFIER
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(241): near "=": syntax error, unexpected '=', expecting IDENTIFIER or TYPE_IDENTIFIER
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(245): near "=": syntax error, unexpected '=', expecting IDENTIFIER or TYPE_IDENTIFIER
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(247): near "=": syntax error, unexpected '=', expecting IDENTIFIER or TYPE_IDENTIFIER
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(251): near "=": syntax error, unexpected '=', expecting IDENTIFIER or TYPE_IDENTIFIER
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(253): near "=": syntax error, unexpected '=', expecting IDENTIFIER or TYPE_IDENTIFIER
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(257): near "=": syntax error, unexpected '=', expecting IDENTIFIER or TYPE_IDENTIFIER
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(259): near "=": syntax error, unexpected '=', expecting IDENTIFIER or TYPE_IDENTIFIER
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(263): near "=": syntax error, unexpected '=', expecting IDENTIFIER or TYPE_IDENTIFIER
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(265): near "=": syntax error, unexpected '=', expecting IDENTIFIER or TYPE_IDENTIFIER
-** Error: D:\Code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v(267): near "=": syntax error, unexpected '=', expecting IDENTIFIER or TYPE_IDENTIFIER
 
-} {4.0 82.0} {}} {D:/Code/git/DIC-Practice/Level 2/Image Display Control/testfixture.v} {0 {vlog -work work -vopt {D:/Code/git/DIC-Practice/Level 2/Image Display Control/testfixture.v}
+Top level modules:
+	LCD_CTRL
+
+} {} {}} {C:/Code/git/DIC-Practice/Level 2/Image Display Control/testfixture.v} {0 {vlog -work work -vopt {C:\Code\git\DIC-Practice\Level 2\Image Display Control\testfixture.v}
 Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
 -- Compiling module test
-** Error: D:/Code/git/DIC-Practice/Level 2/Image Display Control/testfixture.v(74): (vlog-2163) Macro `CMD is undefined.
+** Error: C:\Code\git\DIC-Practice\Level 2\Image Display Control\testfixture.v(74): (vlog-2163) Macro `CMD is undefined.
 
-** Error: D:/Code/git/DIC-Practice/Level 2/Image Display Control/testfixture.v(75): (vlog-2163) Macro `EXPECT is undefined.
+** Error: C:\Code\git\DIC-Practice\Level 2\Image Display Control\testfixture.v(75): (vlog-2163) Macro `EXPECT is undefined.
 
 -- Compiling module IROM
-** Error: D:/Code/git/DIC-Practice/Level 2/Image Display Control/testfixture.v(177): (vlog-2163) Macro `IMAGE is undefined.
+** Error: C:\Code\git\DIC-Practice\Level 2\Image Display Control\testfixture.v(177): (vlog-2163) Macro `IMAGE is undefined.
 
 -- Compiling module IRAM
 
