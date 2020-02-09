@@ -21,7 +21,7 @@ reg [6:0] IRAM_A_temp;
 reg [2:0] origin_x, origin_y;
 reg [7:0] max;
 reg [7:0] min;
-reg [7:0] avg;
+reg [9:0] avg;
 reg [7:0] temp1, temp2;
 
 parameter Write = 4'b0000;
@@ -63,102 +63,7 @@ always@(posedge clk, posedge reset) begin
                     busy <= 1;
                     IRAM_valid <= 1;
                 end
-            end
-            Shift_Up: begin
-                if(origin_y > 1)
-                    origin_y <= origin_y - 1;
-                else
-                    origin_y <= origin_y;
-            end
-            Shift_Down: begin
-                if(origin_y < 7)
-                    origin_y <= origin_y + 1;
-                else
-                    origin_y <= origin_y;
-            end
-            Shift_Left: begin
-                if(origin_x > 1)
-                    origin_x <= origin_x - 1;
-                else
-                    origin_x <= origin_x; 
-            end
-            Shift_Right: begin
-                if(origin_x < 7)
-                    origin_x <= origin_x + 1;
-                else
-                    origin_x <= origin_x;
-            end
-            Max: begin
-                temp1 <= (buffer[(origin_y - 1) * 8 + origin_x - 1] > buffer[(origin_y - 1) * 8 + origin_x]) ? buffer[(origin_y - 1) * 8 + origin_x - 1] : buffer[(origin_y - 1) * 8 + origin_x];
-                temp2 <= (buffer[origin_y * 8 + origin_x - 1] > buffer[origin_y * 8 + origin_x]) ? buffer[origin_y * 8 + origin_x - 1] : buffer[origin_y * 8 + origin_x];
-                max <= (temp1 > temp2) ? temp1 : temp2;
-                buffer[(origin_y - 1) * 8 + origin_x - 1] <= max;
-                buffer[(origin_y - 1) * 8 + origin_x] <= max;
-                buffer[origin_y * 8 + origin_x - 1] <= max;
-                buffer[origin_y * 8 + origin_x] <= max;
-            end
-            Min: begin
-                temp1 <= (buffer[(origin_y - 1) * 8 + origin_x - 1] < buffer[(origin_y - 1) * 8 + origin_x]) ? buffer[(origin_y - 1) * 8 + origin_x - 1] : buffer[(origin_y - 1) * 8 + origin_x];
-                temp2 <= (buffer[origin_y * 8 + origin_x - 1] < buffer[origin_y * 8 + origin_x]) ? buffer[origin_y * 8 + origin_x - 1] : buffer[origin_y * 8 + origin_x];
-                min <= (temp1 < temp2) ? temp1 : temp2;
-                buffer[(origin_y - 1) * 8 + origin_x - 1] <= min;
-                buffer[(origin_y - 1) * 8 + origin_x] <= min;
-                buffer[origin_y * 8 + origin_x - 1] <= min;
-                buffer[origin_y * 8 + origin_x] <= min;
-            end
-            Average: begin
-                avg <= ((buffer[(origin_y - 1) * 8 + origin_x - 1] + buffer[(origin_y - 1) * 8 + origin_x]) + 
-                    (buffer[origin_y * 8 + origin_x - 1] + buffer[origin_y * 8 + origin_x])) >> 2;
-                buffer[(origin_y - 1) * 8 + origin_x - 1] <= avg;
-                buffer[(origin_y - 1) * 8 + origin_x] <= avg;
-                buffer[origin_y * 8 + origin_x - 1] <= avg;
-                buffer[origin_y * 8 + origin_x] <= avg;
-            end
-            Counterclockwise: begin
-                temp1 <= buffer[(origin_y - 1) * 8 + origin_x - 1];
-                buffer[(origin_y - 1) * 8 + origin_x - 1] <= buffer[(origin_y - 1) * 8 + origin_x];
-                buffer[(origin_y - 1) * 8 + origin_x] <= buffer[origin_y * 8 + origin_x];
-                buffer[origin_y * 8 + origin_x] <= buffer[origin_y * 8 + origin_x - 1];
-                buffer[origin_y * 8 + origin_x - 1] <= temp1;
-            end
-            Clockwise: begin
-                temp1 <= buffer[(origin_y - 1) * 8 + origin_x - 1];
-                buffer[(origin_y - 1) * 8 + origin_x - 1] <= buffer[origin_y * 8 + origin_x - 1];
-                buffer[origin_y * 8 + origin_x - 1] <= buffer[origin_y * 8 + origin_x];
-                buffer[origin_y * 8 + origin_x] <= buffer[(origin_y - 1) * 8 + origin_x];
-                buffer[(origin_y - 1) * 8 + origin_x] <= temp1;
-            end
-            Mirror_X: begin
-                temp1 <= buffer[(origin_y - 1) * 8 + origin_x - 1];
-                temp2 <= buffer[(origin_y - 1) * 8 + origin_x];
-                buffer[(origin_y - 1) * 8 + origin_x - 1] <= buffer[origin_y * 8 + origin_x - 1];
-                buffer[(origin_y - 1) * 8 + origin_x] <= buffer[origin_y * 8 + origin_x];
-                buffer[origin_y * 8 + origin_x - 1] <= temp1;
-                buffer[origin_y * 8 + origin_x] <= temp2; 
-            end
-            Mirror_Y: begin
-                temp1 <= buffer[(origin_y - 1) * 8 + origin_x - 1];
-                temp2 <= buffer[origin_y * 8 + origin_x - 1];
-                buffer[(origin_y - 1) * 8 + origin_x - 1] <= buffer[(origin_y - 1) * 8 + origin_x];
-                buffer[origin_y * 8 + origin_x - 1] <= buffer[origin_y * 8 + origin_x];
-                buffer[(origin_y - 1) * 8 + origin_x] <= temp1;
-                buffer[origin_y * 8 + origin_x] <= temp2;
-            end
-            Reset: begin
-                IROM_rd <= 1;
-                IROM_A <= 0;
-                IRAM_valid <= 0;
-                IRAM_D <= 0;
-                IRAM_A <= 64;
-                busy <= 1;
-                done <= 0;
-
-                for(i = 0; i < 64; i = i+1)
-                    buffer[i] <= 0; 
-                origin_x <= 4;
-                origin_y <= 4;
-                next_state <= Load;
-                IRAM_A_temp <= 0;
+                
             end
             Load: begin
                 if(IROM_rd) begin
@@ -175,15 +80,12 @@ always@(posedge clk, posedge reset) begin
                     end
                 end
             end
-            // Idle: curr_state <= Idle;
-
             default: busy <= busy;
         endcase
     end
 end
 
-always@(cmd) begin
-    $write("cmd %d  ", cmd);
+always@(cmd, next_state) begin
     case(cmd)
         Write: begin
             if(cmd_valid && !busy) 
@@ -269,110 +171,121 @@ end
 
 
 
-// always@(curr_state, origin_x, origin_y) begin
-//     $write("curr_state %d %d %d\n", curr_state, origin_x, origin_y);
-//     case(curr_state)
-//         Shift_Up: begin
-//             if(origin_y > 1)
-//                 origin_y = origin_y - 1;
-//             else
-//                 origin_y = origin_y;
-//         end
-//         Shift_Down: begin
-//             if(origin_y < 7)
-//                 origin_y = origin_y + 1;
-//             else
-//                 origin_y = origin_y;
-//         end
-//         Shift_Left: begin
-//             if(origin_x > 1)
-//                 origin_x = origin_x - 1;
-//             else
-//                 origin_x = origin_x; 
-//         end
-//         Shift_Right: begin
-//             if(origin_x < 7)
-//                 origin_x = origin_x + 1;
-//             else
-//                 origin_x = origin_x;
-//             busy = 0;
-//         end
-//         Max: begin
-//             temp1 = (buffer[(origin_y - 1) * 8 + origin_x - 1] > buffer[(origin_y - 1) * 8 + origin_x]) ? buffer[(origin_y - 1) * 8 + origin_x - 1] : buffer[(origin_y - 1) * 8 + origin_x];
-//             temp2 = (buffer[origin_y * 8 + origin_x - 1] > buffer[origin_y * 8 + origin_x]) ? buffer[origin_y * 8 + origin_x - 1] : buffer[origin_y * 8 + origin_x];
-//             max = (temp1 > temp2) ? temp1 : temp2;
-//             buffer[(origin_y - 1) * 8 + origin_x - 1] = max;
-//             buffer[(origin_y - 1) * 8 + origin_x] = max;
-//             buffer[origin_y * 8 + origin_x - 1] = max;
-//             buffer[origin_y * 8 + origin_x] = max;
-//         end
-//         Min: begin
-//             temp1 = (buffer[(origin_y - 1) * 8 + origin_x - 1] < buffer[(origin_y - 1) * 8 + origin_x]) ? buffer[(origin_y - 1) * 8 + origin_x - 1] : buffer[(origin_y - 1) * 8 + origin_x];
-//             temp2 = (buffer[origin_y * 8 + origin_x - 1] < buffer[origin_y * 8 + origin_x]) ? buffer[origin_y * 8 + origin_x - 1] : buffer[origin_y * 8 + origin_x];
-//             min = (temp1 < temp2) ? temp1 : temp2;
-//             buffer[(origin_y - 1) * 8 + origin_x - 1] = min;
-//             buffer[(origin_y - 1) * 8 + origin_x] = min;
-//             buffer[origin_y * 8 + origin_x - 1] = min;
-//             buffer[origin_y * 8 + origin_x] = min;
-//         end
-//         Average: begin
-//             avg = ((buffer[(origin_y - 1) * 8 + origin_x - 1] + buffer[(origin_y - 1) * 8 + origin_x]) + 
-//                    (buffer[origin_y * 8 + origin_x - 1] + buffer[origin_y * 8 + origin_x])) >> 2;
-//             buffer[(origin_y - 1) * 8 + origin_x - 1] = avg;
-//             buffer[(origin_y - 1) * 8 + origin_x] = avg;
-//             buffer[origin_y * 8 + origin_x - 1] = avg;
-//             buffer[origin_y * 8 + origin_x] = avg;
-//         end
-//         Counterclockwise: begin
-//             temp1 = buffer[(origin_y - 1) * 8 + origin_x - 1];
-//             buffer[(origin_y - 1) * 8 + origin_x - 1] = buffer[(origin_y - 1) * 8 + origin_x];
-//             buffer[(origin_y - 1) * 8 + origin_x] = buffer[origin_y * 8 + origin_x];
-//             buffer[origin_y * 8 + origin_x] = buffer[origin_y * 8 + origin_x - 1];
-//             buffer[origin_y * 8 + origin_x - 1] = temp1;
-//         end
-//         Clockwise: begin
-//             temp1 = buffer[(origin_y - 1) * 8 + origin_x - 1];
-//             buffer[(origin_y - 1) * 8 + origin_x - 1] = buffer[origin_y * 8 + origin_x - 1];
-//             buffer[origin_y * 8 + origin_x - 1] = buffer[origin_y * 8 + origin_x];
-//             buffer[origin_y * 8 + origin_x] = buffer[(origin_y - 1) * 8 + origin_x];
-//             buffer[(origin_y - 1) * 8 + origin_x] = temp1;
-//         end
-//         Mirror_X: begin
-//             temp1 = buffer[(origin_y - 1) * 8 + origin_x - 1];
-//             temp2 = buffer[(origin_y - 1) * 8 + origin_x];
-//             buffer[(origin_y - 1) * 8 + origin_x - 1] = buffer[origin_y * 8 + origin_x - 1];
-//             buffer[(origin_y - 1) * 8 + origin_x] = buffer[origin_y * 8 + origin_x];
-//             buffer[origin_y * 8 + origin_x - 1] = temp1;
-//             buffer[origin_y * 8 + origin_x] = temp2; 
-//         end
-//         Mirror_Y: begin
-//             temp1 = buffer[(origin_y - 1) * 8 + origin_x - 1];
-//             temp2 = buffer[origin_y * 8 + origin_x - 1];
-//             buffer[(origin_y - 1) * 8 + origin_x - 1] = buffer[(origin_y - 1) * 8 + origin_x];
-//             buffer[origin_y * 8 + origin_x - 1] = buffer[origin_y * 8 + origin_x];
-//             buffer[(origin_y - 1) * 8 + origin_x] = temp1;
-//             buffer[origin_y * 8 + origin_x] = temp2;
-//         end
-//         Reset: begin
-//             IROM_rd = 1;
-//             IROM_A = 0;
-//             IRAM_valid = 0;
-//             IRAM_D = 0;
-//             IRAM_A = 64;
-//             busy = 1;
-//             done = 0;
+always@(curr_state) begin
+    case(curr_state)
+        Shift_Up: begin
+            if(origin_y > 1)
+                origin_y = origin_y - 1;
+            else
+                origin_y = origin_y;
+            curr_state = Idle;
+        end
+        Shift_Down: begin
+            if(origin_y < 7)
+                origin_y = origin_y + 1;
+            else
+                origin_y = origin_y;
+            curr_state = Idle;
+        end
+        Shift_Left: begin
+            if(origin_x > 1)
+                origin_x = origin_x - 1;
+            else
+                origin_x = origin_x; 
+            curr_state = Idle;
+        end
+        Shift_Right: begin
+            if(origin_x < 7)
+                origin_x = origin_x + 1;
+            else
+                origin_x = origin_x;
+            curr_state = Idle;
+            next_state = Idle;
+        end
+        Max: begin
+            temp1 = (buffer[(origin_y - 1) * 8 + origin_x - 1] > buffer[(origin_y - 1) * 8 + origin_x]) ? buffer[(origin_y - 1) * 8 + origin_x - 1] : buffer[(origin_y - 1) * 8 + origin_x];
+            temp2 = (buffer[origin_y * 8 + origin_x - 1] > buffer[origin_y * 8 + origin_x]) ? buffer[origin_y * 8 + origin_x - 1] : buffer[origin_y * 8 + origin_x];
+            max = (temp1 > temp2) ? temp1 : temp2;
+            buffer[(origin_y - 1) * 8 + origin_x - 1] = max;
+            buffer[(origin_y - 1) * 8 + origin_x] = max;
+            buffer[origin_y * 8 + origin_x - 1] = max;
+            buffer[origin_y * 8 + origin_x] = max;
+            curr_state = Idle;
+        end
+        Min: begin
+            temp1 = (buffer[(origin_y - 1) * 8 + origin_x - 1] < buffer[(origin_y - 1) * 8 + origin_x]) ? buffer[(origin_y - 1) * 8 + origin_x - 1] : buffer[(origin_y - 1) * 8 + origin_x];
+            temp2 = (buffer[origin_y * 8 + origin_x - 1] < buffer[origin_y * 8 + origin_x]) ? buffer[origin_y * 8 + origin_x - 1] : buffer[origin_y * 8 + origin_x];
+            min = (temp1 < temp2) ? temp1 : temp2;
+            buffer[(origin_y - 1) * 8 + origin_x - 1] = min;
+            buffer[(origin_y - 1) * 8 + origin_x] = min;
+            buffer[origin_y * 8 + origin_x - 1] = min;
+            buffer[origin_y * 8 + origin_x] = min;
+            curr_state = Idle;
+        end
+        Average: begin
+            avg = ((buffer[(origin_y - 1) * 8 + origin_x - 1] + buffer[(origin_y - 1) * 8 + origin_x]) + 
+                   (buffer[origin_y * 8 + origin_x - 1] + buffer[origin_y * 8 + origin_x])) >> 2;
+            buffer[(origin_y - 1) * 8 + origin_x - 1] = avg;
+            buffer[(origin_y - 1) * 8 + origin_x] = avg;
+            buffer[origin_y * 8 + origin_x - 1] = avg;
+            buffer[origin_y * 8 + origin_x] = avg;
+            curr_state = Idle;
+        end
+        Counterclockwise: begin
+            temp1 = buffer[(origin_y - 1) * 8 + origin_x - 1];
+            buffer[(origin_y - 1) * 8 + origin_x - 1] = buffer[(origin_y - 1) * 8 + origin_x];
+            buffer[(origin_y - 1) * 8 + origin_x] = buffer[origin_y * 8 + origin_x];
+            buffer[origin_y * 8 + origin_x] = buffer[origin_y * 8 + origin_x - 1];
+            buffer[origin_y * 8 + origin_x - 1] = temp1;
+            curr_state = Idle;
+        end
+        Clockwise: begin
+            temp1 = buffer[(origin_y - 1) * 8 + origin_x - 1];
+            buffer[(origin_y - 1) * 8 + origin_x - 1] = buffer[origin_y * 8 + origin_x - 1];
+            buffer[origin_y * 8 + origin_x - 1] = buffer[origin_y * 8 + origin_x];
+            buffer[origin_y * 8 + origin_x] = buffer[(origin_y - 1) * 8 + origin_x];
+            buffer[(origin_y - 1) * 8 + origin_x] = temp1;
+            curr_state = Idle;
+        end
+        Mirror_X: begin
+            temp1 = buffer[(origin_y - 1) * 8 + origin_x - 1];
+            temp2 = buffer[(origin_y - 1) * 8 + origin_x];
+            buffer[(origin_y - 1) * 8 + origin_x - 1] = buffer[origin_y * 8 + origin_x - 1];
+            buffer[(origin_y - 1) * 8 + origin_x] = buffer[origin_y * 8 + origin_x];
+            buffer[origin_y * 8 + origin_x - 1] = temp1;
+            buffer[origin_y * 8 + origin_x] = temp2; 
+            curr_state = Idle;
+        end
+        Mirror_Y: begin
+            temp1 = buffer[(origin_y - 1) * 8 + origin_x - 1];
+            temp2 = buffer[origin_y * 8 + origin_x - 1];
+            buffer[(origin_y - 1) * 8 + origin_x - 1] = buffer[(origin_y - 1) * 8 + origin_x];
+            buffer[origin_y * 8 + origin_x - 1] = buffer[origin_y * 8 + origin_x];
+            buffer[(origin_y - 1) * 8 + origin_x] = temp1;
+            buffer[origin_y * 8 + origin_x] = temp2;
+            curr_state = Idle;
+        end
+        Reset: begin
+            IROM_rd = 1;
+            IROM_A = 0;
+            IRAM_valid = 0;
+            IRAM_D = 0;
+            IRAM_A = 64;
+            busy = 1;
+            done = 0;
 
-//             for(i = 0; i < 64; i = i+1)
-//                 buffer[i] = 0; 
-//             origin_x = 4;
-//             origin_y = 4;
-//             next_state = Load;
-//             IRAM_A_temp = 0;
-//         end
-//         Idle: busy = 0;
-//         default: busy = busy;
-//     endcase
-// end
+            for(i = 0; i < 64; i = i+1)
+                buffer[i] = 0; 
+            origin_x = 4;
+            origin_y = 4;
+            IRAM_A_temp = 0;
+
+            next_state = Load;
+        end
+        Idle: curr_state = Idle;
+        default: curr_state = curr_state;
+    endcase
+end
 
 
 

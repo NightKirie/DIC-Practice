@@ -8,75 +8,76 @@ V<@Ffj1cn60zcz7;=HAIWo0
 r1
 !s85 0
 31
-I[f^h?fm60TiFGf52@C];21
+IPm=CMXnL^k`im?JHn`6FE3
 Z0 dE:\code\git\DIC-Practice\Level 2\Image Display Control
-w0
-8E:\code\git\DIC-Practice\Level 2\Image Display Control\testfixture.v
-FE:\code\git\DIC-Practice\Level 2\Image Display Control\testfixture.v
+Z1 w1580912307
+Z2 8E:\code\git\DIC-Practice\Level 2\Image Display Control\testfixture.v
+Z3 FE:\code\git\DIC-Practice\Level 2\Image Display Control\testfixture.v
 L0 190
-Z1 OL;L;10.1c;51
-Z2 o-work work -L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF
+Z4 OL;L;10.1c;51
+Z5 !s108 1581262077.667000
+Z6 !s107 E:\code\git\DIC-Practice\Level 2\Image Display Control\testfixture.v|
+Z7 !s90 -reportprogress|300|-work|work|-vopt|+define+tb3|+access+r|E:\code\git\DIC-Practice\Level 2\Image Display Control\testfixture.v|
+Z8 o-work work +access+r -L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF
+Z9 !s92 -work work +define+tb3 +access+r -L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF
 n@i@r@a@m
 !s100 6IfPSZACBWomz7@3<;7Cf0
-!s90 -reportprogress|300|-work|work|-vopt|E:\code\git\DIC-Practice\Level 2\Image Display Control\testfixture.v|
 !i10b 1
-!s108 1581258615.965000
-!s107 E:\code\git\DIC-Practice\Level 2\Image Display Control\testfixture.v|
 vIROM
 VTm6D@FeKBTlED]LWI0ZaV0
 r1
 31
-IRZZZk]z<e[Jf8TE;?iIgV1
-Z3 dE:\code\git\DIC-Practice\Level 2\Image Display Control
-Z4 w1580912307
-Z5 8testfixture.v
-Z6 Ftestfixture.v
-L0 165
+IV5DF_`O@_oXIXDogmVV>40
+Z10 dE:\code\git\DIC-Practice\Level 2\Image Display Control
 R1
-Z7 !s108 1581148513.375000
-Z8 !s107 testfixture.v|
-Z9 !s90 testfixture.v|+define+tb3|+access+r|
-Z10 o+access+r -L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF
-Z11 !s92 +define+tb3 +access+r -L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF
+R2
+R3
+L0 165
+R4
+R5
+R6
+R7
+R8
+R9
 n@i@r@o@m
-!s100 aLlko^?Q4kz[Q@<f>TNO?1
 !s85 0
 !i10b 1
+!s100 l^4eB<QOnk9016eRlj4Eh3
 vLCD_CTRL
 V4P<1I=nbY2^7dRDc7O4o10
 r1
 31
-I:ma@:146>6II9Mo45gSho1
-R3
-w1581258611
+I]BeUo[_zn[4;0mANLVWYJ2
+R10
+w1581261953
 8E:\code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v
 FE:\code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v
 L0 1
-R1
-R2
+R4
+o-work work -L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF
 n@l@c@d_@c@t@r@l
 !s85 0
+!s100 DhFf4j5EJ2;olgd1f<6=^2
 !s90 -reportprogress|300|-work|work|-vopt|E:\code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v|
-!s100 W8Z>K_PP;TfHdC2UK9Llc1
-!s108 1581258615.719000
+!s108 1581262077.396000
 !s107 E:\code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v|
 !i10b 1
 vtest
 ViYi1S7iTl]5NUC4OOjAFG3
 r1
 31
-IKC9G^cVDgQ229Q8AkWYX>0
+IaooHd^ZQVU;0`TMoEi<0W3
+R10
+R1
+R2
 R3
+L0 26
 R4
 R5
 R6
-L0 26
-R1
 R7
 R8
 R9
-R10
-R11
-!s100 LkNOE0Vj5adW9UGI1fY7H3
 !s85 0
 !i10b 1
+!s100 921zK4[^3f7iGiz9EdE1a2
