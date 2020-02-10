@@ -1,0 +1,41 @@
+m255
+K3
+13
+cModel Technology
+Z0 dD:\Code\git\DIC-Practice\Level 2\Image Display Control
+vtest
+Z1 !s100 Rg8kjWFlFmfeM:P[Q0XXj1
+Z2 Im=?O[YSRKO3MT]T@hT8So0
+Z3 VoUkhk<L]kO0JnZS3E?DW00
+Z4 dD:\Code\git\DIC-Practice\Level 2\Triangle Coordinate Calculation
+Z5 w1580887210
+Z6 8D:/Code/git/DIC-Practice/Level 2/Triangle Coordinate Calculation/testfixture.v
+Z7 FD:/Code/git/DIC-Practice/Level 2/Triangle Coordinate Calculation/testfixture.v
+L0 9
+Z8 OL;L;10.1c;51
+r1
+31
+Z9 !s90 -reportprogress|300|-work|work|-vopt|D:/Code/git/DIC-Practice/Level 2/Triangle Coordinate Calculation/testfixture.v|
+Z10 o-work work -L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF
+!i10b 1
+!s85 0
+Z11 !s108 1581319871.449000
+Z12 !s107 D:/Code/git/DIC-Practice/Level 2/Triangle Coordinate Calculation/testfixture.v|
+vtriangle
+!i10b 1
+!s100 >?`PNGG<;ZL@hZ_2eUc=B3
+IKhfIHz<kFaJkP>5^J6Dzj1
+Z13 V411RbCdSH6_Un:?WUnWdz1
+R4
+w1581319869
+8D:\Code\git\DIC-Practice\Level 2\Triangle Coordinate Calculation\triangle.v
+FD:\Code\git\DIC-Practice\Level 2\Triangle Coordinate Calculation\triangle.v
+L0 1
+R8
+r1
+!s85 0
+31
+!s108 1581319871.520000
+!s107 D:\Code\git\DIC-Practice\Level 2\Triangle Coordinate Calculation\triangle.v|
+!s90 -reportprogress|300|-work|work|-vopt|D:\Code\git\DIC-Practice\Level 2\Triangle Coordinate Calculation\triangle.v|
+R10
