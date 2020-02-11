@@ -2,82 +2,81 @@ m255
 K3
 13
 cModel Technology
-dD:\Code\git\DIC-Practice\Level 1\Image Display Control II
+Z0 dD:\Code\git\DIC-Practice\Level 1\Image Display Control II
 vIRAM
-V<@Ffj1cn60zcz7;=HAIWo0
-r1
-!s85 0
-31
-IPm=CMXnL^k`im?JHn`6FE3
-Z0 dE:\code\git\DIC-Practice\Level 2\Image Display Control
-Z1 w1580912307
-Z2 8E:\code\git\DIC-Practice\Level 2\Image Display Control\testfixture.v
-Z3 FE:\code\git\DIC-Practice\Level 2\Image Display Control\testfixture.v
-L0 190
+!i10b 1
+!s100 4X9KGSDoJiook8o>dmZUT0
+I]<G;P:e5R?UlNW`Q>0ORG1
+Z1 V<@Ffj1cn60zcz7;=HAIWo0
+Z2 dD:\Code\git\DIC-Practice\Level 2\Image Display Control
+w0
+8D:/Code/git/DIC-Practice/Level 2/Image Display Control/testfixture.v
+FD:/Code/git/DIC-Practice/Level 2/Image Display Control/testfixture.v
+Z3 L0 190
 Z4 OL;L;10.1c;51
-Z5 !s108 1581262077.667000
-Z6 !s107 E:\code\git\DIC-Practice\Level 2\Image Display Control\testfixture.v|
-Z7 !s90 -reportprogress|300|-work|work|-vopt|+define+tb3|+access+r|E:\code\git\DIC-Practice\Level 2\Image Display Control\testfixture.v|
-Z8 o-work work +access+r -L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF
-Z9 !s92 -work work +define+tb3 +access+r -L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF
-n@i@r@a@m
-!s100 6IfPSZACBWomz7@3<;7Cf0
-!i10b 1
+r1
+!s85 0
+31
+!s108 1581400642.839000
+!s107 D:/Code/git/DIC-Practice/Level 2/Image Display Control/testfixture.v|
+!s90 -reportprogress|300|-work|work|-vopt|D:/Code/git/DIC-Practice/Level 2/Image Display Control/testfixture.v|
+Z5 o-work work -L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF
+Z6 n@i@r@a@m
 vIROM
-VTm6D@FeKBTlED]LWI0ZaV0
+Z7 VTm6D@FeKBTlED]LWI0ZaV0
 r1
 31
-IV5DF_`O@_oXIXDogmVV>40
-Z10 dE:\code\git\DIC-Practice\Level 2\Image Display Control
-R1
-R2
-R3
-L0 165
+Z8 IV5DF_`O@_oXIXDogmVV>40
+Z9 dE:\code\git\DIC-Practice\Level 2\Image Display Control
+Z10 w1580912307
+Z11 8E:\code\git\DIC-Practice\Level 2\Image Display Control\testfixture.v
+Z12 FE:\code\git\DIC-Practice\Level 2\Image Display Control\testfixture.v
+Z13 L0 165
 R4
-R5
-R6
-R7
-R8
-R9
-n@i@r@o@m
+Z14 !s108 1581262077.667000
+Z15 !s107 E:\code\git\DIC-Practice\Level 2\Image Display Control\testfixture.v|
+Z16 !s90 -reportprogress|300|-work|work|-vopt|+define+tb3|+access+r|E:\code\git\DIC-Practice\Level 2\Image Display Control\testfixture.v|
+Z17 o-work work +access+r -L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF
+Z18 !s92 -work work +define+tb3 +access+r -L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF
+Z19 n@i@r@o@m
+Z20 !s100 l^4eB<QOnk9016eRlj4Eh3
 !s85 0
 !i10b 1
-!s100 l^4eB<QOnk9016eRlj4Eh3
 vLCD_CTRL
-V4P<1I=nbY2^7dRDc7O4o10
-r1
-31
-I]BeUo[_zn[4;0mANLVWYJ2
-R10
-w1581261953
-8E:\code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v
-FE:\code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v
+Z21 I`Zf>cLQnMLQIHh3bIY=^60
+Z22 V4P<1I=nbY2^7dRDc7O4o10
+R2
+Z23 w1581316217
+Z24 8D:/Code/git/DIC-Practice/Level 2/Image Display Control/LCD_CTRL.v
+Z25 FD:/Code/git/DIC-Practice/Level 2/Image Display Control/LCD_CTRL.v
 L0 1
 R4
-o-work work -L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF
-n@l@c@d_@c@t@r@l
-!s85 0
-!s100 DhFf4j5EJ2;olgd1f<6=^2
-!s90 -reportprogress|300|-work|work|-vopt|E:\code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v|
-!s108 1581262077.396000
-!s107 E:\code\git\DIC-Practice\Level 2\Image Display Control\LCD_CTRL.v|
-!i10b 1
-vtest
-ViYi1S7iTl]5NUC4OOjAFG3
 r1
 31
-IaooHd^ZQVU;0`TMoEi<0W3
+R5
+Z26 n@l@c@d_@c@t@r@l
+!i10b 1
+Z27 !s100 <gRH95ai=9zl^ZCM?ADnS3
+!s85 0
+Z28 !s108 1581400642.719000
+Z29 !s107 D:/Code/git/DIC-Practice/Level 2/Image Display Control/LCD_CTRL.v|
+Z30 !s90 -reportprogress|300|-work|work|-vopt|D:/Code/git/DIC-Practice/Level 2/Image Display Control/LCD_CTRL.v|
+vtest
+Z31 ViYi1S7iTl]5NUC4OOjAFG3
+r1
+31
+Z32 IaooHd^ZQVU;0`TMoEi<0W3
+R9
 R10
-R1
-R2
-R3
+R11
+R12
 L0 26
 R4
-R5
-R6
-R7
-R8
-R9
+R14
+R15
+R16
+R17
+R18
+Z33 !s100 921zK4[^3f7iGiz9EdE1a2
 !s85 0
 !i10b 1
-!s100 921zK4[^3f7iGiz9EdE1a2

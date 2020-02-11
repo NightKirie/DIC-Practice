@@ -16,7 +16,7 @@ output reg done;
 
 reg [7:0] curr_state;
 reg [7:0] next_state;
-reg [7:0] buffer[63:0];
+reg [7:0] buffer[0:63];
 reg [6:0] IRAM_A_temp;
 reg [2:0] origin_x, origin_y;
 reg [7:0] max;

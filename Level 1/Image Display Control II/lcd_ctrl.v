@@ -11,7 +11,7 @@ output reg         output_valid;
 output reg         busy;
 
 
-reg [7:0] buffer[107:0];
+reg [7:0] buffer[0:107];
 reg [6:0] input_count;
 reg [4:0] output_count; 
 reg [4:0] origin_x, origin_y;
