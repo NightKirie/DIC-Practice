@@ -26,10 +26,8 @@ always@(posedge clk) begin
         candidate <= 0;
 
         curr_mode <= 0;
-        curr_candidate <= 0;
 
-        curr_state <= Input;
-        
+        curr_state <= Input;   
     end 
     else begin
         case (curr_state)
@@ -64,17 +62,19 @@ end
 always @(*) begin
     case (curr_state) 
         Output: begin
-            curr_candidate = 0;
             case(mode)
                 /* A */
                 2'b00: begin
                     for (i = 1; i < 9; i = i+1)
                         for (j = 1; j < 9; j = j+1) begin
                             dist_a = (i - x1) ** 2 + (j - y1) ** 2;
-                            if (dist_a <= r1_sqr) 
+                            dist_b = 0;
+                            if ((dist_a <= r1_sqr) ^ (dist_b <= r2_sqr)) begin
                                 curr_candidate = curr_candidate + 1;
-                            else 
-                                curr_candidate = curr_candidate;   
+                            end
+                            else begin
+                                curr_candidate = curr_candidate;
+                            end 
                         end
                 end
                 /* A and B */
@@ -83,10 +83,12 @@ always @(*) begin
                         for (j = 1; j < 9; j = j+1) begin
                             dist_a = (i - x1) ** 2 + (j - y1) ** 2;
                             dist_b = (i - x2) ** 2 + (j - y2) ** 2;
-                            if ((dist_a <= r1_sqr) & (dist_b <= r2_sqr))
+                            if ((dist_a <= r1_sqr) ^ (dist_b <= r2_sqr)) begin
                                 curr_candidate = curr_candidate + 1;
-                            else 
-                                curr_candidate = curr_candidate;   
+                            end
+                            else begin
+                                curr_candidate = curr_candidate;
+                            end 
                         end
                 end
                 /* A xor B */
@@ -95,19 +97,25 @@ always @(*) begin
                         for (j = 1; j < 9; j = j+1) begin
                             dist_a = (i - x1) ** 2 + (j - y1) ** 2;
                             dist_b = (i - x2) ** 2 + (j - y2) ** 2;
-                            if ((dist_a <= r1_sqr) ^ (dist_b <= r2_sqr)) 
+                            if ((dist_a <= r1_sqr) ^ (dist_b <= r2_sqr)) begin
                                 curr_candidate = curr_candidate + 1;
-                            else 
-                                curr_candidate = curr_candidate;   
+                            end
+                            else begin
+                                curr_candidate = curr_candidate;
+                            end
                         end
                 end
                 default: begin
-                    valid = 0;
+                    dist_a = 0;
+                    dist_b = 0;
+                    curr_candidate = 0;
                 end
             endcase
         end
         default: begin
-            busy = 0;
+            dist_a = 0;
+            dist_b = 0;
+            curr_candidate = 0;
         end
     endcase
 end

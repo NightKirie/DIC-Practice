@@ -1,0 +1,64 @@
+m255
+K3
+13
+cModel Technology
+Z0 dD:\Code\git\DIC-Practice\Level 2\Element Count Counter
+vIRB
+!i10b 1
+!s100 z:kLlCno:FQN8;_;T41EI2
+IeJzS3@5c;]o[Snhi9J]EO0
+Z1 V7a__=mQ6gUGEX59k7?oWD2
+Z2 dD:\Code\git\DIC-Practice\Level 3\Image Display Control + Memory
+Z3 w1300763962
+FIRB.v
+Z4 8D:/Code/git/DIC-Practice/Level 3/Image Display Control + Memory/testfixture.v
+Z5 FD:/Code/git/DIC-Practice/Level 3/Image Display Control + Memory/testfixture.v
+L0 56
+Z6 OL;L;10.1c;51
+r1
+!s85 0
+31
+Z7 !s108 1581923360.722000
+Z8 !s107 IROM.v|IRB.v|D:/Code/git/DIC-Practice/Level 3/Image Display Control + Memory/testfixture.v|
+Z9 !s90 -reportprogress|300|-work|work|-vopt|D:/Code/git/DIC-Practice/Level 3/Image Display Control + Memory/testfixture.v|
+Z10 o-work work -L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF
+Z11 n@i@r@b
+vIROM
+!i10b 1
+!s100 dFZWZLK4dM9cQAUTdfJ530
+IaW75o5KM@mKao:JJcI;B12
+Z12 VPP@4>3=4CmDKHn4KDYOln2
+R2
+R3
+FIROM.v
+R4
+R5
+L0 68
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+R10
+Z13 n@i@r@o@m
+vLCD_CTRL
+Z14 IOV4Nz1MnPWa=Xk]6293mZ3
+Z15 VPeWiiU?fV^GHZ>F?gC7cA2
+R2
+Z16 w1300762704
+Z17 8D:/Code/git/DIC-Practice/Level 3/Image Display Control + Memory/lcd_ctrl.v
+Z18 FD:/Code/git/DIC-Practice/Level 3/Image Display Control + Memory/lcd_ctrl.v
+L0 1
+R6
+r1
+31
+R10
+Z19 n@l@c@d_@c@t@r@l
+!i10b 1
+Z20 !s100 dgfaAloVmij8nE3d83:5o0
+!s85 0
+Z21 !s108 1581923360.635000
+Z22 !s107 D:/Code/git/DIC-Practice/Level 3/Image Display Control + Memory/lcd_ctrl.v|
+Z23 !s90 -reportprogress|300|-work|work|-vopt|D:/Code/git/DIC-Practice/Level 3/Image Display Control + Memory/lcd_ctrl.v|
