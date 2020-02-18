@@ -6,20 +6,16 @@ input [2:0] xi, yi;
 output reg busy, po;
 output reg [2:0] xo, yo;
 
-reg [1:0] curr_state, next_state;
+reg curr_state, input_flag;
 reg [2:0] buffer_x[0:2], buffer_y[0:2];
 reg [1:0] input_count;
-// reg [5:0] output_count;	// Max point = 36, half a 8x8 square
 reg [2:0] curr_x, curr_y;
 reg signed [7:0] slope, a, b;
 
-parameter Idle = 2'b00;
-parameter Input = 2'b01;
-parameter Output = 2'b10;
+parameter Input = 1'b0;
+parameter Output = 1'b1;
 
 integer i;
-
-
 
 always@(posedge clk, posedge reset) begin
 	if(reset) begin
@@ -38,30 +34,34 @@ always@(posedge clk, posedge reset) begin
 	end
 	else begin
 		case(curr_state) 
-			Idle: begin
-				busy <= 0;
-				po <= 0;
-			end
 			Input: begin
-				buffer_x[input_count] <= xi;
-				buffer_y[input_count] <= yi;
-				case(input_count) 
-					2'd0: begin
-						input_count <= input_count + 1;
-						busy <= 0;	
-					end
-					2'd1: begin
-						input_count <= input_count + 1;
-						busy <= 1;
-					end
-					2'd2: begin
-						input_count <= 0;
-						busy <= 1;
-						curr_x <= buffer_x[0];
-						curr_y <= buffer_y[0];
-						curr_state <= Output;
-					end
-				endcase
+				po <= 0;
+				busy <= 0;
+				if(nt || input_flag) begin
+					buffer_x[input_count] <= xi;
+					buffer_y[input_count] <= yi;
+					case(input_count) 
+						2'd0: begin
+							input_count <= input_count + 1;
+							busy <= 0;	
+							input_flag <= 1;
+						end
+						2'd1: begin
+							input_count <= input_count + 1;
+							busy <= 1;
+							input_flag <= 1;
+						end
+						2'd2: begin
+							input_count <= 0;
+							busy <= 1;
+							input_flag <= 0;
+							curr_x <= buffer_x[0];
+							curr_y <= buffer_y[0];
+							curr_state <= Output;
+							
+						end
+					endcase
+				end
 			end
 			Output: begin
 				/* if (curr_x, curr_y) = (x3, y3) */
@@ -69,7 +69,8 @@ always@(posedge clk, posedge reset) begin
 					xo <= curr_x;
 					yo <= curr_y;
 					po <= 1;
-					curr_state <= Idle;
+					
+					curr_state <= Input;
 				end
 				else begin
 					/* This point is at right side of the slope, move up to next point */
@@ -94,25 +95,20 @@ always@(posedge clk, posedge reset) begin
 					end
 				end
 			end
-			default: curr_state <= curr_state;
 		endcase
 	end
 end
 
 always@(*) begin
-	case(curr_state) 
-		Idle: begin
-			if(nt)
-				curr_state = Input;
-			else
-				curr_state = Idle;
-		end
+	case(curr_state) 	
 		Output: begin
 			slope = (curr_x - buffer_x[1]) * (buffer_y[2] - buffer_y[1]) - (curr_y - buffer_y[1]) * (buffer_x[2] - buffer_x[1]);
 			a = (curr_x - buffer_x[1]) * (buffer_y[2] - buffer_y[1]);
 			b = (curr_y - buffer_y[1]) * (buffer_x[2] - buffer_x[1]);
 		end
-		default: slope = 0;
+		default: begin
+			slope = 0;
+		end
 	endcase
 end
                    
