@@ -15,35 +15,50 @@ output reg busy;    // 1 for controller is executing current command, 0 for syst
 output reg done;    // 1 for controller finished writing to IRB
 
 reg [2:0] curr_x, curr_y;
-reg [3:0] curr_state;
+reg [3:0] curr_state, next_state;
 reg [7:0] buffer [0:63];
-
-parameter Input = 3'b000;
-
+//wire 		IROM_EN;
+parameter Reset = 3'b000;
+parameter Input = 3'b001;
+//assign	IROM_EN = (curr_state==Input) ? 1'b0 : 1'b1;
 always@(posedge clk) begin
     if(reset) begin
-        IROM_EN <= 0;
-        IROM_A <= 0;
+        
         busy <= 1;
         done <= 0;
         IRB_A <= 0;
         IRB_D <= 0;
         IRB_RW <= 1;
-        
-        curr_state <= Input;
+        curr_state <= Reset;
     end
     else begin
+        curr_state <= next_state;
         case(curr_state) 
-
+            Input: begin
+               buffer[IROM_A] <= IROM_Q; 
+            end
         endcase
     end
 end
 
 always@(*) begin
+    //next_state = curr_state;
     case(curr_state) 
+        Reset: begin
+            next_state = Input;
+            //IROM_EN <= 1;
+            IROM_A = 63;
+        end
+        Input: begin
+            IROM_A = (IROM_A == 63) ? 0 : IROM_A + 1;
+            IROM_EN = (IROM_A == 63) ? 1 : 0;
+            
+            next_state = Input;
 
+        end
     endcase
+    
+
 end
 
 endmodule
-

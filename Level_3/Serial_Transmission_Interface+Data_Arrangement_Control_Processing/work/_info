@@ -1,0 +1,42 @@
+m255
+K3
+13
+cModel Technology
+Z0 dE:\code\git\DIC-Practice\Level_3\Image_Display_Control+Memory
+vSTI_DAC
+Z1 ILz6H1HjhVSn@kKF<iKQ8G0
+Z2 V1H3UEG960F]SBz:IV2TPh3
+Z3 dE:\code\git\DIC-Practice\Level_3\Serial_Transmission_Interface+Data_Arrangement_Control_Processing
+Z4 w1582194701
+Z5 8E:/code/git/DIC-Practice/Level_3/Serial_Transmission_Interface+Data_Arrangement_Control_Processing/STI_DAC.v
+Z6 FE:/code/git/DIC-Practice/Level_3/Serial_Transmission_Interface+Data_Arrangement_Control_Processing/STI_DAC.v
+L0 1
+Z7 OL;L;10.1c;51
+r1
+31
+Z8 o-work work -L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF
+Z9 n@s@t@i_@d@a@c
+!i10b 1
+Z10 !s100 iAJh`c@7hJ4I>8FAoKnoW1
+!s85 0
+Z11 !s108 1582300810.033000
+Z12 !s107 E:/code/git/DIC-Practice/Level_3/Serial_Transmission_Interface+Data_Arrangement_Control_Processing/STI_DAC.v|
+Z13 !s90 -reportprogress|300|-work|work|-vopt|E:/code/git/DIC-Practice/Level_3/Serial_Transmission_Interface+Data_Arrangement_Control_Processing/STI_DAC.v|
+vtestfixture
+!i10b 1
+!s100 g3M;43NgL>P]]5R8bZTM20
+I?UoOE1^@bMJl3JAj:A_E;2
+VKBIIT=eCh7cJh[^JXBGX00
+R3
+R4
+8E:/code/git/DIC-Practice/Level_3/Serial_Transmission_Interface+Data_Arrangement_Control_Processing/testfixture.v
+FE:/code/git/DIC-Practice/Level_3/Serial_Transmission_Interface+Data_Arrangement_Control_Processing/testfixture.v
+L0 3
+R7
+r1
+!s85 0
+31
+!s108 1582300810.250000
+!s107 E:/code/git/DIC-Practice/Level_3/Serial_Transmission_Interface+Data_Arrangement_Control_Processing/testfixture.v|
+!s90 -reportprogress|300|-work|work|-vopt|E:/code/git/DIC-Practice/Level_3/Serial_Transmission_Interface+Data_Arrangement_Control_Processing/testfixture.v|
+R8

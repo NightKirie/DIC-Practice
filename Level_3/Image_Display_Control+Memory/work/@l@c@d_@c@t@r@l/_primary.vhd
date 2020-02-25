@@ -1,6 +1,10 @@
 library verilog;
 use verilog.vl_types.all;
 entity LCD_CTRL is
+    generic(
+        \Reset\         : vl_logic_vector(0 to 2) := (Hi0, Hi0, Hi0);
+        Input           : vl_logic_vector(0 to 2) := (Hi0, Hi0, Hi1)
+    );
     port(
         clk             : in     vl_logic;
         reset           : in     vl_logic;
@@ -15,4 +19,7 @@ entity LCD_CTRL is
         busy            : out    vl_logic;
         done            : out    vl_logic
     );
+    attribute mti_svvh_generic_type : integer;
+    attribute mti_svvh_generic_type of \Reset\ : constant is 1;
+    attribute mti_svvh_generic_type of Input : constant is 1;
 end LCD_CTRL;
