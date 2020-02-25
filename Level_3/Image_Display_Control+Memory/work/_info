@@ -8,30 +8,50 @@ V7a__=mQ6gUGEX59k7?oWD2
 r1
 !s85 0
 31
-IJz;FnQ2T`2mfG3d5lA6M_3
-Z0 dE:\code\git\DIC-Practice\Level_3\Image_Display_Control+Memory
-Z1 w1582194701
+I<GEWXnRo_`?3o<8_Ne3]Q0
+Z0 dD:\Code\git\DIC-Practice\Level_3\Image_Display_Control+Memory
+Z1 w1300763962
 FIRB.v
-Z2 8E:/code/git/DIC-Practice/Level_3/Image_Display_Control+Memory/testfixture.v
-Z3 FE:/code/git/DIC-Practice/Level_3/Image_Display_Control+Memory/testfixture.v
+Z2 8D:/Code/git/DIC-Practice/Level_3/Image_Display_Control+Memory/testfixture.v
+Z3 FD:/Code/git/DIC-Practice/Level_3/Image_Display_Control+Memory/testfixture.v
 L0 56
 Z4 OL;L;10.1c;51
-Z5 !s108 1582598081.669000
-Z6 !s107 IROM.v|IRB.v|E:/code/git/DIC-Practice/Level_3/Image_Display_Control+Memory/testfixture.v|
-Z7 !s90 -reportprogress|300|-work|work|-vopt|+define+tb1|E:/code/git/DIC-Practice/Level_3/Image_Display_Control+Memory/testfixture.v|
+Z5 !s108 1582632682.488000
+Z6 !s107 IROM.v|IRB.v|D:/Code/git/DIC-Practice/Level_3/Image_Display_Control+Memory/testfixture.v|
+Z7 !s90 -reportprogress|300|-work|work|-vopt|+define+tb2|D:/Code/git/DIC-Practice/Level_3/Image_Display_Control+Memory/testfixture.v|
 Z8 o-work work -L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF
-Z9 !s92 -work work +define+tb1 -L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF
+Z9 !s92 -work work +define+tb2 -L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF
 n@i@r@b
 !s100 z:kLlCno:FQN8;_;T41EI2
+!i10b 1
+virom
+VQ4KWLIYXPHSC^eT7iHaEO1
+r1
+31
+IMWk2j7:za25bSnO]_LdC>3
+Z10 dD:\Code\git\DIC-Practice\Level_3\Image_Display_Control+Memory
+R1
+Z11 FIROM.v
+R2
+R3
+L0 87
+R4
+R5
+R6
+R7
+R8
+R9
+!s85 0
+!s100 9YlCc;4DW?mH[:<dIze9Q3
 !i10b 1
 vIROM
 VPP@4>3=4CmDKHn4KDYOln2
 r1
 31
-I`FdZ7IXdCQobXTS?QFgEI3
-Z10 dE:\code\git\DIC-Practice\Level_3\Image_Display_Control+Memory
+I1RVg>LF7XNd3PA8]fGJ2R2
+R10
 R1
-Z11 FIROM.v
+R11
 R2
 R3
 L0 68
@@ -45,50 +65,30 @@ n@i@r@o@m
 !s85 0
 !s100 dFZWZLK4dM9cQAUTdfJ530
 !i10b 1
-virom
-VQ4KWLIYXPHSC^eT7iHaEO1
-r1
-31
-IzISYbHcSjVHWXmC0AWljR2
-R10
-R1
-R11
-R2
-R3
-L0 87
-R4
-R5
-R6
-R7
-R8
-R9
-!s85 0
-!s100 eWJ5C`a>4I7okI]LD8WLe1
-!i10b 1
 vLCD_CTRL
-V`RDm3_BWIYVL[lAoI:^OG1
+V_I6>zJWAj?i^Ng4dmlda20
 r1
 31
-I7JW^==Q^YlO7^`AW_S;=c0
+I=0GWZYjKYdZ?L30TFQm2m1
 R10
-w1582598078
-8E:\code\git\DIC-Practice\Level_3\Image_Display_Control+Memory\lcd_ctrl.v
-FE:\code\git\DIC-Practice\Level_3\Image_Display_Control+Memory\lcd_ctrl.v
+w1582632679
+8D:\Code\git\DIC-Practice\Level_3\Image_Display_Control+Memory\lcd_ctrl.v
+FD:\Code\git\DIC-Practice\Level_3\Image_Display_Control+Memory\lcd_ctrl.v
 L0 1
 R4
 R8
 n@l@c@d_@c@t@r@l
 !s85 0
-!s90 -reportprogress|300|-work|work|-vopt|E:\code\git\DIC-Practice\Level_3\Image_Display_Control+Memory\lcd_ctrl.v|
-!s100 >k3GT]:ISTZ1nG52IXGG33
-!s108 1582598081.444000
-!s107 E:\code\git\DIC-Practice\Level_3\Image_Display_Control+Memory\lcd_ctrl.v|
+!s90 -reportprogress|300|-work|work|-vopt|D:\Code\git\DIC-Practice\Level_3\Image_Display_Control+Memory\lcd_ctrl.v|
+!s100 96nYR_UbL5iV`T>L3UKg43
+!s108 1582632682.404000
+!s107 D:\Code\git\DIC-Practice\Level_3\Image_Display_Control+Memory\lcd_ctrl.v|
 !i10b 1
 vtest
 VQ:0YoCTco[@:Ue3TQ770l0
 r1
 31
-I<@IAmMoTK2FVol=>_<fXD2
+I==]?^FCj]BjEG9<mPVg9I2
 R10
 R1
 R2
@@ -101,5 +101,5 @@ R7
 R8
 R9
 !s85 0
-!s100 6mOUzKW0cAN5H9aGbmHXh3
+!s100 kj:Nz3DJAM@cMzm4ZQ]:c2
 !i10b 1
