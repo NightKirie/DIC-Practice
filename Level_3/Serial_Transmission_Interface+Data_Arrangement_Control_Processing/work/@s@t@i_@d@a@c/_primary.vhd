@@ -1,6 +1,16 @@
 library verilog;
 use verilog.vl_types.all;
 entity STI_DAC is
+    generic(
+        SAVE            : vl_logic_vector(2 downto 0) := (Hi0, Hi0, Hi0);
+        \WAIT\          : vl_logic_vector(2 downto 0) := (Hi0, Hi0, Hi1);
+        \IN\            : vl_logic_vector(2 downto 0) := (Hi0, Hi1, Hi0);
+        MEM             : vl_logic_vector(2 downto 0) := (Hi0, Hi1, Hi1);
+        OUT8            : vl_logic_vector(2 downto 0) := (Hi1, Hi0, Hi0);
+        OUT16           : vl_logic_vector(2 downto 0) := (Hi1, Hi0, Hi1);
+        OUT24           : vl_logic_vector(2 downto 0) := (Hi1, Hi1, Hi0);
+        OUT32           : vl_logic_vector(2 downto 0) := (Hi1, Hi1, Hi1)
+    );
     port(
         clk             : in     vl_logic;
         reset           : in     vl_logic;
@@ -18,4 +28,13 @@ entity STI_DAC is
         pixel_addr      : out    vl_logic_vector(7 downto 0);
         pixel_wr        : out    vl_logic
     );
+    attribute mti_svvh_generic_type : integer;
+    attribute mti_svvh_generic_type of SAVE : constant is 2;
+    attribute mti_svvh_generic_type of \WAIT\ : constant is 2;
+    attribute mti_svvh_generic_type of \IN\ : constant is 2;
+    attribute mti_svvh_generic_type of MEM : constant is 2;
+    attribute mti_svvh_generic_type of OUT8 : constant is 2;
+    attribute mti_svvh_generic_type of OUT16 : constant is 2;
+    attribute mti_svvh_generic_type of OUT24 : constant is 2;
+    attribute mti_svvh_generic_type of OUT32 : constant is 2;
 end STI_DAC;

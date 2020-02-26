@@ -20,7 +20,7 @@ module testfixture;
 	`define even3 "./dat/Expected_even_3.dat"
 	`define even4 "./dat/Expected_even_4.dat"*/
 
-
+`define SDFFILE  "./STI_DAC_syn.sdf"
 
 reg [15:0] stimulus_in, pattern_in;
 
@@ -73,7 +73,9 @@ STI_DAC u_rtl(.clk(clk) ,.reset(reset), .load(load), .pi_data(pi_data), .pi_leng
 	      .pixel_wr(pixel_wr));
 
 
-
+`ifdef SDF
+	initial $sdf_annotate(`SDFFILE, STI_DAC);
+`endif
 
 
 reg [15:0] 	Pat_memory [0:`Pat_num];
