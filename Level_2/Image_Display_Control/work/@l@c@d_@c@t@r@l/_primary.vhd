@@ -14,9 +14,9 @@ entity LCD_CTRL is
         Clockwise       : vl_logic_vector(0 to 3) := (Hi1, Hi0, Hi0, Hi1);
         Mirror_X        : vl_logic_vector(0 to 3) := (Hi1, Hi0, Hi1, Hi0);
         Mirror_Y        : vl_logic_vector(0 to 3) := (Hi1, Hi0, Hi1, Hi1);
-        Load            : vl_logic_vector(0 to 3) := (Hi1, Hi1, Hi0, Hi0);
-        \Reset\         : vl_logic_vector(0 to 3) := (Hi1, Hi1, Hi0, Hi1);
-        Idle            : vl_logic_vector(0 to 3) := (Hi1, Hi1, Hi1, Hi0)
+        Input           : vl_logic_vector(0 to 1) := (Hi0, Hi0);
+        Command         : vl_logic_vector(0 to 1) := (Hi0, Hi1);
+        Output          : vl_logic_vector(0 to 1) := (Hi1, Hi0)
     );
     port(
         clk             : in     vl_logic;
@@ -45,7 +45,7 @@ entity LCD_CTRL is
     attribute mti_svvh_generic_type of Clockwise : constant is 1;
     attribute mti_svvh_generic_type of Mirror_X : constant is 1;
     attribute mti_svvh_generic_type of Mirror_Y : constant is 1;
-    attribute mti_svvh_generic_type of Load : constant is 1;
-    attribute mti_svvh_generic_type of \Reset\ : constant is 1;
-    attribute mti_svvh_generic_type of Idle : constant is 1;
+    attribute mti_svvh_generic_type of Input : constant is 1;
+    attribute mti_svvh_generic_type of Command : constant is 1;
+    attribute mti_svvh_generic_type of Output : constant is 1;
 end LCD_CTRL;

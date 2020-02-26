@@ -13,16 +13,11 @@ output reg [5:0] IRAM_A;
 output reg busy;
 output reg done;
 
-
-reg [7:0] curr_state;
-reg [7:0] next_state;
-reg [7:0] buffer[0:63];
-reg [6:0] IRAM_A_temp;
-reg [2:0] origin_x, origin_y;
-reg [7:0] max;
-reg [7:0] min;
+reg [2:0] curr_x, curr_y;
+reg [1:0] curr_state, next_state;
+reg [5:0] IROM_A_pre, IRAM_A_post;
+reg [7:0] buffer [0:63], max, min, temp1, temp2;
 reg [9:0] avg;
-reg [7:0] temp1, temp2;
 
 parameter Write = 4'b0000;
 parameter Shift_Up = 4'b0001;
@@ -36,258 +31,143 @@ parameter Counterclockwise = 4'b1000;
 parameter Clockwise = 4'b1001;
 parameter Mirror_X = 4'b1010;
 parameter Mirror_Y = 4'b1011;
-parameter Load = 4'b1100;
-parameter Reset = 4'b1101;
-parameter Idle = 4'b1110;
 
-integer i;
+parameter Input = 2'b00;
+parameter Command = 2'b01;
+parameter Output = 2'b10;
 
-always@(posedge clk, posedge reset) begin
-    if(reset)
-        curr_state <= Reset;
+always@(posedge clk) begin
+    if(reset) begin
+        busy <= 1;
+        IROM_A <= 0;
+        IROM_rd <= 1;
+        
+        done <= 0;
+        IRAM_A <= 0;
+        IRAM_D <= 0;
+        IRAM_valid <= 0;
+        
+        IROM_A_pre <= 0;
+        IRAM_A_post <= 0;
+
+        curr_state <= Input;
+    end
     else begin
         curr_state <= next_state;
-        case(curr_state)
-            Write: begin
-                IRAM_D <= buffer[IRAM_A_temp];
-                if(IRAM_A_temp == 64) begin
-                    IRAM_A_temp <= 0;
-                    IRAM_A <= 0;
-                    busy <= 0;
-                    IRAM_valid <= 0;
-                    done <= 1;
-                end
-                else begin
-                    IRAM_A <= IRAM_A_temp;
-                    IRAM_A_temp <= IRAM_A_temp + 1;
-                    busy <= 1;
-                    IRAM_valid <= 1;
-                end
+        case(curr_state) 
+            Input: begin
+                curr_x <= 4;
+                curr_y <= 4;
+                buffer[IROM_A] <= IROM_Q; 
+                IROM_A_pre <= IROM_A;
+
+                IROM_A <= (IROM_A == 63) ? 0 : IROM_A + 1;
                 
+                IROM_rd <= (IROM_A_pre == 63) ? 0 : 1;
+                busy <= (IROM_A_pre == 63) ? 0 : 1;
             end
-            Load: begin
-                if(IROM_rd) begin
-                    buffer[IROM_A] <= IROM_Q;
-                    if(IROM_A == 63 && IROM_rd) begin
-                        IROM_rd <= 0;
-                        busy <= 0;
-                        IROM_A <= 0;
-                        next_state <= Idle;
-                    end
-                    else begin
-                        IROM_A <= IROM_A + 1; 
-                        busy <= 1;
-                    end
-                end
+            Command: begin
+                if(cmd_valid) begin
+                    case (cmd)
+                        Shift_Up: 
+                            curr_y <= (curr_y == 1) ? curr_y : curr_y - 1;
+                        Shift_Down:
+                            curr_y <= (curr_y == 7) ? curr_y : curr_y + 1;
+                        Shift_Left:
+                            curr_x <= (curr_x == 1) ? curr_x : curr_x - 1;
+                        Shift_Right:
+                            curr_x <= (curr_x == 7) ? curr_x : curr_x + 1;
+                        Max: begin
+                            buffer[(curr_y - 1) * 8 + curr_x - 1] <= max;
+                            buffer[(curr_y - 1) * 8 + curr_x] <= max;
+                            buffer[curr_y * 8 + curr_x - 1] <= max;
+                            buffer[curr_y * 8 + curr_x] <= max;
+                        end
+                        Min: begin
+                            buffer[(curr_y - 1) * 8 + curr_x - 1] <= min;
+                            buffer[(curr_y - 1) * 8 + curr_x] <= min;
+                            buffer[curr_y * 8 + curr_x - 1] <= min;
+                            buffer[curr_y * 8 + curr_x] <= min;
+                        end
+                        Average: begin
+                            buffer[(curr_y - 1) * 8 + curr_x - 1] <= avg;
+                            buffer[(curr_y - 1) * 8 + curr_x] <= avg;
+                            buffer[curr_y * 8 + curr_x - 1] <= avg;
+                            buffer[curr_y * 8 + curr_x] <= avg;
+                        end
+                        Counterclockwise: begin
+                            buffer[(curr_y - 1) * 8 + curr_x - 1] <= buffer[(curr_y - 1) * 8 + curr_x];
+                            buffer[(curr_y - 1) * 8 + curr_x] <= buffer[curr_y * 8 + curr_x];
+                            buffer[curr_y * 8 + curr_x] <= buffer[curr_y * 8 + curr_x - 1];
+                            buffer[curr_y * 8 + curr_x - 1] <= buffer[(curr_y - 1) * 8 + curr_x - 1];
+                        end
+                        Clockwise: begin
+                            buffer[(curr_y - 1) * 8 + curr_x - 1] <= buffer[curr_y * 8 + curr_x - 1];
+                            buffer[curr_y * 8 + curr_x - 1] <= buffer[curr_y * 8 + curr_x];
+                            buffer[curr_y * 8 + curr_x] <= buffer[(curr_y - 1) * 8 + curr_x];
+                            buffer[(curr_y - 1) * 8 + curr_x] <= buffer[(curr_y - 1) * 8 + curr_x - 1];
+                        end
+                        Mirror_X: begin
+                            buffer[(curr_y - 1) * 8 + curr_x - 1] <= buffer[curr_y * 8 + curr_x - 1];
+                            buffer[curr_y * 8 + curr_x - 1] <= buffer[(curr_y - 1) * 8 + curr_x - 1];
+                            buffer[(curr_y - 1) * 8 + curr_x] <= buffer[curr_y * 8 + curr_x];
+                            buffer[curr_y * 8 + curr_x] <= buffer[(curr_y - 1) * 8 + curr_x];
+                        end
+                        Mirror_Y: begin
+                            buffer[(curr_y - 1) * 8 + curr_x - 1] <= buffer[(curr_y - 1) * 8 + curr_x];
+                            buffer[(curr_y - 1) * 8 + curr_x] <= buffer[(curr_y - 1) * 8 + curr_x - 1];
+                            buffer[curr_y * 8 + curr_x - 1] <= buffer[curr_y * 8 + curr_x];
+                            buffer[curr_y * 8 + curr_x] <= buffer[curr_y * 8 + curr_x - 1];
+                        end
+                    endcase
+                end 
             end
-            default: busy <= busy;
+            Output: begin
+                IRAM_D <= buffer[IRAM_A_post];
+                IRAM_A <= IRAM_A_post;
+                IRAM_A_post <= (IRAM_A_post == 63) ? 0 : IRAM_A_post + 1;
+            
+                IRAM_valid <= (IRAM_A == 63) ? 0 : 1;
+                busy <= (IRAM_A == 63) ? 0 : 1;
+                done <= (IRAM_A == 63) ? 1 : 0;
+            end
         endcase
     end
 end
 
-always@(cmd, next_state) begin
-    case(cmd)
-        Write: begin
-            if(cmd_valid && !busy) 
-                next_state = Write;
-            else
-                next_state = next_state;
+always@(*) begin
+    next_state = curr_state;
+    avg = 0;
+    max = 0;
+    min = 0;
+    case(curr_state)         
+        Input: begin
+            next_state = (IROM_A_pre == 63) ? Command : Input;
         end
-        Shift_Up: begin
-            if(cmd_valid && !busy) 
-                next_state = Shift_Up;
-            else
-                next_state = next_state;
+        Command: begin
+            case(cmd) 
+                Write: begin
+                    next_state = Output;
+                    avg = 0;
+                end 
+                Average: begin
+                    avg = ((buffer[(curr_y - 1) * 8 + curr_x - 1] + buffer[(curr_y - 1) * 8 + curr_x]) + 
+                           (buffer[curr_y * 8 + curr_x - 1] + buffer[curr_y * 8 + curr_x])) >> 2;
+                end 
+                Max: begin
+                    temp1 = (buffer[(curr_y - 1) * 8 + curr_x - 1] > buffer[(curr_y - 1) * 8 + curr_x]) ? buffer[(curr_y - 1) * 8 + curr_x - 1] : buffer[(curr_y - 1) * 8 + curr_x];
+                    temp2 = (buffer[curr_y * 8 + curr_x - 1] > buffer[curr_y * 8 + curr_x]) ? buffer[curr_y * 8 + curr_x - 1] : buffer[curr_y * 8 + curr_x];
+                    max = (temp1 > temp2) ? temp1 : temp2;
+                end
+                Min: begin
+                    temp1 = (buffer[(curr_y - 1) * 8 + curr_x - 1] < buffer[(curr_y - 1) * 8 + curr_x]) ? buffer[(curr_y - 1) * 8 + curr_x - 1] : buffer[(curr_y - 1) * 8 + curr_x];
+                    temp2 = (buffer[curr_y * 8 + curr_x - 1] < buffer[curr_y * 8 + curr_x]) ? buffer[curr_y * 8 + curr_x - 1] : buffer[curr_y * 8 + curr_x];
+                    min = (temp1 < temp2) ? temp1 : temp2;
+                end
+            endcase
         end
-        Shift_Down: begin
-            if(cmd_valid && !busy) 
-                next_state = Shift_Down;
-            else
-                next_state = next_state;
-        end
-        Shift_Left: begin
-            if(cmd_valid && !busy) 
-                next_state = Shift_Left;
-            else
-                next_state = next_state;
-        end
-        Shift_Right: begin
-            if(cmd_valid && !busy) 
-                next_state = Shift_Right;
-            else
-                next_state = next_state;
-        end
-        Max: begin
-            if(cmd_valid && !busy) 
-                next_state = Max;
-            else
-                next_state = next_state;
-        end
-        Min: begin
-            if(cmd_valid && !busy) 
-                next_state = Min;
-            else
-                next_state = next_state;
-        end
-        Average: begin
-            if(cmd_valid && !busy) 
-                next_state = Average;
-            else
-                next_state = next_state;
-        end
-        Counterclockwise: begin
-            if(cmd_valid && !busy) 
-                next_state = Counterclockwise;
-            else
-                next_state = next_state;
-        end
-        Clockwise: begin
-            if(cmd_valid && !busy) 
-                next_state = Clockwise;
-            else
-                next_state = next_state;
-        end
-        Mirror_X: begin
-            if(cmd_valid && !busy) 
-                next_state = Mirror_X;
-            else
-                next_state = next_state;
-        end
-        Mirror_Y: begin
-            if(cmd_valid && !busy) 
-                next_state = Mirror_Y;
-            else
-                next_state = next_state;
-        end
-        Load: begin
-            if(cmd_valid && !busy) 
-                next_state = Load;
-            else
-                next_state = next_state;
-        end
-        default: next_state = next_state;
     endcase
 end
-
-
-
-always@(curr_state) begin
-    case(curr_state)
-        Shift_Up: begin
-            if(origin_y > 1)
-                origin_y = origin_y - 1;
-            else
-                origin_y = origin_y;
-            curr_state = Idle;
-        end
-        Shift_Down: begin
-            if(origin_y < 7)
-                origin_y = origin_y + 1;
-            else
-                origin_y = origin_y;
-            curr_state = Idle;
-        end
-        Shift_Left: begin
-            if(origin_x > 1)
-                origin_x = origin_x - 1;
-            else
-                origin_x = origin_x; 
-            curr_state = Idle;
-        end
-        Shift_Right: begin
-            if(origin_x < 7)
-                origin_x = origin_x + 1;
-            else
-                origin_x = origin_x;
-            curr_state = Idle;
-            next_state = Idle;
-        end
-        Max: begin
-            temp1 = (buffer[(origin_y - 1) * 8 + origin_x - 1] > buffer[(origin_y - 1) * 8 + origin_x]) ? buffer[(origin_y - 1) * 8 + origin_x - 1] : buffer[(origin_y - 1) * 8 + origin_x];
-            temp2 = (buffer[origin_y * 8 + origin_x - 1] > buffer[origin_y * 8 + origin_x]) ? buffer[origin_y * 8 + origin_x - 1] : buffer[origin_y * 8 + origin_x];
-            max = (temp1 > temp2) ? temp1 : temp2;
-            buffer[(origin_y - 1) * 8 + origin_x - 1] = max;
-            buffer[(origin_y - 1) * 8 + origin_x] = max;
-            buffer[origin_y * 8 + origin_x - 1] = max;
-            buffer[origin_y * 8 + origin_x] = max;
-            curr_state = Idle;
-        end
-        Min: begin
-            temp1 = (buffer[(origin_y - 1) * 8 + origin_x - 1] < buffer[(origin_y - 1) * 8 + origin_x]) ? buffer[(origin_y - 1) * 8 + origin_x - 1] : buffer[(origin_y - 1) * 8 + origin_x];
-            temp2 = (buffer[origin_y * 8 + origin_x - 1] < buffer[origin_y * 8 + origin_x]) ? buffer[origin_y * 8 + origin_x - 1] : buffer[origin_y * 8 + origin_x];
-            min = (temp1 < temp2) ? temp1 : temp2;
-            buffer[(origin_y - 1) * 8 + origin_x - 1] = min;
-            buffer[(origin_y - 1) * 8 + origin_x] = min;
-            buffer[origin_y * 8 + origin_x - 1] = min;
-            buffer[origin_y * 8 + origin_x] = min;
-            curr_state = Idle;
-        end
-        Average: begin
-            avg = ((buffer[(origin_y - 1) * 8 + origin_x - 1] + buffer[(origin_y - 1) * 8 + origin_x]) + 
-                   (buffer[origin_y * 8 + origin_x - 1] + buffer[origin_y * 8 + origin_x])) >> 2;
-            buffer[(origin_y - 1) * 8 + origin_x - 1] = avg;
-            buffer[(origin_y - 1) * 8 + origin_x] = avg;
-            buffer[origin_y * 8 + origin_x - 1] = avg;
-            buffer[origin_y * 8 + origin_x] = avg;
-            curr_state = Idle;
-        end
-        Counterclockwise: begin
-            temp1 = buffer[(origin_y - 1) * 8 + origin_x - 1];
-            buffer[(origin_y - 1) * 8 + origin_x - 1] = buffer[(origin_y - 1) * 8 + origin_x];
-            buffer[(origin_y - 1) * 8 + origin_x] = buffer[origin_y * 8 + origin_x];
-            buffer[origin_y * 8 + origin_x] = buffer[origin_y * 8 + origin_x - 1];
-            buffer[origin_y * 8 + origin_x - 1] = temp1;
-            curr_state = Idle;
-        end
-        Clockwise: begin
-            temp1 = buffer[(origin_y - 1) * 8 + origin_x - 1];
-            buffer[(origin_y - 1) * 8 + origin_x - 1] = buffer[origin_y * 8 + origin_x - 1];
-            buffer[origin_y * 8 + origin_x - 1] = buffer[origin_y * 8 + origin_x];
-            buffer[origin_y * 8 + origin_x] = buffer[(origin_y - 1) * 8 + origin_x];
-            buffer[(origin_y - 1) * 8 + origin_x] = temp1;
-            curr_state = Idle;
-        end
-        Mirror_X: begin
-            temp1 = buffer[(origin_y - 1) * 8 + origin_x - 1];
-            temp2 = buffer[(origin_y - 1) * 8 + origin_x];
-            buffer[(origin_y - 1) * 8 + origin_x - 1] = buffer[origin_y * 8 + origin_x - 1];
-            buffer[(origin_y - 1) * 8 + origin_x] = buffer[origin_y * 8 + origin_x];
-            buffer[origin_y * 8 + origin_x - 1] = temp1;
-            buffer[origin_y * 8 + origin_x] = temp2; 
-            curr_state = Idle;
-        end
-        Mirror_Y: begin
-            temp1 = buffer[(origin_y - 1) * 8 + origin_x - 1];
-            temp2 = buffer[origin_y * 8 + origin_x - 1];
-            buffer[(origin_y - 1) * 8 + origin_x - 1] = buffer[(origin_y - 1) * 8 + origin_x];
-            buffer[origin_y * 8 + origin_x - 1] = buffer[origin_y * 8 + origin_x];
-            buffer[(origin_y - 1) * 8 + origin_x] = temp1;
-            buffer[origin_y * 8 + origin_x] = temp2;
-            curr_state = Idle;
-        end
-        Reset: begin
-            IROM_rd = 1;
-            IROM_A = 0;
-            IRAM_valid = 0;
-            IRAM_D = 0;
-            IRAM_A = 64;
-            busy = 1;
-            done = 0;
-
-            for(i = 0; i < 64; i = i+1)
-                buffer[i] = 0; 
-            origin_x = 4;
-            origin_y = 4;
-            IRAM_A_temp = 0;
-
-            next_state = Load;
-        end
-        Idle: curr_state = Idle;
-        default: curr_state = curr_state;
-    endcase
-end
-
-
 
 endmodule
 

@@ -128,11 +128,7 @@ always@(*) begin
                 end 
             endcase
         end
-
-
     endcase
-    
-
 end
 
 endmodule
