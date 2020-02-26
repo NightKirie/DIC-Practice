@@ -15,14 +15,14 @@ output reg busy;    // 1 for controller is executing current command, 0 for syst
 output reg done;    // 1 for controller finished writing to IRB
 
 reg [2:0] curr_x, curr_y;
-reg [3:0] curr_state, next_state;
+reg [1:0] curr_state, next_state;
 reg [5:0] IROM_A_pre, IRB_A_post;
 reg [7:0] buffer [0:63];
 reg [9:0] avg;
 
-parameter Input = 3'b000;
-parameter Command = 3'b001;
-parameter Output = 3'b010;
+parameter Input = 2'b00;
+parameter Command = 2'b01;
+parameter Output = 2'b10;
 
 parameter Write = 3'b000;
 parameter Shift_Up = 3'b001;
@@ -110,19 +110,22 @@ always@(posedge clk) begin
 end
 
 always@(*) begin
-    case(curr_state) 
+    next_state = curr_state;
+    avg = 0;
+    case(curr_state)         
         Input: begin
-            next_state <= (IROM_A_pre == 63) ? Command : Input;
+            next_state = (IROM_A_pre == 63) ? Command : Input;
         end
         Command: begin
             case(cmd) 
-                Write: 
+                Write: begin
                     next_state = Output;
-                Average:
+                    avg = 0;
+                end 
+                Average: begin
                     avg = ((buffer[(curr_y - 1) * 8 + curr_x - 1] + buffer[(curr_y - 1) * 8 + curr_x]) + 
                            (buffer[curr_y * 8 + curr_x - 1] + buffer[curr_y * 8 + curr_x])) >> 2;
-                default:
-                    avg = avg;
+                end 
             endcase
         end
 

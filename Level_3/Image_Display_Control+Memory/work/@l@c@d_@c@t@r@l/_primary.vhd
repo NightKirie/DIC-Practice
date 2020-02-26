@@ -2,9 +2,9 @@ library verilog;
 use verilog.vl_types.all;
 entity LCD_CTRL is
     generic(
-        Input           : vl_logic_vector(0 to 2) := (Hi0, Hi0, Hi0);
-        Command         : vl_logic_vector(0 to 2) := (Hi0, Hi0, Hi1);
-        Output          : vl_logic_vector(0 to 2) := (Hi0, Hi1, Hi0);
+        Input           : vl_logic_vector(0 to 1) := (Hi0, Hi0);
+        Command         : vl_logic_vector(0 to 1) := (Hi0, Hi1);
+        Output          : vl_logic_vector(0 to 1) := (Hi1, Hi0);
         Write           : vl_logic_vector(0 to 2) := (Hi0, Hi0, Hi0);
         Shift_Up        : vl_logic_vector(0 to 2) := (Hi0, Hi0, Hi1);
         Shift_Down      : vl_logic_vector(0 to 2) := (Hi0, Hi1, Hi0);
