@@ -49,8 +49,7 @@ always @(posedge clk) begin
 						end
 						Bit_32: begin
 							
-						end
-						 
+						end	 
 					endcase
 				end
 			default: 
