@@ -203,7 +203,7 @@ end
 
 task error;
     begin
-      $display("---------- ERROR AT %t,  ERROR OUTPUT : so_data = %b,  EXPECTED OUTPUT so_data = %b\n", $realtime, so_data, Exp_memory[i]);
+      $display("---------- ERROR AT %t, data index %d,  ERROR OUTPUT : so_data = %b,  EXPECTED OUTPUT so_data = %b\n", $realtime, i, so_data, Exp_memory[i]);
     end
   endtask
 

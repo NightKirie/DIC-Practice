@@ -1,11 +1,4 @@
-D:/Code/git/DIC-Practice/Level_3/Image_Display_Control+Memory/lcd_ctrl.v {1 {vlog -work work -vopt {D:\Code\git\DIC-Practice\Level_3\Image_Display_Control+Memory\lcd_ctrl.v}
-Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
--- Compiling module LCD_CTRL
-
-Top level modules:
-	LCD_CTRL
-
-} {} {}} D:/Code/git/DIC-Practice/Level_3/Image_Display_Control+Memory/testfixture.v {1 {vlog -work work -vopt +define+tb2 D:/Code/git/DIC-Practice/Level_3/Image_Display_Control+Memory/testfixture.v
+D:/Code/git/DIC-Practice/Level_3/Image_Display_Control+Memory/testfixture.v {1 {vlog -work work -vopt +define+tb2 D:/Code/git/DIC-Practice/Level_3/Image_Display_Control+Memory/testfixture.v
 Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
 -- Compiling module IRB
 -- Compiling module IROM
@@ -14,5 +7,12 @@ Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
 
 Top level modules:
 	test
+
+} {} {}} D:/Code/git/DIC-Practice/Level_3/Image_Display_Control+Memory/lcd_ctrl.v {1 {vlog -work work -vopt {D:\Code\git\DIC-Practice\Level_3\Image_Display_Control+Memory\lcd_ctrl.v}
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module LCD_CTRL
+
+Top level modules:
+	LCD_CTRL
 
 } {} {}}

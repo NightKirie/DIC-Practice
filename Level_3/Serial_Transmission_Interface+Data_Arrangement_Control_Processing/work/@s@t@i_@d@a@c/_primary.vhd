@@ -2,14 +2,13 @@ library verilog;
 use verilog.vl_types.all;
 entity STI_DAC is
     generic(
-        SAVE            : vl_logic_vector(2 downto 0) := (Hi0, Hi0, Hi0);
-        \WAIT\          : vl_logic_vector(2 downto 0) := (Hi0, Hi0, Hi1);
-        \IN\            : vl_logic_vector(2 downto 0) := (Hi0, Hi1, Hi0);
-        MEM             : vl_logic_vector(2 downto 0) := (Hi0, Hi1, Hi1);
-        OUT8            : vl_logic_vector(2 downto 0) := (Hi1, Hi0, Hi0);
-        OUT16           : vl_logic_vector(2 downto 0) := (Hi1, Hi0, Hi1);
-        OUT24           : vl_logic_vector(2 downto 0) := (Hi1, Hi1, Hi0);
-        OUT32           : vl_logic_vector(2 downto 0) := (Hi1, Hi1, Hi1)
+        \LOAD\          : vl_logic_vector(0 to 1) := (Hi0, Hi0);
+        SO_OUT          : vl_logic_vector(0 to 1) := (Hi0, Hi1);
+        FILL_PIXEL      : vl_logic_vector(0 to 1) := (Hi1, Hi0);
+        Bit_8           : vl_logic_vector(0 to 1) := (Hi0, Hi0);
+        Bit_16          : vl_logic_vector(0 to 1) := (Hi0, Hi1);
+        Bit_24          : vl_logic_vector(0 to 1) := (Hi1, Hi0);
+        Bit_32          : vl_logic_vector(0 to 1) := (Hi1, Hi1)
     );
     port(
         clk             : in     vl_logic;
@@ -29,12 +28,11 @@ entity STI_DAC is
         pixel_wr        : out    vl_logic
     );
     attribute mti_svvh_generic_type : integer;
-    attribute mti_svvh_generic_type of SAVE : constant is 2;
-    attribute mti_svvh_generic_type of \WAIT\ : constant is 2;
-    attribute mti_svvh_generic_type of \IN\ : constant is 2;
-    attribute mti_svvh_generic_type of MEM : constant is 2;
-    attribute mti_svvh_generic_type of OUT8 : constant is 2;
-    attribute mti_svvh_generic_type of OUT16 : constant is 2;
-    attribute mti_svvh_generic_type of OUT24 : constant is 2;
-    attribute mti_svvh_generic_type of OUT32 : constant is 2;
+    attribute mti_svvh_generic_type of \LOAD\ : constant is 1;
+    attribute mti_svvh_generic_type of SO_OUT : constant is 1;
+    attribute mti_svvh_generic_type of FILL_PIXEL : constant is 1;
+    attribute mti_svvh_generic_type of Bit_8 : constant is 1;
+    attribute mti_svvh_generic_type of Bit_16 : constant is 1;
+    attribute mti_svvh_generic_type of Bit_24 : constant is 1;
+    attribute mti_svvh_generic_type of Bit_32 : constant is 1;
 end STI_DAC;
