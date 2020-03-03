@@ -17,12 +17,12 @@ output reg [7:0] pixel_dataout;
 reg [1:0] curr_state, next_state;
 reg [4:0] bit_counter, output_length, index;
 reg [7:0] pixel_counter;
-// reg [7:0] so_buffer [0:256];
 reg [31:0] so_buffer;
 
-parameter LOAD = 2'b00;
-parameter SO_OUT = 2'b01;
-parameter FILL_PIXEL = 2'b10;
+parameter WAIT = 2'b00;
+parameter LOAD = 2'b01;
+parameter SO_OUT = 2'b10;
+parameter FILL_PIXEL = 2'b11;
 
 parameter Bit_8 = 2'b00;
 parameter Bit_16 = 2'b01;
@@ -38,37 +38,37 @@ always @(posedge clk) begin
 		pixel_addr <= 0;
 
 		pixel_counter <= 0;
-		curr_state <= LOAD;
+		curr_state <= WAIT;
 	end
 	else begin
 		curr_state <= next_state;
 		case (curr_state)
-			LOAD: begin
+			WAIT: begin
 				so_valid <= 0;
-				if (load) begin
-					case (pi_length)
-						Bit_8:  begin
-							bit_counter <= 7;
-							output_length <= 7;
-							so_buffer <= (pi_low) ? pi_data[15:8] : pi_data[7:0];
-						end
-						Bit_16: begin
-							bit_counter <= 15;
-							output_length <= 15;
-							so_buffer <= pi_data;
-						end
-						Bit_24: begin
-							bit_counter <= 23;
-							output_length <= 23;
-							so_buffer <= (pi_fill) ? {pi_data, 8'b0} : {8'b0, pi_data};
-						end
-						Bit_32: begin
-							bit_counter <= 31;
-							output_length <= 31;
-							so_buffer <= (pi_fill) ? {pi_data, 16'b0} : {16'b0, pi_data};
-						end	 
-					endcase
-				end
+			end
+			LOAD: begin
+				case (pi_length)
+					Bit_8:  begin
+						bit_counter <= 7;
+						output_length <= 7;
+						so_buffer <= (pi_low) ? pi_data[15:8] : pi_data[7:0];
+					end
+					Bit_16: begin
+						bit_counter <= 15;
+						output_length <= 15;
+						so_buffer <= pi_data;
+					end
+					Bit_24: begin
+						bit_counter <= 23;
+						output_length <= 23;
+						so_buffer <= (pi_fill) ? {pi_data, 8'b0} : {8'b0, pi_data};
+					end
+					Bit_32: begin
+						bit_counter <= 31;
+						output_length <= 31;
+						so_buffer <= (pi_fill) ? {pi_data, 16'b0} : {16'b0, pi_data};
+					end	 
+				endcase
 			end
 			SO_OUT: begin
 				so_valid <= 1;
@@ -89,7 +89,7 @@ always @(posedge clk) begin
 					pixel_wr <= 1;
 					pixel_addr <= pixel_counter;
 					pixel_counter <= pixel_counter + 1;
-					if(pixel_counter == 255)
+					if(pixel_counter == 0)
 						pixel_finish <= 1;
 				end
 				
@@ -103,14 +103,15 @@ always @(*) begin
 	next_state = curr_state;
 	index = 0;
 	case(curr_state) 
+		WAIT: 
+			next_state = (load == 1) ? LOAD : WAIT;
 		LOAD: 
-			next_state = (load == 1) ? SO_OUT : LOAD;	
+			next_state = SO_OUT;	
 		SO_OUT: begin
 			if(bit_counter == 0)
-				next_state = (pi_end) ? FILL_PIXEL : LOAD;
+				next_state = (pi_end) ? FILL_PIXEL : WAIT;
 			else
 				next_state = SO_OUT;
-			//next_state = (bit_counter) ? SO_OUT : LOAD;
 			index = (pi_msb) ? bit_counter : output_length - bit_counter;
 		end
 	endcase

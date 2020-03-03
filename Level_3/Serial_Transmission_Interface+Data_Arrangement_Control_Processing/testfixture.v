@@ -2,6 +2,8 @@
 
 module testfixture;
 
+
+`define SDFFILE    "./STI_DAC_syn.sdf"
 `define cycle 10
 `define terminate_cycle 100000
 
@@ -20,7 +22,7 @@ module testfixture;
 	`define even3 "./dat/Expected_even_3.dat"
 	`define even4 "./dat/Expected_even_4.dat"*/
 
-`define SDFFILE  "./STI_DAC_syn.sdf"
+
 
 reg [15:0] stimulus_in, pattern_in;
 
@@ -74,8 +76,9 @@ STI_DAC u_rtl(.clk(clk) ,.reset(reset), .load(load), .pi_data(pi_data), .pi_leng
 
 
 `ifdef SDF
-	initial $sdf_annotate(`SDFFILE, STI_DAC);
+initial $sdf_annotate(`SDFFILE, u_rtl);
 `endif
+
 
 
 reg [15:0] 	Pat_memory [0:`Pat_num];
@@ -203,7 +206,7 @@ end
 
 task error;
     begin
-      $display("---------- ERROR AT %t, data index %d,  ERROR OUTPUT : so_data = %b,  EXPECTED OUTPUT so_data = %b\n", $realtime, i, so_data, Exp_memory[i]);
+      $display("---------- ERROR AT %t,  ERROR OUTPUT : so_data = %b,  EXPECTED OUTPUT so_data = %b\n", $realtime, so_data, Exp_memory[i]);
     end
   endtask
 

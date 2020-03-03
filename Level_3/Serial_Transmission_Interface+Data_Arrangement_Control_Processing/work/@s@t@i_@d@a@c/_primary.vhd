@@ -2,9 +2,10 @@ library verilog;
 use verilog.vl_types.all;
 entity STI_DAC is
     generic(
-        \LOAD\          : vl_logic_vector(0 to 1) := (Hi0, Hi0);
-        SO_OUT          : vl_logic_vector(0 to 1) := (Hi0, Hi1);
-        FILL_PIXEL      : vl_logic_vector(0 to 1) := (Hi1, Hi0);
+        \WAIT\          : vl_logic_vector(0 to 1) := (Hi0, Hi0);
+        \LOAD\          : vl_logic_vector(0 to 1) := (Hi0, Hi1);
+        SO_OUT          : vl_logic_vector(0 to 1) := (Hi1, Hi0);
+        FILL_PIXEL      : vl_logic_vector(0 to 1) := (Hi1, Hi1);
         Bit_8           : vl_logic_vector(0 to 1) := (Hi0, Hi0);
         Bit_16          : vl_logic_vector(0 to 1) := (Hi0, Hi1);
         Bit_24          : vl_logic_vector(0 to 1) := (Hi1, Hi0);
@@ -28,6 +29,7 @@ entity STI_DAC is
         pixel_wr        : out    vl_logic
     );
     attribute mti_svvh_generic_type : integer;
+    attribute mti_svvh_generic_type of \WAIT\ : constant is 1;
     attribute mti_svvh_generic_type of \LOAD\ : constant is 1;
     attribute mti_svvh_generic_type of SO_OUT : constant is 1;
     attribute mti_svvh_generic_type of FILL_PIXEL : constant is 1;
