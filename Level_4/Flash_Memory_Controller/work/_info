@@ -1,0 +1,100 @@
+m255
+K3
+13
+cModel Technology
+dD:\Code\git\DIC-Practice\Level_3\Serial_Transmission_Interface+Data_Arrangement_Control_Processing
+vBUFFER
+VO3hnc`jjB^_[T:Yk>c1@k3
+r1
+!s85 0
+31
+I0ZHR@zB`YmPPATPD2f?ZP1
+Z0 dD:\Code\git\DIC-Practice\Level_4\Flash_Memory_Controller
+Z1 w1581922503
+Z2 F./flash_u.v
+Z3 8D:/Code/git/DIC-Practice/Level_4/Flash_Memory_Controller/testfixture.v
+Z4 FD:/Code/git/DIC-Practice/Level_4/Flash_Memory_Controller/testfixture.v
+L0 1628
+Z5 OL;L;10.1c;51
+Z6 !s108 1583229334.113000
+Z7 !s107 ./flash_u.v|./t13rf128x8.v|D:/Code/git/DIC-Practice/Level_4/Flash_Memory_Controller/testfixture.v|
+Z8 !s90 -reportprogress|300|-work|work|-vopt|D:/Code/git/DIC-Practice/Level_4/Flash_Memory_Controller/testfixture.v|
+Z9 o-work work -L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF
+n@b@u@f@f@e@r
+!i10b 1
+!s100 _:fBcMS?jBR69Lz_hQ:dl3
+vFC
+V?hEALTmi3OT7a?LhzWc?Q1
+r1
+31
+I@JP;HS6JIC5C:_^9c6^VO1
+Z10 dD:\Code\git\DIC-Practice\Level_4\Flash_Memory_Controller
+R1
+8D:/Code/git/DIC-Practice/Level_4/Flash_Memory_Controller/FC.v
+FD:/Code/git/DIC-Practice/Level_4/Flash_Memory_Controller/FC.v
+L0 2
+R5
+R9
+n@f@c
+!s85 0
+!s100 11J>mZHbKGj?5WBmLamOZ1
+!s108 1583229333.707000
+!s107 D:/Code/git/DIC-Practice/Level_4/Flash_Memory_Controller/FC.v|
+!s90 -reportprogress|300|-work|work|-vopt|D:/Code/git/DIC-Practice/Level_4/Flash_Memory_Controller/FC.v|
+!i10b 1
+vflash
+V2]oDNAcQQiZSHoc;8SLcH3
+r1
+31
+ImR[H^JD2M<PD[d_:@A@=?2
+R10
+R1
+R2
+R3
+R4
+L0 3
+R5
+R6
+R7
+R8
+R9
+!s85 0
+!i10b 1
+!s100 XIznI0Yo;QDN5@9fVWfAl2
+vt13rf128x8
+VKiOMIAm1iOdZfL70<SiDM2
+r1
+31
+ILMai8SC]QUPnBP6nBm<>[2
+R10
+R1
+F./t13rf128x8.v
+R3
+R4
+L0 55
+R5
+R6
+R7
+R8
+R9
+!s85 0
+!i10b 1
+!s100 B:08[_E7^flD;5@d52;SV1
+vtest
+V]^6BEac1g00zj_WM:hJPW2
+r1
+31
+ImMX59G7>=b1[ZI89[8nST0
+R10
+R1
+R3
+R4
+L0 20
+R5
+R6
+R7
+R8
+R9
+!s85 0
+!i10b 1
+!s100 >=2bQNa<hNT`oB4zbT?X[3

@@ -1,0 +1,26 @@
+D:/Code/git/DIC-Practice/Level_4/Flash_Memory_Controller/flash_u.v {1 {vlog -work work -vopt D:/Code/git/DIC-Practice/Level_4/Flash_Memory_Controller/flash_u.v
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module flash
+-- Compiling module BUFFER
+
+Top level modules:
+	flash
+
+} {} {}} D:/Code/git/DIC-Practice/Level_4/Flash_Memory_Controller/t13rf128x8.v {1 {vlog -work work -vopt {D:\Code\git\DIC-Practice\Level_4\Flash_Memory_Controller\t13rf128x8.v}
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module t13rf128x8
+
+Top level modules:
+	t13rf128x8
+
+} {} {}} D:/Code/git/DIC-Practice/Level_4/Flash_Memory_Controller/testfixture.v {1 {vlog -work work -vopt D:/Code/git/DIC-Practice/Level_4/Flash_Memory_Controller/testfixture.v
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module t13rf128x8
+-- Compiling module flash
+-- Compiling module BUFFER
+-- Compiling module test
+
+Top level modules:
+	test
+
+} {} {}}
