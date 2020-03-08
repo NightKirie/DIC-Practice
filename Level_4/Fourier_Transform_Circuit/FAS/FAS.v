@@ -14,12 +14,27 @@ input	clk;
 input	rst;
 input	data_valid;
 input signed [15:0] data;
-output [31:0] fft_d0,fft_d1,fft_d2,fft_d3,fft_d4,fft_d5,fft_d6,fft_d7, 
+
+output reg [31:0] fft_d0,fft_d1,fft_d2,fft_d3,fft_d4,fft_d5,fft_d6,fft_d7, 
               fft_d8,fft_d9,fft_d10,fft_d11,fft_d12,fft_d13,fft_d14,fft_d15;
-output fft_valid;
-output done;                      
-output [3:0] freq;
+output reg fft_valid;
+output reg done;                      
+output reg [3:0] freq;
+
+reg [15:0] buffer [0:15];
 
 
+always @(posedge clk ) begin
+	if(rst) begin
+		
+	end
+	else begin
+		
+	end
+end
+
+always @(*) begin
+       
+end
 
 endmodule
