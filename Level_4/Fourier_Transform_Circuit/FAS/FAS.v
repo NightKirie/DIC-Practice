@@ -21,20 +21,61 @@ output reg fft_valid;
 output reg done;                      
 output reg [3:0] freq;
 
-reg [15:0] buffer [0:15];
+reg [2:0] curr_state, next_state;
+reg [3:0] counter;
+reg signed [15:0] buffer [0:15];
 
+parameter w0_r = 32’h00010000, w0_i = 32’h00000000;
+parameter w1_r = 32’h0000EC83, w1_i = 32’hFFFF9E09;
+parameter w2_r = 32’h0000B504, w2_i = 32’hFFFF4AFC;
+parameter w3_r = 32’h000061F7, w3_i = 32’hFFFF137D;
+parameter w4_r = 32’h00000000, w4_i = 32’hFFFF0000;
+parameter w5_r = 32’hFFFF9E09, w5_i = 32’hFFFF137D;
+parameter w6_r = 32’hFFFF4AFC, w6_i = 32’hFFFF4AFC;
+parameter w7_r = 32’hFFFF137D, w7_i = 32’hFFFF9E09;
+
+
+parameter LOAD = 3'b000;
+parameter CAL_FFT = 3'b001;
 
 always @(posedge clk ) begin
 	if(rst) begin
+		done <= 0; 
+		fft_valid <= 0;
+		freq <= 0;
 		
+		counter <= 0;
+
+		curr_state <= LOAD;
 	end
 	else begin
-		
+		curr_state <= next_state;
+		case (curr_state)
+			LOAD: begin
+				done <= 0;
+				if(data_valid) begin
+					buffer[counter] <= data;
+					counter <= (counter == 4'd15) ? 0 : counter + 1;
+				end
+			end 
+			CAL_FFT: begin
+				done <= 1;
+			end
+			//default: 
+		endcase
 	end
 end
 
 always @(*) begin
-       
+	case (curr_state)
+		LOAD: begin
+			next_state = (counter == 4'd15) ? CAL_FFT : LOAD;
+		end 
+		CAL_FFT: begin
+			next_state = LOAD;
+		end
+		//default: 
+	endcase 
 end
 
 endmodule

@@ -1,6 +1,6 @@
 `timescale 1ns/10ps
 `define CYCLE     10                 // Modify your clock period here
-//`define SDFFILE    ""    // Modify your sdf file name
+//`define SDFFILE    "./FFT_PE_syn.sdf"    // Modify your sdf file name
 `define End_CYCLE  100000          // Modify cycle times once your design need more cycle times!
 
 
@@ -45,15 +45,15 @@ integer fir_fail, fft_fail;
 FFT_PE PE(.a(fir_a), .b(fir_b), .ab_valid(ab_valid), .clk(clk), .rst(reset),
 .fft_a(fft_a), .fft_b(fft_b), .fft_pe_valid(fft_pe_valid), .power(power));
 
-`ifdef SDFFILE
-initial $sdf_annotate(`SDFFILE, PE);
-`endif
+// `ifdef SDFFILE
+// initial $sdf_annotate(`SDFFILE, PE);
+// `endif
 
 
-//initial begin
-//$fsdbDumpfile("FFT_PE.fsdb");
-//$fsdbDumpvars;
-//end
+// initial begin
+// $fsdbDumpfile("FFT_PE.fsdb");
+// $fsdbDumpvars;
+// end
 
 
 
