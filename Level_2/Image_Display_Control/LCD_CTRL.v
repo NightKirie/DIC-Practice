@@ -14,10 +14,18 @@ output reg busy;
 output reg done;
 
 reg [2:0] curr_x, curr_y;
+reg [5:0] index; 
 reg [1:0] curr_state, next_state;
 reg [5:0] IROM_A_pre, IRAM_A_post;
 reg [7:0] buffer [0:63], max, min, temp1, temp2;
 reg [9:0] avg;
+
+wire [5:0] block[0:3];
+
+assign block[0] = index - 6'd9;
+assign block[1] = index - 6'd8;
+assign block[2] = index - 6'd1;
+assign block[3] = index;
 
 parameter Write = 4'b0000;
 parameter Shift_Up = 4'b0001;
@@ -70,13 +78,13 @@ always@(posedge clk) begin
                 if(cmd_valid) begin
                     case (cmd)
                         Shift_Up: 
-                            curr_y <= (curr_y == 1) ? curr_y : curr_y - 1;
+                            index <= (index[5:3] == 3'b001) ? index : index - 6'd8;
                         Shift_Down:
-                            curr_y <= (curr_y == 7) ? curr_y : curr_y + 1;
+                            index <= (index[5:3] == 3'b111) ? index : index + 6'd8;
                         Shift_Left:
-                            curr_x <= (curr_x == 1) ? curr_x : curr_x - 1;
+                            index <= (index[2:0] == 3'b001) ? index : index - 6'd1;
                         Shift_Right:
-                            curr_x <= (curr_x == 7) ? curr_x : curr_x + 1;
+                            index <= (index[2:0] == 3'b111) ? index : index + 6'd1;
                         Max: begin
                             buffer[(curr_y - 1) * 8 + curr_x - 1] <= max;
                             buffer[(curr_y - 1) * 8 + curr_x] <= max;
