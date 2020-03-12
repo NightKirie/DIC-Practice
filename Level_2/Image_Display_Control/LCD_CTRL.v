@@ -86,46 +86,46 @@ always@(posedge clk) begin
                         Shift_Right:
                             index <= (index[2:0] == 3'b111) ? index : index + 6'd1;
                         Max: begin
-                            buffer[(curr_y - 1) * 8 + curr_x - 1] <= max;
-                            buffer[(curr_y - 1) * 8 + curr_x] <= max;
-                            buffer[curr_y * 8 + curr_x - 1] <= max;
-                            buffer[curr_y * 8 + curr_x] <= max;
+                            buffer[block[0]] <= max;
+                            buffer[block[1]] <= max;
+                            buffer[block[2]] <= max;
+                            buffer[block[3]] <= max;
                         end
                         Min: begin
-                            buffer[(curr_y - 1) * 8 + curr_x - 1] <= min;
-                            buffer[(curr_y - 1) * 8 + curr_x] <= min;
-                            buffer[curr_y * 8 + curr_x - 1] <= min;
-                            buffer[curr_y * 8 + curr_x] <= min;
+                            buffer[block[0]] <= min;
+                            buffer[block[1]] <= min;
+                            buffer[block[2]] <= min;
+                            buffer[block[3]] <= min;
                         end
                         Average: begin
-                            buffer[(curr_y - 1) * 8 + curr_x - 1] <= avg;
-                            buffer[(curr_y - 1) * 8 + curr_x] <= avg;
-                            buffer[curr_y * 8 + curr_x - 1] <= avg;
-                            buffer[curr_y * 8 + curr_x] <= avg;
+                            buffer[block[0]] <= avg;
+                            buffer[block[1]] <= avg;
+                            buffer[block[2]] <= avg;
+                            buffer[block[3]] <= avg;
                         end
                         Counterclockwise: begin
-                            buffer[(curr_y - 1) * 8 + curr_x - 1] <= buffer[(curr_y - 1) * 8 + curr_x];
-                            buffer[(curr_y - 1) * 8 + curr_x] <= buffer[curr_y * 8 + curr_x];
-                            buffer[curr_y * 8 + curr_x] <= buffer[curr_y * 8 + curr_x - 1];
-                            buffer[curr_y * 8 + curr_x - 1] <= buffer[(curr_y - 1) * 8 + curr_x - 1];
+                            buffer[block[0]] <= buffer[block[1]];
+                            buffer[block[1]] <= buffer[block[3]];
+                            buffer[block[3]] <= buffer[block[2]];
+                            buffer[block[2]] <= buffer[block[0]];
                         end
                         Clockwise: begin
-                            buffer[(curr_y - 1) * 8 + curr_x - 1] <= buffer[curr_y * 8 + curr_x - 1];
-                            buffer[curr_y * 8 + curr_x - 1] <= buffer[curr_y * 8 + curr_x];
-                            buffer[curr_y * 8 + curr_x] <= buffer[(curr_y - 1) * 8 + curr_x];
-                            buffer[(curr_y - 1) * 8 + curr_x] <= buffer[(curr_y - 1) * 8 + curr_x - 1];
+                            buffer[block[0]] <= buffer[block[2]];
+                            buffer[block[2]] <= buffer[block[3]];
+                            buffer[block[3]] <= buffer[block[1]];
+                            buffer[block[1]] <= buffer[block[0]];
                         end
                         Mirror_X: begin
-                            buffer[(curr_y - 1) * 8 + curr_x - 1] <= buffer[curr_y * 8 + curr_x - 1];
-                            buffer[curr_y * 8 + curr_x - 1] <= buffer[(curr_y - 1) * 8 + curr_x - 1];
-                            buffer[(curr_y - 1) * 8 + curr_x] <= buffer[curr_y * 8 + curr_x];
-                            buffer[curr_y * 8 + curr_x] <= buffer[(curr_y - 1) * 8 + curr_x];
+                            buffer[block[0]] <= buffer[block[2]];
+                            buffer[block[2]] <= buffer[block[0]];
+                            buffer[block[1]] <= buffer[block[3]];
+                            buffer[block[3]] <= buffer[block[1]];
                         end
                         Mirror_Y: begin
-                            buffer[(curr_y - 1) * 8 + curr_x - 1] <= buffer[(curr_y - 1) * 8 + curr_x];
-                            buffer[(curr_y - 1) * 8 + curr_x] <= buffer[(curr_y - 1) * 8 + curr_x - 1];
-                            buffer[curr_y * 8 + curr_x - 1] <= buffer[curr_y * 8 + curr_x];
-                            buffer[curr_y * 8 + curr_x] <= buffer[curr_y * 8 + curr_x - 1];
+                            buffer[block[0]] <= buffer[block[1]];
+                            buffer[block[1]] <= buffer[block[0]];
+                            buffer[block[2]] <= buffer[block[3]];
+                            buffer[block[3]] <= buffer[block[2]];
                         end
                     endcase
                 end 
@@ -159,17 +159,17 @@ always@(*) begin
                     avg = 0;
                 end 
                 Average: begin
-                    avg = ((buffer[(curr_y - 1) * 8 + curr_x - 1] + buffer[(curr_y - 1) * 8 + curr_x]) + 
-                           (buffer[curr_y * 8 + curr_x - 1] + buffer[curr_y * 8 + curr_x])) >> 2;
+                    avg = ((buffer[block[0]] + buffer[block[1]]) + 
+                           (buffer[block[2]] + buffer[block[3]])) >> 2;
                 end 
                 Max: begin
-                    temp1 = (buffer[(curr_y - 1) * 8 + curr_x - 1] > buffer[(curr_y - 1) * 8 + curr_x]) ? buffer[(curr_y - 1) * 8 + curr_x - 1] : buffer[(curr_y - 1) * 8 + curr_x];
-                    temp2 = (buffer[curr_y * 8 + curr_x - 1] > buffer[curr_y * 8 + curr_x]) ? buffer[curr_y * 8 + curr_x - 1] : buffer[curr_y * 8 + curr_x];
+                    temp1 = (buffer[block[0]] > buffer[block[1]]) ? buffer[block[0]] : buffer[block[1]];
+                    temp2 = (buffer[block[2]] > buffer[block[3]]) ? buffer[block[2]] : buffer[block[3]];
                     max = (temp1 > temp2) ? temp1 : temp2;
                 end
                 Min: begin
-                    temp1 = (buffer[(curr_y - 1) * 8 + curr_x - 1] < buffer[(curr_y - 1) * 8 + curr_x]) ? buffer[(curr_y - 1) * 8 + curr_x - 1] : buffer[(curr_y - 1) * 8 + curr_x];
-                    temp2 = (buffer[curr_y * 8 + curr_x - 1] < buffer[curr_y * 8 + curr_x]) ? buffer[curr_y * 8 + curr_x - 1] : buffer[curr_y * 8 + curr_x];
+                    temp1 = (buffer[block[0]] < buffer[block[1]]) ? buffer[block[0]] : buffer[block[1]];
+                    temp2 = (buffer[block[2]] < buffer[block[3]]) ? buffer[block[2]] : buffer[block[3]];
                     min = (temp1 < temp2) ? temp1 : temp2;
                 end
             endcase
