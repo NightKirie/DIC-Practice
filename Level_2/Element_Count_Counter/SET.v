@@ -10,29 +10,30 @@ output reg busy;
 output reg valid;
 output reg [7:0] candidate;
 
-reg [2:0] curr_state, next_state;
+reg [1:0] curr_state, next_state;
 reg [3:0] x1, y1, x2, y2, r1, r2, curr_x, curr_y;
-reg [7:0] r1_sqr, r2_sqr, dist_a, dist_b;
 reg [7:0] curr_candidate;
 
+wire [7:0] r1_sqr, r2_sqr, dist_a, dist_b;
 
-parameter Input = 3'b000;
-parameter Cal_Radius = 3'b001;
-parameter Cal_Distance = 3'b010;
-parameter Compare = 3'b011;
-parameter Output = 3'b100;
+assign r1_sqr = r1 * r1; 
+assign r2_sqr = r2 * r2;
+assign dist_a = (curr_x - x1) ** 2 + (curr_y - y1) ** 2;
+assign dist_b = (curr_x - x2) ** 2 + (curr_y - y2) ** 2;
 
-integer i, j;
+
+parameter Input = 2'b00;
+parameter Compare = 2'b01;
+parameter Output = 2'b10;
+
 
 always@(posedge clk) begin
     if(rst) begin
         busy <= 0;
-
         curr_state <= Input;   
     end 
     else begin
         curr_state <= next_state;
-
         case (curr_state)
             Input: begin
                 if (en) begin
@@ -48,40 +49,7 @@ always@(posedge clk) begin
                     candidate <= 0;
                     valid <= 0;
                     busy <= 1;
-                    curr_state <= Cal_Radius;
                 end
-            end
-            Cal_Radius: begin
-                case (mode)
-                    2'b00: begin
-                        r1_sqr <= r1 * r1; 
-                    end 
-                    2'b01, 2'b10: begin
-                        r1_sqr <= r1 * r1;
-                        r2_sqr <= r2 * r2;
-                    end
-                    default: begin
-                        r1_sqr <= r1_sqr;
-                        r2_sqr <= r2_sqr;
-                    end 
-                endcase
-            end
-            Cal_Distance: begin
-                case (mode)
-                    2'b00: begin
-                        dist_a <= (curr_x - x1) ** 2 + (curr_y - y1) ** 2;
-                    end
-                    2'b01, 2'b10: begin
-                        dist_a <= (curr_x - x1) ** 2 + (curr_y - y1) ** 2;
-                        dist_b <= (curr_x - x2) ** 2 + (curr_y - y2) ** 2;
-                    end
-                    default: begin
-                        dist_a <= dist_a;
-                        dist_b <= dist_b;
-                    end 
-                endcase
-                curr_x <= (curr_x == 8) ? 1 : curr_x + 1;
-                curr_y <= (curr_x == 8) ? curr_y + 1 : curr_y;
             end
             Compare: begin
                 case (mode)
@@ -91,15 +59,12 @@ always@(posedge clk) begin
                         candidate <= (dist_a <= r1_sqr && dist_b <= r2_sqr) ? candidate + 1 : candidate;
                     2'b10: 
                         candidate <= ((dist_a <= r1_sqr) ^ (dist_b <= r2_sqr)) ? candidate + 1 : candidate;
-                    default: 
-                        candidate <= candidate;
                 endcase
+                curr_x <= (curr_x == 8) ? 1 : curr_x + 1;
+                curr_y <= (curr_x == 8) ? curr_y + 1 : curr_y;
             end
             Output: begin
                 valid <= 1;
-                busy <= 0;
-            end
-            default: begin
                 busy <= 0;
             end
         endcase
@@ -108,12 +73,10 @@ end
 
 always @(*) begin
     case (curr_state)
-        Cal_Radius: 
-            next_state = Cal_Distance;
-        Cal_Distance: 
-            next_state = (curr_x == 1 && curr_y == 9) ? Output : Compare;
+        Input: 
+            next_state = (en) ? Compare : Input;
         Compare: 
-            next_state = Cal_Distance;
+            next_state = (curr_x == 8 && curr_y == 8) ? Output : Compare;
         Output:
             next_state = Input;
         default: 

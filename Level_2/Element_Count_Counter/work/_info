@@ -2,41 +2,42 @@ m255
 K3
 13
 cModel Technology
-Z0 dC:\modeltech64_10.1c\examples
+dC:\modeltech64_10.1c\examples
 vSET
-Z1 Ie48]D3<K4Ko6MPi3B3Q4`1
-Z2 VT:L>EVDO?K7Ya2YToeKYj1
-Z3 dE:\code\git\DIC-Practice\Level_2\Element_Count_Counter
-Z4 w1582194700
-Z5 8E:/code/git/DIC-Practice/Level_2/Element_Count_Counter/SET.v
-Z6 FE:/code/git/DIC-Practice/Level_2/Element_Count_Counter/SET.v
+VzdIjaWhdX3>aOnDAWlZ]Y2
+r1
+!s85 0
+31
+IheT_Bf8PLM>D9:2BNXJV92
+Z0 dD:\Code\git\DIC-Practice\Level_2\Element_Count_Counter
+w1584086224
+8D:\Code\git\DIC-Practice\Level_2\Element_Count_Counter\SET.v
+FD:\Code\git\DIC-Practice\Level_2\Element_Count_Counter\SET.v
 L0 1
-Z7 OL;L;10.1c;51
-r1
-31
-Z8 o-work work -L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF
-Z9 n@s@e@t
+Z1 OL;L;10.1c;51
+Z2 o-work work -L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF
+n@s@e@t
+!s90 -reportprogress|300|-work|work|-vopt|D:\Code\git\DIC-Practice\Level_2\Element_Count_Counter\SET.v|
+!s100 Hi@L1TEk[DgX1e_nbd_9O0
+!s108 1584086227.600000
+!s107 D:\Code\git\DIC-Practice\Level_2\Element_Count_Counter\SET.v|
 !i10b 1
-Z10 !s100 LP;3NgZGB8c@7XUjaL99]1
-!s85 0
-Z11 !s108 1584069395.468000
-Z12 !s107 E:/code/git/DIC-Practice/Level_2/Element_Count_Counter/SET.v|
-Z13 !s90 -reportprogress|300|-work|work|-vopt|E:/code/git/DIC-Practice/Level_2/Element_Count_Counter/SET.v|
 vtestfixture1
-!i10b 1
-!s100 n6VHCLRFn880?`<okCFTk3
-IbFQ^Ei=PdCI5d;fM`LYlV2
-Z14 VWP0=oXMOeYWB]IV3[4WoU2
-R3
-R4
-8E:/code/git/DIC-Practice/Level_2/Element_Count_Counter/testfixture.v
-FE:/code/git/DIC-Practice/Level_2/Element_Count_Counter/testfixture.v
-L0 7
-R7
+VWP0=oXMOeYWB]IV3[4WoU2
 r1
-!s85 0
 31
-!s108 1584069395.685000
-!s107 E:/code/git/DIC-Practice/Level_2/Element_Count_Counter/testfixture.v|
-!s90 -reportprogress|300|-work|work|-vopt|E:/code/git/DIC-Practice/Level_2/Element_Count_Counter/testfixture.v|
-R8
+IQd3]IaRT`j94OonF_zR[O2
+Z3 dD:\Code\git\DIC-Practice\Level_2\Element_Count_Counter
+w1582014685
+8D:/Code/git/DIC-Practice/Level_2/Element_Count_Counter/testfixture.v
+FD:/Code/git/DIC-Practice/Level_2/Element_Count_Counter/testfixture.v
+L0 7
+R1
+R2
+!s85 0
+!s100 0MoH_[h3bWnV];gKZbYno1
+!s90 -reportprogress|300|-work|work|-vopt|+define+MD0|D:/Code/git/DIC-Practice/Level_2/Element_Count_Counter/testfixture.v|
+!s92 -work work +define+MD0 -L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF
+!i10b 1
+!s108 1584086227.682000
+!s107 D:/Code/git/DIC-Practice/Level_2/Element_Count_Counter/testfixture.v|
