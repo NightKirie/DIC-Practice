@@ -13,7 +13,6 @@ output reg [5:0] IRAM_A;
 output reg busy;
 output reg done;
 
-reg [2:0] curr_x, curr_y;
 reg [5:0] index; 
 reg [1:0] curr_state, next_state;
 reg [5:0] IROM_A_pre, IRAM_A_post;
@@ -57,15 +56,14 @@ always@(posedge clk) begin
         
         IROM_A_pre <= 0;
         IRAM_A_post <= 0;
-
+        
         curr_state <= Input;
     end
     else begin
         curr_state <= next_state;
         case(curr_state) 
             Input: begin
-                curr_x <= 4;
-                curr_y <= 4;
+                index <= 6'd36;
                 buffer[IROM_A] <= IROM_Q; 
                 IROM_A_pre <= IROM_A;
 
