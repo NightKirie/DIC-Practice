@@ -2,96 +2,96 @@ m255
 K3
 13
 cModel Technology
-dD:\Code\git\DIC-Practice\Level_4\Flash_Memory_Controller
+Z0 dD:\Code\git\DIC-Practice\Level_4\Flash_Memory_Controller
 vFAS
-Vo2OLiVXCE=Y54NaDGR3:j2
+Z1 Vo2OLiVXCE=Y54NaDGR3:j2
 r1
-!s85 0
 31
-Ii`H49N1j=@mXNNF?Jl>HT1
-Z0 dD:\Code\git\DIC-Practice\Level_4\Fourier_Transform_Circuit
-w1583835927
-8D:\Code\git\DIC-Practice\Level_4\Fourier_Transform_Circuit\FAS\FAS.v
-FD:\Code\git\DIC-Practice\Level_4\Fourier_Transform_Circuit\FAS\FAS.v
+Z2 Ii`H49N1j=@mXNNF?Jl>HT1
+Z3 dD:\Code\git\DIC-Practice\Level_4\Fourier_Transform_Circuit
+Z4 w1583835927
+Z5 8D:\Code\git\DIC-Practice\Level_4\Fourier_Transform_Circuit\FAS\FAS.v
+Z6 FD:\Code\git\DIC-Practice\Level_4\Fourier_Transform_Circuit\FAS\FAS.v
 L0 1
-Z1 OL;L;10.1c;51
-Z2 o-work work -L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF
-n@f@a@s
-!s100 AmLBmg[0Y`P`2oU67aDK73
-!s90 -reportprogress|300|-work|work|-vopt|D:\Code\git\DIC-Practice\Level_4\Fourier_Transform_Circuit\FAS\FAS.v|
-!s108 1583836694.141000
-!s107 D:\Code\git\DIC-Practice\Level_4\Fourier_Transform_Circuit\FAS\FAS.v|
+Z7 OL;L;10.1c;51
+Z8 o-work work -L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF
+Z9 n@f@a@s
+Z10 !s100 AmLBmg[0Y`P`2oU67aDK73
+Z11 !s90 -reportprogress|300|-work|work|-vopt|D:\Code\git\DIC-Practice\Level_4\Fourier_Transform_Circuit\FAS\FAS.v|
+Z12 !s108 1583836694.141000
+Z13 !s107 D:\Code\git\DIC-Practice\Level_4\Fourier_Transform_Circuit\FAS\FAS.v|
+!s85 0
 !i10b 1
 vFFT_PE
-IED=C<1f9zjQ3j=olVTWaJ1
-VTL2AIOL:Xmcbg6MK>UBe@0
-Z3 dD:\Code\git\DIC-Practice\Level_4\Fourier_Transform_Circuit
-w1583816697
-8D:\Code\git\DIC-Practice\Level_4\Fourier_Transform_Circuit\FFT_PE\FFT_PE.v
-FD:\Code\git\DIC-Practice\Level_4\Fourier_Transform_Circuit\FFT_PE\FFT_PE.v
+Z14 ImZmzCLVODJ;DafO9DkSAI1
+Z15 VTL2AIOL:Xmcbg6MK>UBe@0
+R3
+Z16 w1583816697
+Z17 8D:/Code/git/DIC-Practice/Level_4/Fourier_Transform_Circuit/FFT_PE/FFT_PE.v
+Z18 FD:/Code/git/DIC-Practice/Level_4/Fourier_Transform_Circuit/FFT_PE/FFT_PE.v
 L0 1
-R1
+R7
 r1
 31
-R2
-n@f@f@t_@p@e
-!s100 nmEC5[`F>lKgL:9czlG4B1
-!s90 -reportprogress|300|-work|work|-vopt|D:\Code\git\DIC-Practice\Level_4\Fourier_Transform_Circuit\FFT_PE\FFT_PE.v|
-!s108 1583836693.985000
-!s107 D:\Code\git\DIC-Practice\Level_4\Fourier_Transform_Circuit\FFT_PE\FFT_PE.v|
+R8
+Z19 n@f@f@t_@p@e
+Z20 !s100 a4zP?iffj<1:V?z646=U00
+Z21 !s108 1584357614.194000
+Z22 !s107 D:/Code/git/DIC-Practice/Level_4/Fourier_Transform_Circuit/FFT_PE/FFT_PE.v|
+Z23 !s90 -reportprogress|300|-work|work|-vopt|D:/Code/git/DIC-Practice/Level_4/Fourier_Transform_Circuit/FFT_PE/FFT_PE.v|
 !i10b 1
 !s85 0
 vtestfixture0
-I`EL6f3B:dYBl^m6nkN3<n3
-V6IPk7L8aHSlYI?[1fM[2n1
+Z24 IcnWadklW04oi:SP?1H1IB0
+Z25 V6IPk7L8aHSlYI?[1fM[2n1
 R3
-w1583836112
-8D:\Code\git\DIC-Practice\Level_4\Fourier_Transform_Circuit\FFT_PE\testfixture0.v
-FD:\Code\git\DIC-Practice\Level_4\Fourier_Transform_Circuit\FFT_PE\testfixture0.v
+Z26 w1583836112
+Z27 8D:/Code/git/DIC-Practice/Level_4/Fourier_Transform_Circuit/FFT_PE/testfixture0.v
+Z28 FD:/Code/git/DIC-Practice/Level_4/Fourier_Transform_Circuit/FFT_PE/testfixture0.v
 L0 11
-R1
+R7
 r1
 31
-R2
-!s100 ?9`jFWWPHceEZCF;Nj;<N2
-!s90 -reportprogress|300|-work|work|-vopt|D:\Code\git\DIC-Practice\Level_4\Fourier_Transform_Circuit\FFT_PE\testfixture0.v|
-!s108 1583836694.059000
-!s107 D:\Code\git\DIC-Practice\Level_4\Fourier_Transform_Circuit\FFT_PE\testfixture0.v|
+R8
+Z29 !s100 U2OVQI<I1OHQN4D6a5S8j0
+Z30 !s108 1584357614.286000
+Z31 !s107 D:/Code/git/DIC-Practice/Level_4/Fourier_Transform_Circuit/FFT_PE/testfixture0.v|
+Z32 !s90 -reportprogress|300|-work|work|-vopt|D:/Code/git/DIC-Practice/Level_4/Fourier_Transform_Circuit/FFT_PE/testfixture0.v|
 !i10b 1
 !s85 0
 vtestfixture1
-VWP0=oXMOeYWB]IV3[4WoU2
+Z33 IcQ@1<3cno^JVaZ^7a1^072
+Z34 VWP0=oXMOeYWB]IV3[4WoU2
+R3
+Z35 w1583836763
+Z36 8D:/Code/git/DIC-Practice/Level_4/Fourier_Transform_Circuit/FAS/testfixture1.v
+Z37 FD:/Code/git/DIC-Practice/Level_4/Fourier_Transform_Circuit/FAS/testfixture1.v
+L0 11
+R7
 r1
 31
-ISTXQGKTF4YH43iI5lT0T41
-R3
-w1583836690
-8D:\Code\git\DIC-Practice\Level_4\Fourier_Transform_Circuit\FAS\testfixture1.v
-FD:\Code\git\DIC-Practice\Level_4\Fourier_Transform_Circuit\FAS\testfixture1.v
-L0 11
-R1
-R2
-!s85 0
-!s90 -reportprogress|300|-work|work|-vopt|D:\Code\git\DIC-Practice\Level_4\Fourier_Transform_Circuit\FAS\testfixture1.v|
-!s100 W:MOVSC6m9<@2M=WLPZL]1
-!s108 1583836694.225000
-!s107 D:\Code\git\DIC-Practice\Level_4\Fourier_Transform_Circuit\FAS\testfixture1.v|
+R8
 !i10b 1
+Z38 !s100 ZN?2EmRh09;fkm4R0GnTz0
+!s85 0
+Z39 !s108 1584357614.420000
+Z40 !s107 D:/Code/git/DIC-Practice/Level_4/Fourier_Transform_Circuit/FAS/testfixture1.v|
+Z41 !s90 -reportprogress|300|-work|work|-vopt|D:/Code/git/DIC-Practice/Level_4/Fourier_Transform_Circuit/FAS/testfixture1.v|
 vtestfixture2
-I>0Fg_ASiLM<KgcPYe2FH@1
-VYcJ:XJQbR?JSh66liEmgz2
-R3
-w1583836103
-8D:\Code\git\DIC-Practice\Level_4\Fourier_Transform_Circuit\FAS\testfixture2.v
-FD:\Code\git\DIC-Practice\Level_4\Fourier_Transform_Circuit\FAS\testfixture2.v
-L0 11
-R1
-r1
-31
-R2
-!s100 @m3W?nlZk1R`l=laMKTLg1
-!s90 -reportprogress|300|-work|work|-vopt|D:\Code\git\DIC-Practice\Level_4\Fourier_Transform_Circuit\FAS\testfixture2.v|
 !i10b 1
+!s100 DGc1BJhYeI[aAURIe;NCM1
+IzdDKN4^C[l59=kF]ZW6MI2
+Z42 VYcJ:XJQbR?JSh66liEmgz2
+R3
+R35
+8D:/Code/git/DIC-Practice/Level_4/Fourier_Transform_Circuit/FAS/testfixture2.v
+FD:/Code/git/DIC-Practice/Level_4/Fourier_Transform_Circuit/FAS/testfixture2.v
+L0 11
+R7
+r1
 !s85 0
-!s108 1583836694.336000
-!s107 D:\Code\git\DIC-Practice\Level_4\Fourier_Transform_Circuit\FAS\testfixture2.v|
+31
+!s108 1584357614.502000
+!s107 D:/Code/git/DIC-Practice/Level_4/Fourier_Transform_Circuit/FAS/testfixture2.v|
+!s90 -reportprogress|300|-work|work|-vopt|D:/Code/git/DIC-Practice/Level_4/Fourier_Transform_Circuit/FAS/testfixture2.v|
+R8
