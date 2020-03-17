@@ -2,10 +2,9 @@ library verilog;
 use verilog.vl_types.all;
 entity SET is
     generic(
-        \WAIT\          : vl_logic_vector(0 to 1) := (Hi0, Hi0);
-        INPUT           : vl_logic_vector(0 to 1) := (Hi0, Hi1);
-        COMPARE         : vl_logic_vector(0 to 1) := (Hi1, Hi0);
-        OUTPUT          : vl_logic_vector(0 to 1) := (Hi1, Hi1)
+        Input           : vl_logic_vector(0 to 1) := (Hi0, Hi0);
+        Compare         : vl_logic_vector(0 to 1) := (Hi0, Hi1);
+        Output          : vl_logic_vector(0 to 1) := (Hi1, Hi0)
     );
     port(
         clk             : in     vl_logic;
@@ -19,8 +18,7 @@ entity SET is
         candidate       : out    vl_logic_vector(7 downto 0)
     );
     attribute mti_svvh_generic_type : integer;
-    attribute mti_svvh_generic_type of \WAIT\ : constant is 1;
-    attribute mti_svvh_generic_type of INPUT : constant is 1;
-    attribute mti_svvh_generic_type of COMPARE : constant is 1;
-    attribute mti_svvh_generic_type of OUTPUT : constant is 1;
+    attribute mti_svvh_generic_type of Input : constant is 1;
+    attribute mti_svvh_generic_type of Compare : constant is 1;
+    attribute mti_svvh_generic_type of Output : constant is 1;
 end SET;
