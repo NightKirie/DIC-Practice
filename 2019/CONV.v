@@ -18,7 +18,9 @@ module  CONV(
 );
 
 reg [2:0] curr_state, next_state;
-reg [19:0] buffer [0:4095];
+reg [3:0] count;
+reg [19:0] buffer [0:8];
+
 
 parameter NO_MEM_SEL = 3'b000;
 parameter RW_LAYER0 = 3'b001;
@@ -26,7 +28,9 @@ parameter RW_LAYER1 = 3'b011;
 
 parameter WAIT = 3'b000;
 parameter LOAD = 3'b001;
-parameter LAYER0 = 3'b010;
+parameter CONVO = 3'b010;
+parameter RELU = 3'b011;
+parameter MAXPOOL = 3'b100;
 
 parameter ker0 = 20'h0A98E;
 parameter ker1 = 20'h092D5;
@@ -47,6 +51,8 @@ always @(posedge clk) begin
 		cwr <= 0;
 		csel <= 3'b0;
 
+		count <= 4'd0;
+
 		curr_state <= WAIT;
 	end
 	else begin
@@ -60,6 +66,7 @@ always @(posedge clk) begin
 			LOAD: begin
 				buffer[iaddr] <= idata;
 				iaddr <= iaddr + 12'd1;
+				count <= (count == 4'd8) ? 0 : count+1;
 			end
 		endcase
 	end
@@ -71,9 +78,9 @@ always @(*) begin
 			next_state = (ready) ? LOAD : WAIT;
 		end
 		LOAD: begin
-			next_state = (iaddr == 12'd4095) ? LAYER0: LOAD;
+			next_state = (count == 4'd8)  ? CONVO: LOAD;
 		end
-		 
+
 	endcase
 end
 
