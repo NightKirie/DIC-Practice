@@ -7,7 +7,9 @@ entity CONV is
         RW_LAYER1       : vl_logic_vector(0 to 2) := (Hi0, Hi1, Hi1);
         \WAIT\          : vl_logic_vector(0 to 2) := (Hi0, Hi0, Hi0);
         LOAD            : vl_logic_vector(0 to 2) := (Hi0, Hi0, Hi1);
-        LAYER0          : vl_logic_vector(0 to 2) := (Hi0, Hi1, Hi0);
+        CONVO           : vl_logic_vector(0 to 2) := (Hi0, Hi1, Hi0);
+        RELU            : vl_logic_vector(0 to 2) := (Hi0, Hi1, Hi1);
+        MAXPOOL         : vl_logic_vector(0 to 2) := (Hi1, Hi0, Hi0);
         ker0            : vl_logic_vector(0 to 19) := (Hi0, Hi0, Hi0, Hi0, Hi1, Hi0, Hi1, Hi0, Hi1, Hi0, Hi0, Hi1, Hi1, Hi0, Hi0, Hi0, Hi1, Hi1, Hi1, Hi0);
         ker1            : vl_logic_vector(0 to 19) := (Hi0, Hi0, Hi0, Hi0, Hi1, Hi0, Hi0, Hi1, Hi0, Hi0, Hi1, Hi0, Hi1, Hi1, Hi0, Hi1, Hi0, Hi1, Hi0, Hi1);
         ker2            : vl_logic_vector(0 to 19) := (Hi0, Hi0, Hi0, Hi0, Hi0, Hi1, Hi1, Hi0, Hi1, Hi1, Hi0, Hi1, Hi0, Hi1, Hi0, Hi0, Hi0, Hi0, Hi1, Hi1);
@@ -39,7 +41,9 @@ entity CONV is
     attribute mti_svvh_generic_type of RW_LAYER1 : constant is 1;
     attribute mti_svvh_generic_type of \WAIT\ : constant is 1;
     attribute mti_svvh_generic_type of LOAD : constant is 1;
-    attribute mti_svvh_generic_type of LAYER0 : constant is 1;
+    attribute mti_svvh_generic_type of CONVO : constant is 1;
+    attribute mti_svvh_generic_type of RELU : constant is 1;
+    attribute mti_svvh_generic_type of MAXPOOL : constant is 1;
     attribute mti_svvh_generic_type of ker0 : constant is 1;
     attribute mti_svvh_generic_type of ker1 : constant is 1;
     attribute mti_svvh_generic_type of ker2 : constant is 1;
