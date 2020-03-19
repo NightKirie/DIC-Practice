@@ -81,7 +81,7 @@ always @(posedge clk) begin
 							end
 						end
 						4'd2: begin
-							if(iaddr[11:6] == 6'd0) begin
+							if(curr_addr[11:6] == 6'd0) begin
 								buffer[2] <= 20'd0;
 							end
 							else begin
@@ -108,8 +108,9 @@ always @(posedge clk) begin
 						end
 						4'd8: begin
 							buffer[8] <= (curr_addr[11:6] == 6'd63) ? 20'd0 : idata;
+							iaddr <= (curr_addr[11:6] == 6'd0) ? 12'd1 : curr_addr - 12'd63;
 							curr_addr <= curr_addr + 12'd1;
-						end					 
+						end				 
 					endcase
 					counter <= (counter == 4'd8) ? 4'd0 : counter + 1;
 				end
@@ -124,7 +125,7 @@ always @(posedge clk) begin
 							buffer[6] <= buffer[7];
 							buffer[7] <= buffer[8];
 
-							iaddr <= (curr_addr[5:0] == 6'd63) ? curr_addr : curr_addr + 12'd1;
+							iaddr <= (curr_addr[5:0] == 6'd63) ? iaddr : iaddr + 12'd1;
 						end
 						4'd1: begin
 							if(curr_addr[11:6] == 6'd0) begin
@@ -145,17 +146,15 @@ always @(posedge clk) begin
 							end
 						end
 						4'd3: begin
-							if(curr_addr[11:6] == 6'd0) begin
-								buffer[7] <= 20'd0;
-							end
-							else if(curr_addr[5:0] == 6'd63) begin
-								buffer[7] <= 20'd0;
+							if(curr_addr[11:6] == 6'd63 || curr_addr[5:0] == 6'd63) begin
+								buffer[8] <= 20'd0;
 								iaddr <= curr_addr - 12'd63;
 							end
 							else begin
-								buffer[7] <= idata;
-								iaddr <= curr_addr - 12'd64;
+								buffer[8] <= idata;
+								iaddr <= (curr_addr[11:6] == 6'd0) ? curr_addr + 12'd1 : curr_addr - 12'd63;
 							end
+							curr_addr <= curr_addr + 12'd1;
 						end
 					endcase
 					counter <= (counter == 4'd3) ? 4'd0 : counter + 1;
@@ -174,7 +173,7 @@ always @(*) begin
 			if(curr_addr[5:0] == 6'd0)
 				next_state = (counter == 4'd8) ? CONVO: LOAD;
 			else
-				next_state = (counter == 4'd2) ? CONVO: LOAD;
+				next_state = (counter == 4'd3) ? CONVO: LOAD;
 		end
 		CONVO: next_state = LOAD;
 	endcase
