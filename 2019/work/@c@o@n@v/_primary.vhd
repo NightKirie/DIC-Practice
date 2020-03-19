@@ -7,7 +7,7 @@ entity CONV is
         RW_LAYER1       : vl_logic_vector(0 to 2) := (Hi0, Hi1, Hi1);
         \WAIT\          : vl_logic_vector(0 to 2) := (Hi0, Hi0, Hi0);
         LOAD            : vl_logic_vector(0 to 2) := (Hi0, Hi0, Hi1);
-        CONVO           : vl_logic_vector(0 to 2) := (Hi0, Hi1, Hi0);
+        CONVOLUTION     : vl_logic_vector(0 to 2) := (Hi0, Hi1, Hi0);
         RELU            : vl_logic_vector(0 to 2) := (Hi0, Hi1, Hi1);
         MAXPOOL         : vl_logic_vector(0 to 2) := (Hi1, Hi0, Hi0);
         ker0            : vl_logic_vector(0 to 19) := (Hi0, Hi0, Hi0, Hi0, Hi1, Hi0, Hi1, Hi0, Hi1, Hi0, Hi0, Hi1, Hi1, Hi0, Hi0, Hi0, Hi1, Hi1, Hi1, Hi0);
@@ -18,7 +18,8 @@ entity CONV is
         ker5            : vl_logic_vector(0 to 19) := (Hi1, Hi1, Hi1, Hi1, Hi0, Hi1, Hi1, Hi0, Hi1, Hi1, Hi1, Hi0, Hi0, Hi1, Hi0, Hi1, Hi0, Hi1, Hi0, Hi0);
         ker6            : vl_logic_vector(0 to 19) := (Hi1, Hi1, Hi1, Hi1, Hi1, Hi0, Hi1, Hi0, Hi0, Hi1, Hi1, Hi0, Hi1, Hi1, Hi0, Hi1, Hi0, Hi1, Hi1, Hi1);
         ker7            : vl_logic_vector(0 to 19) := (Hi1, Hi1, Hi1, Hi1, Hi1, Hi1, Hi0, Hi0, Hi1, Hi0, Hi0, Hi0, Hi0, Hi0, Hi1, Hi1, Hi0, Hi1, Hi0, Hi0);
-        ker8            : vl_logic_vector(0 to 19) := (Hi1, Hi1, Hi1, Hi1, Hi1, Hi0, Hi1, Hi0, Hi1, Hi1, Hi0, Hi0, Hi0, Hi0, Hi0, Hi1, Hi1, Hi0, Hi0, Hi1)
+        ker8            : vl_logic_vector(0 to 19) := (Hi1, Hi1, Hi1, Hi1, Hi1, Hi0, Hi1, Hi0, Hi1, Hi1, Hi0, Hi0, Hi0, Hi0, Hi0, Hi1, Hi1, Hi0, Hi0, Hi1);
+        bias            : vl_logic_vector(0 to 39) := (Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi1, Hi0, Hi0, Hi1, Hi1, Hi0, Hi0, Hi0, Hi1, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0)
     );
     port(
         clk             : in     vl_logic;
@@ -41,7 +42,7 @@ entity CONV is
     attribute mti_svvh_generic_type of RW_LAYER1 : constant is 1;
     attribute mti_svvh_generic_type of \WAIT\ : constant is 1;
     attribute mti_svvh_generic_type of LOAD : constant is 1;
-    attribute mti_svvh_generic_type of CONVO : constant is 1;
+    attribute mti_svvh_generic_type of CONVOLUTION : constant is 1;
     attribute mti_svvh_generic_type of RELU : constant is 1;
     attribute mti_svvh_generic_type of MAXPOOL : constant is 1;
     attribute mti_svvh_generic_type of ker0 : constant is 1;
@@ -53,4 +54,5 @@ entity CONV is
     attribute mti_svvh_generic_type of ker6 : constant is 1;
     attribute mti_svvh_generic_type of ker7 : constant is 1;
     attribute mti_svvh_generic_type of ker8 : constant is 1;
+    attribute mti_svvh_generic_type of bias : constant is 1;
 end CONV;
