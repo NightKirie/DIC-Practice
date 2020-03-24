@@ -19,7 +19,7 @@ module  CONV(
 
 reg [2:0] curr_state, next_state;
 reg [3:0] counter;
-//reg [11:0] caddr_wr;
+reg [11:0] curr_addr;
 reg signed [19:0] buffer [0:8], conv_ker;
 reg signed [39:0] conv_sum;
 
@@ -75,6 +75,7 @@ always @(posedge clk) begin
 				end
 			end
 			LOAD: begin
+				cwr <= 0;
 				// Can't reuse 
 				if(caddr_wr[5:0] == 6'd0) begin
 					case (counter)
@@ -188,15 +189,36 @@ always @(posedge clk) begin
 				cdata_wr <= (conv_sum[39]) ? 20'd0 : ((conv_sum[25]) ? conv_sum + 40'h0000010000 : conv_sum);
 				csel <= 3'b001;
 				caddr_wr <= caddr_wr + 1;
+				if(caddr_wr == 12'd4095) begin
+					crd <= 1;
+					csel <= 3'b001;
+				end
 			end
 			MAXPOOL: begin
 				crd <= 1;
-				csel <= 3'b001;
 				case(counter) 
-					4'd0: begin
-						buffer[0] <=
+					4'd0, 4'd2: begin
+						cwr <= 0;
+						buffer[counter] <= cdata_rd;
+						caddr_rd <= caddr_rd + 12'd1;
+						csel <= 3'b001;
+					end
+					4'd1: begin
+						buffer[1] <= cdata_rd;
+						caddr_rd <= caddr_rd + 12'd63;
+					end
+					4'd3: begin
+						buffer[3] <= cdata_rd;
+						caddr_rd <= (caddr_rd[5:0] == 6'd63) ? caddr_rd + 12'd1 : caddr_rd - 12'd63;
+					end
+					4'd4: begin
+						csel <= 3'b011;
+						cdata_wr <= max_all;
 					end
 				endcase
+				counter <= (counter == 4'd4) ? 4'd0 : counter + 1;
+				cwr <= (counter == 4'd4) ? 0 : 1;
+				busy <= (caddr_rd == 12'd1023 && counter == 4'd4) ? 0 : 1;
 			end
 		endcase
 	end
@@ -217,7 +239,10 @@ always @(*) begin
 			next_state = (counter == 4'd8) ? RELU: CONVOLUTION;
 		end
 		RELU: begin
-			next_state = (caddr_wr == 12'd4095) ? MAXPOOL : LOAD;
+			next_state = (caddr_wr == 12'd4094) ? MAXPOOL : LOAD;
+		end
+		MAXPOOL: begin
+			next_state = (caddr_rd == 12'd4095 && counter == 4'd4) ? MAXPOOL : WAIT;
 		end
 	endcase
 end
