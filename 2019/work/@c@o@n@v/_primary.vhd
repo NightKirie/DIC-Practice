@@ -10,7 +10,7 @@ entity CONV is
         CONVOLUTION     : vl_logic_vector(0 to 2) := (Hi0, Hi1, Hi0);
         RELU            : vl_logic_vector(0 to 2) := (Hi0, Hi1, Hi1);
         MAXPOOL         : vl_logic_vector(0 to 2) := (Hi1, Hi0, Hi0);
-        ker0            : vl_logic_vector(0 to 19) := (Hi0, Hi0, Hi0, Hi0, Hi1, Hi0, Hi1, Hi0, Hi1, Hi0, Hi0, Hi1, Hi1, Hi0, Hi0, Hi0, Hi1, Hi1, Hi1, Hi0);
+        ker0            : vl_logic_vector(0 to 19) := (Hi0, Hi0, Hi0, Hi0, Hi1, Hi0, Hi1, Hi0, Hi1, Hi0, Hi0, Hi0, Hi1, Hi0, Hi0, Hi1, Hi1, Hi1, Hi1, Hi0);
         ker1            : vl_logic_vector(0 to 19) := (Hi0, Hi0, Hi0, Hi0, Hi1, Hi0, Hi0, Hi1, Hi0, Hi0, Hi1, Hi0, Hi1, Hi1, Hi0, Hi1, Hi0, Hi1, Hi0, Hi1);
         ker2            : vl_logic_vector(0 to 19) := (Hi0, Hi0, Hi0, Hi0, Hi0, Hi1, Hi1, Hi0, Hi1, Hi1, Hi0, Hi1, Hi0, Hi1, Hi0, Hi0, Hi0, Hi0, Hi1, Hi1);
         ker3            : vl_logic_vector(0 to 19) := (Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi1, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi0, Hi1, Hi0, Hi0);
@@ -24,16 +24,16 @@ entity CONV is
     port(
         clk             : in     vl_logic;
         reset           : in     vl_logic;
-        ready           : in     vl_logic;
-        idata           : in     vl_logic_vector(19 downto 0);
-        cdata_rd        : in     vl_logic_vector(19 downto 0);
         busy            : out    vl_logic;
+        ready           : in     vl_logic;
         iaddr           : out    vl_logic_vector(11 downto 0);
+        idata           : in     vl_logic_vector(19 downto 0);
         cwr             : out    vl_logic;
         caddr_wr        : out    vl_logic_vector(11 downto 0);
         cdata_wr        : out    vl_logic_vector(19 downto 0);
         crd             : out    vl_logic;
         caddr_rd        : out    vl_logic_vector(11 downto 0);
+        cdata_rd        : in     vl_logic_vector(19 downto 0);
         csel            : out    vl_logic_vector(2 downto 0)
     );
     attribute mti_svvh_generic_type : integer;
