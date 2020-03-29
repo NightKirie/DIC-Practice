@@ -1,0 +1,94 @@
+m255
+K3
+13
+cModel Technology
+dD:\Code\git\DIC-Practice\2019
+T_opt
+Vf;7bDK?;Y[_I]W7_0N9:82
+04 11 4 work testfixture fast 0
+=67-b42e99cabd74-5e7aeccd-104-1d78
+o-quiet -auto_acc_if_foreign -work work +acc
+n@_opt
+OL;O;10.1c;51
+vSME
+IXT]LE]3S@KHz4:;n5YSS22
+VXSaL5b?eUMgZgGKi0j<Y:3
+Z0 dD:\Code\git\DIC-Practice\2020
+w1585114312
+8D:\Code\git\DIC-Practice\2020\SME.v
+FD:\Code\git\DIC-Practice\2020\SME.v
+L0 1
+Z1 OL;L;10.1c;51
+r1
+31
+o-work work -L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF
+n@s@m@e
+!s90 -reportprogress|300|-work|work|-vopt|D:\Code\git\DIC-Practice\2020\SME.v|
+!s100 LgB2IhEnGUZUCUYag?_5d2
+!s108 1585114315.549000
+!s107 D:\Code\git\DIC-Practice\2020\SME.v|
+!i10b 1
+!s85 0
+Xtb_sv_unit
+Z2 DXx6 sv_std 3 std 0 22 F[19LRNL:5;XmIFh[XOPn1
+IO6FCg:hHH;GdOZ]1LR@`J2
+VO6FCg:hHH;GdOZ]1LR@`J2
+S1
+Z3 dD:\Code\git\DIC-Practice\2020
+Z4 w1584675858
+Z5 8D:/Code/git/DIC-Practice/2020/tb.sv
+Z6 FD:/Code/git/DIC-Practice/2020/tb.sv
+Z7 L0 209
+R1
+r1
+31
+Z8 !s108 1585114315.711000
+Z9 !s107 D:/Code/git/DIC-Practice/2020/tb.sv|
+Z10 !s90 -reportprogress|300|-work|work|-vopt|-sv|D:/Code/git/DIC-Practice/2020/tb.sv|
+Z11 o-work work -sv -L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF
+!s100 L27FXSh`E?VJ5_8LL7j[E2
+!i10b 1
+!i103 1
+!s85 0
+Xtb_term_sv_unit
+R2
+VT9^l4^IT_Bb[R><T9;=_=1
+r1
+31
+IT9^l4^IT_Bb[R><T9;=_=1
+S1
+R3
+w1584675865
+8D:/Code/git/DIC-Practice/2020/tb_term.sv
+FD:/Code/git/DIC-Practice/2020/tb_term.sv
+R7
+R1
+R11
+!s108 1585097406.191000
+!s107 D:/Code/git/DIC-Practice/2020/tb_term.sv|
+!s90 -reportprogress|300|-work|work|-vopt|-sv|D:/Code/git/DIC-Practice/2020/tb_term.sv|
+!s100 V]PLLk6NGKHM]Pe40kWTF1
+!i10b 1
+!s85 0
+!i103 1
+vtestfixture
+R2
+IT8:hTACB823eXog0@9md:1
+VKBIIT=eCh7cJh[^JXBGX00
+S1
+R3
+R4
+R5
+R6
+L0 6
+R1
+r1
+31
+R8
+R9
+R10
+R11
+!s100 QCAh9DNoVLj?mIgT[]c9I1
+!s105 tb_sv_unit
+!i10b 1
+!s85 0
