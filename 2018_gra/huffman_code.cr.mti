@@ -1,0 +1,8 @@
+D:/Code/git/DIC-Practice/2018_gra/tb.v {1 {vlog -work work -vopt +define+tb1 +access+r {D:\Code\git\DIC-Practice\2018_gra\tb.v}
+Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
+-- Compiling module tb
+
+Top level modules:
+	tb
+
+} {} {}}
