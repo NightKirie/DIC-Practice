@@ -1,0 +1,42 @@
+m255
+K3
+13
+cModel Technology
+dD:\Code\git\DIGITAL-IC-DESIGN\DIC_HW2
+vhuffman
+VfkRn_nHgG6MUOe9b5eoSQ0
+r1
+!s85 0
+31
+IEb11GYCQ6>>QmEiS9hcWO3
+Z0 dE:\code\git\DIC-Practice\2018_gra
+w1587990995
+8E:\code\git\DIC-Practice\2018_gra\huffman.v
+FE:\code\git\DIC-Practice\2018_gra\huffman.v
+L0 1
+Z1 OL;L;10.1c;51
+o-work work -L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF
+!s100 JRO`egJCn?Y;kjXPSMRhn1
+!s90 -reportprogress|300|-work|work|-vopt|E:\code\git\DIC-Practice\2018_gra\huffman.v|
+!s108 1587991587.600000
+!s107 E:\code\git\DIC-Practice\2018_gra\huffman.v|
+!i10b 1
+vtb
+VV@Xn<HnSRM[I5c1?BH]3a3
+r1
+31
+IkYXQ<L;aYJkk7<mK;?><O1
+Z2 dE:\code\git\DIC-Practice\2018_gra
+w1521524727
+8E:/code/git/DIC-Practice/2018_gra/tb.v
+FE:/code/git/DIC-Practice/2018_gra/tb.v
+L0 35
+R1
+o-work work +access+r -L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF
+!s85 0
+!s100 9k>l@J^`3;e_4>k>b5kQV1
+!i10b 1
+!s108 1587991587.710000
+!s107 E:/code/git/DIC-Practice/2018_gra/tb.v|
+!s90 -reportprogress|300|-work|work|-vopt|+define+tb1|+access+r|E:/code/git/DIC-Practice/2018_gra/tb.v|
+!s92 -work work +define+tb1 +access+r -L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF

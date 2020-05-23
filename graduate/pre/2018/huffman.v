@@ -17,7 +17,7 @@ reg [6:0] counter;
 reg [2:0] sorted_index [0:5];
 
 parameter LOAD = 3'd0;
-parameter CAL_HUFFMAN = 3'd1;
+parameter SORT = 3'd1;
 
 always @(posedge clk ) begin
     if(reset) begin
@@ -47,7 +47,7 @@ always @(posedge clk ) begin
                     counter <= counter + 1;
                 end
             end 
-            CAL_HUFFMAN: begin
+            SORT: begin
             end
         endcase
     end
@@ -56,7 +56,7 @@ end
 always @(*) begin
     case (curr_state)
         LOAD: begin
-            next_state = (counter == 7'd99) ? CAL_HUFFMAN : LOAD;
+            next_state = (counter == 7'd99) ? SORT : LOAD;
         end 
     endcase
 end
