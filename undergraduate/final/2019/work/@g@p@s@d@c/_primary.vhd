@@ -1,6 +1,14 @@
 library verilog;
 use verilog.vl_types.all;
 entity GPSDC is
+    generic(
+        rad             : vl_logic_vector(0 to 15) := (Hi0, Hi0, Hi0, Hi0, Hi0, Hi1, Hi0, Hi0, Hi0, Hi1, Hi1, Hi1, Hi0, Hi1, Hi1, Hi1);
+        R               : vl_logic_vector(0 to 23) := (Hi1, Hi1, Hi0, Hi0, Hi0, Hi0, Hi1, Hi0, Hi1, Hi0, Hi1, Hi0, Hi0, Hi1, Hi0, Hi1, Hi0, Hi0, Hi1, Hi1, Hi0, Hi0, Hi1, Hi0);
+        LOAD_1          : vl_logic_vector(0 to 2) := (Hi0, Hi0, Hi0);
+        LOAD_2          : vl_logic_vector(0 to 2) := (Hi0, Hi0, Hi1);
+        GET_SIN         : vl_logic_vector(0 to 2) := (Hi0, Hi1, Hi0);
+        IDLE            : vl_logic_vector(0 to 2) := (Hi0, Hi1, Hi1)
+    );
     port(
         clk             : in     vl_logic;
         reset_n         : in     vl_logic;
@@ -15,4 +23,11 @@ entity GPSDC is
         a               : out    vl_logic_vector(63 downto 0);
         D               : out    vl_logic_vector(39 downto 0)
     );
+    attribute mti_svvh_generic_type : integer;
+    attribute mti_svvh_generic_type of rad : constant is 1;
+    attribute mti_svvh_generic_type of R : constant is 1;
+    attribute mti_svvh_generic_type of LOAD_1 : constant is 1;
+    attribute mti_svvh_generic_type of LOAD_2 : constant is 1;
+    attribute mti_svvh_generic_type of GET_SIN : constant is 1;
+    attribute mti_svvh_generic_type of IDLE : constant is 1;
 end GPSDC;
