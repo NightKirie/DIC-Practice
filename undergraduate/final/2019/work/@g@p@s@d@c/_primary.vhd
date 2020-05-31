@@ -7,7 +7,8 @@ entity GPSDC is
         LOAD_1          : vl_logic_vector(0 to 2) := (Hi0, Hi0, Hi0);
         LOAD_2          : vl_logic_vector(0 to 2) := (Hi0, Hi0, Hi1);
         GET_SIN         : vl_logic_vector(0 to 2) := (Hi0, Hi1, Hi0);
-        IDLE            : vl_logic_vector(0 to 2) := (Hi0, Hi1, Hi1)
+        GET_COS         : vl_logic_vector(0 to 2) := (Hi0, Hi1, Hi1);
+        GET_A           : vl_logic_vector(0 to 2) := (Hi1, Hi0, Hi0)
     );
     port(
         clk             : in     vl_logic;
@@ -29,5 +30,6 @@ entity GPSDC is
     attribute mti_svvh_generic_type of LOAD_1 : constant is 1;
     attribute mti_svvh_generic_type of LOAD_2 : constant is 1;
     attribute mti_svvh_generic_type of GET_SIN : constant is 1;
-    attribute mti_svvh_generic_type of IDLE : constant is 1;
+    attribute mti_svvh_generic_type of GET_COS : constant is 1;
+    attribute mti_svvh_generic_type of GET_A : constant is 1;
 end GPSDC;
