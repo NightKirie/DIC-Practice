@@ -21,6 +21,7 @@ reg [3:0] counter;
 reg [7:0] twp_addr;
 reg [14:0] twp_data;
 reg tar, sda_value;
+reg rim_master;
 
 parameter TWP_WAIT = 3'd0;
 parameter TWP_CMD = 3'd1;
@@ -32,19 +33,6 @@ parameter TWP_READ_DATA = 3'd6;
 parameter TWP_READ_ZERO_TAR = 3'd7;
 
 assign SDA = (tar == 0) ? 1'bz : sda_value;
-
-reg rim_master;
-
-always @(*) begin
-	case (curr_state)
-		TWP_CMD: begin
-			rim_master = (cfg_req) ? ((SDA) ? 0 : 1) : 1;
-		end
-		default: begin
-			rim_master = rim_master;
-		end
-	endcase
-end
 
 always @(posedge clk, negedge reset_n) begin
 	if (!reset_n) begin
@@ -129,6 +117,17 @@ always @(posedge clk, negedge reset_n) begin
 			end
 		endcase 
 	end
+end
+
+always @(*) begin
+	case (curr_state)
+		TWP_CMD: begin
+			rim_master = (cfg_req) ? ((SDA) ? 0 : 1) : 1;
+		end
+		default: begin
+			rim_master = rim_master;
+		end
+	endcase
 end
 
 always @(*) begin

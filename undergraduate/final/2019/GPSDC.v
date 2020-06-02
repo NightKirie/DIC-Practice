@@ -15,138 +15,167 @@ output  reg   [63:0]  a;
 
 reg [2:0] curr_state, next_state;
 reg [23:0] lat_a, lon_a, lat_b, lon_b;
-reg [63:0] sin_lat, cos_a, sin_lon, cos_b;
-reg [6:0] counter = 3'd0;
-reg [47:0] x0_a, y0_a, x1_a, y1_a, x0_b, y0_b, x1_b, y1_b;
-reg found_flag_a, found_flag_b;
 
-// wire [23:0] diff_lat = (lat_a > lat_b) ? lat_a - lat_b : lat_b - lat_a;
-// wire [23:0] diff_lon = (lon_a > lon_b) ? lon_a - lon_b : lon_b - lon_a;
+/* sin & cos ignore integer part, because a don't care about integer part */
+
+/* 
+    (8-bit, 16-bit) * (0-bit, 16-bit) => (8-bit, 32-bit)
+    (0-bit, 32-bit) * (0-bit, 32-bit) => (0-bit, 64-bit)
+ */
+reg [63:0] sin_lat, sin_lon;  
+
+/* 
+    (16-bit, 32-bit) * (16-bit, 32-bit) => (32-bit, 64-bit)
+    (32-bit, 64-bit) / (16-bit, 32-bit) => (16-bit, 32-bit)
+ */ 
+reg [96:0] cos_a, cos_b;   
+reg [63:0] x0, y0, x1, y1;
+reg [127:0] asin;
+reg has_two_point, found_flag;
  
-parameter rad = 16'h477;
+//parameter rad = 16'h477;
 parameter R = 24'd12756274;
 
-//parameter IDLE = 3'd0;
-parameter LOAD_1 = 3'd0;
-parameter LOAD_2 = 3'd1;
-parameter GET_SIN = 3'd2;
-parameter GET_COS = 3'd3;
+parameter LOAD = 3'd0;
+parameter FIND_COS = 3'd1;
+parameter GET_COS = 3'd2;
+parameter GET_SIN = 3'd3;
 parameter GET_A = 3'd4;
+parameter FIND_ASIN = 3'd5;
+parameter GET_ASIN = 3'd6;
+parameter GET_D = 3'd7;
 
 always @(posedge clk, negedge reset_n) begin
     if(!reset_n) begin      
         COS_ADDR <= 0;
         ASIN_ADDR <= 0;
 
-        found_flag_a <= 0;
-        found_flag_b <= 0;
+        has_two_point <= 0;
+        found_flag <= 0;
 
-        curr_state <= LOAD_1;
+        curr_state <= LOAD;
     end
     else begin
         curr_state <= next_state;
         case(curr_state)
-            LOAD_1: begin
+            LOAD: begin
+                Valid <= 0;
                 if(DEN) begin
-                    lat_a <= LAT_IN;
-                    lon_a <= LON_IN; 
-                end
-            end
-            LOAD_2: begin
-                if(DEN) begin
+                    
+                    //found_flag <= 0;
+                    
+                    lat_a <= lat_b;
+                    lon_a <= lon_b;
                     lat_b <= LAT_IN;
                     lon_b <= LON_IN; 
+                    
+                    cos_a <= cos_b;
                 end
             end
-            GET_COS: begin
-                if(!found_flag_a) begin
-                    if(COS_DATA[87:64] > lat_a) begin
-                        found_flag_a <= 1;
-                        x1_a <= COS_DATA[95:48];
-                        y1_a <= COS_DATA[47:0];
-                    end
-                    else begin
-                        x0_a <= COS_DATA[95:48];
-                        y0_a <= COS_DATA[47:0];
-                    end
-                end
-                if(!found_flag_b) begin
+            FIND_COS: begin
+                if(!found_flag) begin
                     if(COS_DATA[87:64] > lat_b) begin
-                        found_flag_b <= 1;
-                        x1_b <= COS_DATA[95:48];
-                        y1_b <= COS_DATA[47:0];
+                        found_flag <= 1;
+
+                        x1 <= COS_DATA[95:48];
+                        y1 <= COS_DATA[47:0];
                     end
                     else begin
-                        x0_b <= COS_DATA[95:48];
-                        y0_b <= COS_DATA[47:0];
+                        x0 <= COS_DATA[95:48];
+                        y0 <= COS_DATA[47:0];
                     end
                 end
-                
                 COS_ADDR <= COS_ADDR + 1;
             end
-            // default: begin
-            //     Valid <= 0;
-            // end
+            GET_COS: begin
+                COS_ADDR <= 0;
+                found_flag <= 0;
+                has_two_point <= 1;
+            end
+            FIND_ASIN: begin
+                 if(!found_flag) begin
+                    if(ASIN_DATA[127:64] > a) begin
+                        found_flag <= 1;
+
+                        x1 <= ASIN_DATA[127:64];
+                        y1 <= ASIN_DATA[63:0];
+                    end
+                    else begin
+                        x0 <= ASIN_DATA[127:64];
+                        y0 <= ASIN_DATA[63:0];
+                    end
+                end
+                ASIN_ADDR <= ASIN_ADDR + 1;
+            end
+            GET_ASIN: begin
+                ASIN_ADDR <= 0;
+                found_flag <= 0;
+            end
+            GET_D: begin
+                Valid <= 1;
+            end
         endcase
     end
 end
 
 always @(*) begin
     case (curr_state)
-        // IDLE: begin
-        //     next_state = (DEN) ? LOAD_1 : IDLE;
-        // end
-        LOAD_1: begin
-            next_state = (DEN) ? LOAD_2 : LOAD_1;   
-        end
-        LOAD_2: begin
-            next_state = (DEN) ? GET_SIN : LOAD_2;  
-        end
-        GET_SIN: begin
-            next_state = GET_COS;
+        LOAD: begin
+            next_state = (DEN) ? FIND_COS : LOAD;   
+        end   
+        FIND_COS: begin
+            next_state = (found_flag) ? GET_COS : FIND_COS;
         end
         GET_COS: begin
-            next_state = (found_flag_a && found_flag_b) ? GET_A : GET_COS;
+            next_state = (has_two_point) ? GET_SIN : LOAD;
+        end
+        GET_SIN: begin
+            next_state = GET_A;
         end
         GET_A: begin
-        
+            next_state = FIND_ASIN;
         end
-        default: begin
-            next_state = next_state;
+        FIND_ASIN: begin
+            next_state = (found_flag) ? GET_ASIN : FIND_ASIN;
+        end
+        GET_ASIN: begin
+            next_state = GET_D;
+        end
+        GET_D: begin
+            next_state = LOAD;
         end
     endcase
 end
 
 always @(curr_state) begin
     case(curr_state) 
+        GET_COS: begin
+            cos_b = (y0 * (x1 - x0) + ({lat_b, 16'd0} - x0) * (y1 - y0));
+            cos_b = cos_b / (x1 - x0);
+        end
         GET_SIN: begin
-            sin_lat = (lat_a > lat_b) ? lat_a - lat_b : lat_b - lat_a;
-            
+            sin_lat = (lat_a > lat_b) ? (lat_a - lat_b) : (lat_b - lat_a);
             sin_lat = ((sin_lat + (sin_lat << 1)) + ((sin_lat << 2) + (sin_lat << 4))) + (((sin_lat << 5) + (sin_lat << 6)) + (sin_lat << 10));
             sin_lat = sin_lat >> 1;
             sin_lat = sin_lat[31:0] * sin_lat[31:0];
 
-            sin_lon = (lon_a > lon_b) ? lon_a - lon_b : lon_b - lon_a;
-            
+            sin_lon = (lon_a > lon_b) ? (lon_a - lon_b) : (lon_b - lon_a);
             sin_lon = ((sin_lon + (sin_lon << 1)) + ((sin_lon << 2) + (sin_lon << 4))) + (((sin_lon << 5) + (sin_lon << 6)) + (sin_lon << 10));
             sin_lon = sin_lon >> 1;
             sin_lon = sin_lon[31:0] * sin_lon[31:0];
         end
         GET_A: begin
-            cos_a = (y0_a * (x1_a - x0_a) + (lat_a - x0_a) * (y1_a - y0_a)) / (x1_a - x0_a);
-            cos_b = (y0_b * (x1_b - x0_b) + (lat_b - x0_b) * (y1_b - y0_b)) / (x1_b - x0_b);
-            a = sin_lat + cos_a * cos_b * sin_lon;
+            a = cos_a[31:0] * cos_b[31:0];
+            a = a[63:32] * sin_lon[31:0];
+            a = sin_lat[31:0] + a[63:32];
         end
-        default: begin
-            lat_a = lat_a;
-            lon_a = lon_a;
-            lat_b = lat_b;
-            lon_b = lon_b;
-            sin_lat = sin_lat;
-            sin_lon = sin_lon;
-            cos_a = cos_a;
-            cos_b = cos_b;
-            a = a;
+        GET_ASIN: begin
+            asin = y0 * (x1 - x0) + (a - x0) * (y1 - y0);
+            asin = asin / (x1 - x0);
+        end
+        GET_D: begin
+            asin = (asin << 23) + (asin << 22) + (asin << 17) + (asin << 15) + (asin << 13) + (asin << 10) + (asin << 8) + (asin << 5) + (asin << 4) + (asin << 1);
+            D = asin[71:32];
         end
     endcase
 end

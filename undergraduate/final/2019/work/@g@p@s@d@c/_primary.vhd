@@ -2,13 +2,15 @@ library verilog;
 use verilog.vl_types.all;
 entity GPSDC is
     generic(
-        rad             : vl_logic_vector(0 to 15) := (Hi0, Hi0, Hi0, Hi0, Hi0, Hi1, Hi0, Hi0, Hi0, Hi1, Hi1, Hi1, Hi0, Hi1, Hi1, Hi1);
         R               : vl_logic_vector(0 to 23) := (Hi1, Hi1, Hi0, Hi0, Hi0, Hi0, Hi1, Hi0, Hi1, Hi0, Hi1, Hi0, Hi0, Hi1, Hi0, Hi1, Hi0, Hi0, Hi1, Hi1, Hi0, Hi0, Hi1, Hi0);
-        LOAD_1          : vl_logic_vector(0 to 2) := (Hi0, Hi0, Hi0);
-        LOAD_2          : vl_logic_vector(0 to 2) := (Hi0, Hi0, Hi1);
-        GET_SIN         : vl_logic_vector(0 to 2) := (Hi0, Hi1, Hi0);
-        GET_COS         : vl_logic_vector(0 to 2) := (Hi0, Hi1, Hi1);
-        GET_A           : vl_logic_vector(0 to 2) := (Hi1, Hi0, Hi0)
+        LOAD            : vl_logic_vector(0 to 2) := (Hi0, Hi0, Hi0);
+        FIND_COS        : vl_logic_vector(0 to 2) := (Hi0, Hi0, Hi1);
+        GET_COS         : vl_logic_vector(0 to 2) := (Hi0, Hi1, Hi0);
+        GET_SIN         : vl_logic_vector(0 to 2) := (Hi0, Hi1, Hi1);
+        GET_A           : vl_logic_vector(0 to 2) := (Hi1, Hi0, Hi0);
+        FIND_ASIN       : vl_logic_vector(0 to 2) := (Hi1, Hi0, Hi1);
+        GET_ASIN        : vl_logic_vector(0 to 2) := (Hi1, Hi1, Hi0);
+        GET_D           : vl_logic_vector(0 to 2) := (Hi1, Hi1, Hi1)
     );
     port(
         clk             : in     vl_logic;
@@ -25,11 +27,13 @@ entity GPSDC is
         D               : out    vl_logic_vector(39 downto 0)
     );
     attribute mti_svvh_generic_type : integer;
-    attribute mti_svvh_generic_type of rad : constant is 1;
     attribute mti_svvh_generic_type of R : constant is 1;
-    attribute mti_svvh_generic_type of LOAD_1 : constant is 1;
-    attribute mti_svvh_generic_type of LOAD_2 : constant is 1;
-    attribute mti_svvh_generic_type of GET_SIN : constant is 1;
+    attribute mti_svvh_generic_type of LOAD : constant is 1;
+    attribute mti_svvh_generic_type of FIND_COS : constant is 1;
     attribute mti_svvh_generic_type of GET_COS : constant is 1;
+    attribute mti_svvh_generic_type of GET_SIN : constant is 1;
     attribute mti_svvh_generic_type of GET_A : constant is 1;
+    attribute mti_svvh_generic_type of FIND_ASIN : constant is 1;
+    attribute mti_svvh_generic_type of GET_ASIN : constant is 1;
+    attribute mti_svvh_generic_type of GET_D : constant is 1;
 end GPSDC;
