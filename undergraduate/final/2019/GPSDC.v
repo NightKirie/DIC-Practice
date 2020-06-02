@@ -26,11 +26,12 @@ reg [63:0] sin_lat, sin_lon;
 
 /* 
     (16-bit, 32-bit) * (16-bit, 32-bit) => (32-bit, 64-bit)
-    (32-bit, 64-bit) / (16-bit, 32-bit) => (16-bit, 32-bit)
+    (32-bit, 64-bit) / (16-bit, 32-bit) => (64-bit, 64-bit) / (48-bit, 0-bit) 
  */ 
-reg [96:0] cos_a, cos_b;   
+reg [127:0] cos_b;  
+reg [64:0] cos_a; 
 reg [63:0] x0, y0, x1, y1;
-reg [127:0] asin;
+reg [127:0] mul_64_64;
 reg has_two_point, found_flag;
  
 //parameter rad = 16'h477;
@@ -60,16 +61,13 @@ always @(posedge clk, negedge reset_n) begin
         case(curr_state)
             LOAD: begin
                 Valid <= 0;
-                if(DEN) begin
-                    
-                    //found_flag <= 0;
-                    
+                if(DEN) begin                    
                     lat_a <= lat_b;
                     lon_a <= lon_b;
                     lat_b <= LAT_IN;
                     lon_b <= LON_IN; 
                     
-                    cos_a <= cos_b;
+                    cos_a <= cos_b[63:0];
                 end
             end
             FIND_COS: begin
@@ -151,7 +149,7 @@ always @(curr_state) begin
     case(curr_state) 
         GET_COS: begin
             cos_b = (y0 * (x1 - x0) + ({lat_b, 16'd0} - x0) * (y1 - y0));
-            cos_b = cos_b / (x1 - x0);
+            cos_b = {cos_b, 32'd0} / (x1 - x0);     
         end
         GET_SIN: begin
             sin_lat = (lat_a > lat_b) ? (lat_a - lat_b) : (lat_b - lat_a);
@@ -165,17 +163,20 @@ always @(curr_state) begin
             sin_lon = sin_lon[31:0] * sin_lon[31:0];
         end
         GET_A: begin
-            a = cos_a[31:0] * cos_b[31:0];
-            a = a[63:32] * sin_lon[31:0];
-            a = sin_lat[31:0] + a[63:32];
+            mul_64_64 = cos_a * cos_b[63:0];
+            mul_64_64 = mul_64_64[127:64] * sin_lon[31:0];
+            a = sin_lat[31:0] + mul_64_64[127:64];
         end
         GET_ASIN: begin
-            asin = y0 * (x1 - x0) + (a - x0) * (y1 - y0);
-            asin = asin / (x1 - x0);
+            mul_64_64 = y0 * (x1 - x0) + (a - x0) * (y1 - y0);
+            mul_64_64 = mul_64_64 / (x1 - x0);
         end
         GET_D: begin
-            asin = (asin << 23) + (asin << 22) + (asin << 17) + (asin << 15) + (asin << 13) + (asin << 10) + (asin << 8) + (asin << 5) + (asin << 4) + (asin << 1);
-            D = asin[71:32];
+            mul_64_64 = (mul_64_64 << 23) + (mul_64_64 << 22) + (mul_64_64 << 17) + (mul_64_64 << 15) + (mul_64_64 << 13) + (mul_64_64 << 10) + (mul_64_64 << 8) + (mul_64_64 << 5) + (mul_64_64 << 4) + (mul_64_64 << 1);
+            D = mul_64_64[71:32];
+        end
+        default: begin
+            
         end
     endcase
 end

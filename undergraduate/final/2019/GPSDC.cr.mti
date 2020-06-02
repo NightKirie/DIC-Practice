@@ -1,4 +1,4 @@
-D:/Code/git/DIC-Practice/undergraduate/final/2019/testbench.v {1 {vlog -work work -vopt D:/Code/git/DIC-Practice/undergraduate/final/2019/testbench.v
+C:/Code/git/DIC-Practice/undergraduate/final/2019/testbench.v {1 {vlog -work work -vopt C:/Code/git/DIC-Practice/undergraduate/final/2019/testbench.v
 Model Technology ModelSim SE-64 vlog 10.1c Compiler 2012.07 Jul 27 2012
 -- Compiling module test
 -- Compiling module asin_rom
