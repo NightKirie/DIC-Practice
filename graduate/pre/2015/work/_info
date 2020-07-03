@@ -1,0 +1,43 @@
+m255
+K3
+13
+cModel Technology
+Z0 dD:\Code\git\DIC-Practice\graduate\pre\2015
+vSET
+V?Le]RL@^9nN5iN18h0j[L1
+r1
+!s85 0
+31
+I7R1J9P;=;842J7PVKO6@i2
+Z1 dD:\Code\git\DIC-Practice\graduate\pre\2015
+w1593687069
+8D:\Code\git\DIC-Practice\graduate\pre\2015\SET.v
+FD:\Code\git\DIC-Practice\graduate\pre\2015\SET.v
+L0 1
+Z2 OL;L;10.1c;51
+Z3 o-work work -L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF
+n@s@e@t
+!s90 -reportprogress|300|-work|work|-vopt|D:\Code\git\DIC-Practice\graduate\pre\2015\SET.v|
+!s100 izBjmNY<=3?9NXhKkhN`10
+!s108 1593687071.450000
+!s107 D:\Code\git\DIC-Practice\graduate\pre\2015\SET.v|
+!i10b 1
+vtestfixture1
+VWP0=oXMOeYWB]IV3[4WoU2
+r1
+31
+I;Oh^KNEeec22e;KA6^JIP1
+R1
+w1551965286
+8D:/Code/git/DIC-Practice/graduate/pre/2015/testfixture.v
+FD:/Code/git/DIC-Practice/graduate/pre/2015/testfixture.v
+L0 7
+R2
+R3
+!s85 0
+!s100 8n8KLG4WmVlN<jH:KS==G1
+!s90 -reportprogress|300|-work|work|-vopt|+define+MD4|D:/Code/git/DIC-Practice/graduate/pre/2015/testfixture.v|
+!s92 -work work +define+MD4 -L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF
+!i10b 1
+!s108 1593687071.591000
+!s107 D:/Code/git/DIC-Practice/graduate/pre/2015/testfixture.v|
